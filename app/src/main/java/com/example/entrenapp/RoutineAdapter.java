@@ -7,9 +7,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHolder> {
 
-    private String[] routines;
+    private List<String> routines;
 
     /**
      * Provide a reference to the type of views that you are using
@@ -22,7 +24,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHold
             super(view);
             // Define click listener for the ViewHolder's View
 
-            textView = (TextView) view.findViewById(R.id.textView);
+            textView = (TextView) view.findViewById(R.id.routine_name);
         }
 
         public TextView getTextView() {
@@ -36,7 +38,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHold
      * @param dataSet String[] containing the data to populate views to be used
      * by RecyclerView.
      */
-    public RoutineAdapter(String[] dataSet) {
+    public RoutineAdapter(List<String> dataSet) {
         routines = dataSet;
     }
 
@@ -56,12 +58,12 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHold
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.getTextView().setText(routines[position]);
+        viewHolder.getTextView().setText(routines.get(position));
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return routines.length;
+        return routines.size();
     }
 }

@@ -9,22 +9,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.entrenapp.databinding.ActivityYourRoutinesBinding;
 
+import java.util.ArrayList;
+
 
 public class YourRoutinesActivity extends AppCompatActivity {
 
-    private String[] routines= new String[50];
+    private ArrayList<String> routines= new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("on second activity","nO SE PUDO");
 
         super.onCreate(savedInstanceState);
 
         ActivityYourRoutinesBinding binding = ActivityYourRoutinesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        for(int i = 0 ; i < 10 ; i++)
-            addItem(i);
+        fillRoutines();
 
         RecyclerView.Adapter adapter = new RoutineAdapter(this.routines);
         binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -36,9 +36,9 @@ public class YourRoutinesActivity extends AppCompatActivity {
 
     }
 
-
-    private void addItem(int index){
-        routines[index] = "Pecho Plano";
+    private void fillRoutines(){
+       for(int i = 0 ; i < 50 ; i++)
+            routines.add("Pecho plano");
     }
 
 
