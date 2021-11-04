@@ -11,4 +11,19 @@
     <string name="email">Email</string>
     <string name="password">Contraseña</string>
     <string name="your_routines">Tus rutinas</string>
+    <string name="action_search">Buscar</string>
+    <string name="action_share">Compartir</string>
+    <string name="action_filter">Filtrar</string>
+    <string name="action_settings">Configuraciones</string>
+    <string name="difficulty_level">Nivel de dificultad:</string>
+    <string name="difficult_beginner">Principiante</string>
+    <string name="difficulty_intermediate">Intermedio</string>
+    <string name="difficulty_advanced">Avanzado</string>
+    <string name="time">Tiempo:</string>
+    <string name="time_interval1">15-30</string>
+    <string name="time_interval2">30-45</string>
+    <string name="time_interval3">45-60</string>
+    <string name="save">Guardar</string>
+
+
 </resources>

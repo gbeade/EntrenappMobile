@@ -7,6 +7,12 @@
     android:background="@color/primary"
     >
 
+    <include
+        layout="@layout/toolbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+    />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/routineRecyclerView"
@@ -14,16 +20,16 @@
         android:layout_height="635dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.677" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="60dp"
         android:text="@string/your_routines"
         android:textColor="@color/accent"
         android:textSize="26dp"
