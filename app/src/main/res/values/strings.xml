@@ -1,8 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE resources [
-    <!ENTITY appname "ENTRENAPP">
-    <!ENTITY author "MrGreen">
-    ]>
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [<!ENTITY appname "ENTRENAPP"><!ENTITY author "MrGreen">]>
 <resources>
     <string name="app_name">Entrenapp</string>
     <string name="welcome_message">Hola, bienvenido a Entrenapp</string>
