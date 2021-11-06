@@ -1,7 +1,6 @@
 package com.example.entrenapp;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,7 +25,7 @@ public class YourRoutinesActivity extends AppCompatActivity {
 
         fillRoutines();
 
-        RecyclerView.Adapter adapter = new CardAdapter(this.routines, R.layout.extense_routine_description, this);
+        RecyclerView.Adapter adapter = new CardAdapter(this.routines, R.layout.extense_square_card, this);
         binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.routineRecyclerView.setAdapter(adapter);
 

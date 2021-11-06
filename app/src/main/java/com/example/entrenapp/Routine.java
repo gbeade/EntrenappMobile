@@ -98,9 +98,12 @@ public class Routine implements Cardable {
     @Override
     public List<CardCaption> getCaptions() {
         ArrayList<CardCaption> al = new ArrayList<>();
-        al.add(new CardCaption("routine_name", "Nombre", name));
-        al.add(new CardCaption("routine_category", "Categoría", category));
-
+        al.add(new CardCaption("title", "Nombre", name));
+        al.add(new CardCaption("subtitle1", "Fecha", creationDate.toString()));
+        al.add(new CardCaption("subtitle2", "Categoría", category));
+        al.add(new CardCaption("subtitle3", "Equipación?", Boolean.toString(isEquipmentRequired)));
+        al.add(new CardCaption("subtitle4", "Dificultad", difficulty.toString()));
+        al.add(new CardCaption("subtitle5", "Duración", Integer.toString(duration)+"'"));
         return al;
     }
 

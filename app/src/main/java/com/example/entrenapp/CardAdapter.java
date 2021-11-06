@@ -2,6 +2,7 @@ package com.example.entrenapp;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,13 +61,20 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
 
         int xmlTagID = 0;
         for (Cardable.CardCaption c: dataset.get(position).getCaptions()) {
-            // Cambio el título de cada caption
-            xmlTagID = r.getIdentifier(c.getXmlTagID()+"_header", "id", packageName); // Reemplaza al R.id.view_name
-            if ( xmlTagID != 0) viewHolder.bindTextViewWithData(xmlTagID, c.getCaptionTitle());
+                // Cambio el título de cada caption
+                xmlTagID = r.getIdentifier(c.getXmlTagID() + "_header", "id", packageName); // Reemplaza al R.id.view_name
+                if ( xmlTagID != 0)
+                    try {
+                        viewHolder.bindTextViewWithData(xmlTagID, c.getCaptionTitle());
+                    } catch (Exception e) {
+                    }
+                // Cambio el cuerpo de cada caption
+                xmlTagID = r.getIdentifier(c.getXmlTagID(), "id", packageName); // Reemplaza al R.id.view_name
+                 if ( xmlTagID != 0)
+                     try {
+                         viewHolder.bindTextViewWithData(xmlTagID, c.getContent());
+                     } catch (Exception e){};
 
-            // Cambio el cuerpo de cada caption
-            xmlTagID = r.getIdentifier(c.getXmlTagID(), "id", packageName); // Reemplaza al R.id.view_name
-            if ( xmlTagID != 0) viewHolder.bindTextViewWithData(xmlTagID, c.getContent());
         }
 
     }
