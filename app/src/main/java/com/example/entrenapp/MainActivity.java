@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login() {
-        Intent intent = new Intent(this, RoutineLandingActivity.class);
+        Intent intent = new Intent(this, RoutineLandingActivity.class); // YourRoutinesActivity.class); //YourRoutinesActivity.class);
         startActivity(intent);
     }
 
