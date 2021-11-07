@@ -24,6 +24,8 @@
     <string name="time_interval2">30-45</string>
     <string name="time_interval3">45-60</string>
     <string name="save">Guardar</string>
+    <string name="ejercicio">Flexiones de Brazo</string>
+    <string name="back">back</string>
 
 
 </resources>
