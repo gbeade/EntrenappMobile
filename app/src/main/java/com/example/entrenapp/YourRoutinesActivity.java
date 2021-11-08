@@ -29,7 +29,7 @@ public class YourRoutinesActivity extends AppCompatActivity {
 
         fillRoutines();
 
-      //   setFilter();
+        setFilter();
         RecyclerView.Adapter adapter = new CardAdapter(this.routines.stream().filter(filterFun).collect(Collectors.toList()), R.layout.extense_square_card, this);
         binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.routineRecyclerView.setAdapter(adapter);

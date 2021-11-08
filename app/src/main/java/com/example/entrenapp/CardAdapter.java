@@ -21,7 +21,7 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
     Resources r;
     String packageName;
 
-    public static class ViewHolder<T> extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private View view;
 
@@ -52,7 +52,7 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(layoutID, viewGroup, false);
 
-        return new ViewHolder<T>(view);
+        return new ViewHolder(view);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -66,9 +66,9 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
                 if ( xmlTagID != 0)
                     try {
                         viewHolder.bindTextViewWithData(xmlTagID, c.getCaptionTitle());
-                    } catch (Exception e) {
-                    }
+                    } catch (Exception e) {};
                 // Cambio el cuerpo de cada caption
+                // "subtitle"
                 xmlTagID = r.getIdentifier(c.getXmlTagID(), "id", packageName); // Reemplaza al R.id.view_name
                  if ( xmlTagID != 0)
                      try {
@@ -76,7 +76,6 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
                      } catch (Exception e){};
 
         }
-
     }
 
     @Override
