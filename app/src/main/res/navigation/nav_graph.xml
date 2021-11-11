@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/myRoutinesFragment">
+
+    <fragment
+        android:id="@+id/routineLandingFragment"
+        android:name="com.example.entrenapp.RoutineLandingFragment"
+        android:label="fragment_routine_landing"
+        tools:layout="@layout/fragment_routine_landing" />
+
+    <fragment
+        android:id="@+id/myRoutinesFragment"
+        android:name="com.example.entrenapp.MyRoutinesFragment"
+        android:label="fragment_routine_landing"
+        tools:layout="@layout/fragment_my_routines" />
+</navigation>

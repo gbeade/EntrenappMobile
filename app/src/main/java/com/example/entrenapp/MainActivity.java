@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login() {
-        Intent intent = new Intent(this, YourRoutinesActivity.class); // YourRoutinesActivity.class); //YourRoutinesActivity.class);
+        Intent intent = new Intent(this, BodyActivity.class); // YourRoutinesActivity.class); //YourRoutinesActivity.class);
         startActivity(intent);
     }
 

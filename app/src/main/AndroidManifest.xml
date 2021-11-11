@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Entrenapp">
         <activity
-            android:name=".RoutineLandingActivity"
+            android:name=".BodyActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -21,11 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".YourRoutinesActivity" android:parentActivityName=".MainActivity"/>
-        <activity android:name=".FilterRoutineActivity" android:parentActivityName=".YourRoutinesActivity"/>
         <activity
             android:name=".YourRoutinesActivity"
             android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".FilterRoutineActivity"
+            android:parentActivityName=".YourRoutinesActivity" />
     </application>
 
 </manifest>

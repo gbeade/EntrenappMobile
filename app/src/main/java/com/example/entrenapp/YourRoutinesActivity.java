@@ -37,8 +37,6 @@ public class YourRoutinesActivity extends BaseMenuActivity {
         ToolbarMainBinding binding2 = ToolbarMainBinding.bind(root);
         setContentView(root);
 
-
-
         binding2.toolbar.inflateMenu(R.menu.menu_main);
         setSupportActionBar(binding2.toolbar);
 
@@ -50,13 +48,13 @@ public class YourRoutinesActivity extends BaseMenuActivity {
 
         fillRoutines();
 
-        setFilter();
+        //setFilter();
         RecyclerView.Adapter adapter = new CardAdapter(this.routines.stream().filter(filterFun).collect(Collectors.toList()), R.layout.extense_square_card, this);
         binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         binding.routineRecyclerView.setAdapter(adapter);
     }
 
-    }
+
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -66,6 +64,8 @@ public class YourRoutinesActivity extends BaseMenuActivity {
         settingsItem.setVisible(false);
 
         return super.onPrepareOptionsMenu(menu);
+    }
+
     private void setFilter() {
         filterFun = r -> r.getCategory().equals("Atletico") && r.isEquipmentRequired();
     }
