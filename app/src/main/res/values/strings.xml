@@ -24,6 +24,8 @@
     <string name="favourite">Favoritas</string>
     <string name="home">Principal</string>
     <string name="favourite_routines">Rutinas favoritas</string>
+    <string name="myRoutines">Mis rutinas</string>
+    <string name="train">Entrenar</string>
 
 
 </resources>

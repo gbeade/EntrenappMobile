@@ -1,6 +1,5 @@
-package com.example.entrenapp;
+package com.example.entrenapp.recyclerView;
 
-import android.os.Parcelable;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ import java.util.List;
 // SUBTITULO: zzz
 //     [ICON 1]  [ICON 2] [ICON 3]
 // Debe devolver una lista ordenada de pares <String, String>
-public interface Cardable extends Parcelable {
+public interface Cardable {
 
     class CardCaption {
         private String captionTitle;

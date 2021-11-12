@@ -16,4 +16,5 @@
         android:enabled="true"
         android:icon="@drawable/ic_grade"
         android:title="@string/favourite_routines"/>
+
 </menu>

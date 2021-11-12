@@ -3,12 +3,16 @@ package com.example.entrenapp;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 
+import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.ActivityRoutineDescriptionBinding;
 import com.example.entrenapp.databinding.ToolbarMainBinding;
+import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
 
 public class RoutineDescriptionActivity extends AppCompatActivity {
 
@@ -19,7 +23,7 @@ public class RoutineDescriptionActivity extends AppCompatActivity {
         this.routine = getIntent().getParcelableExtra("Routine");
         ActivityRoutineDescriptionBinding binding = ActivityRoutineDescriptionBinding.inflate(getLayoutInflater());
         binding.routineTitle.setText(this.routine.getName());
-        binding.duration.setText("Dutacion: "+this.routine.getDuration()+" minutos");
+        binding.duration.setText("Duracion: "+this.routine.getDuration()+" minutos");
 
         View root = binding.getRoot();
 
@@ -34,6 +38,14 @@ public class RoutineDescriptionActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-
+        binding.btnTrain.setOnClickListener(v -> train());
     }
+
+    private void train(){
+        Intent intent = new Intent(this, ExecuteRoutineActivity.class);
+        intent.putExtra("Routine", this.routine);
+        startActivity(intent);
+    }
+
+
 }

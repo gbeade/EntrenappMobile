@@ -1,15 +1,16 @@
-package com.example.entrenapp;
+package com.example.entrenapp.apiClasses;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
-import android.util.Pair;
+
+
+import com.example.entrenapp.recyclerView.Cardable;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Routine implements Cardable {
+public class Routine implements Cardable,Parcelable {
 
     protected Routine(Parcel in) {
         name = in.readString();
@@ -85,6 +86,8 @@ public class Routine implements Cardable {
     private Date creationDate;
     private Integer duration;
     private Integer punctuation;
+
+
 
 
     public Routine(String name, String category, Difficulty difficulty, boolean isEquipmentRequired, Date creationDate, int punctuation, int duration) {
@@ -166,5 +169,15 @@ public class Routine implements Cardable {
         return al;
     }
 
+    // Cycles
+    ArrayList<Cycle> cycles = new ArrayList<>();
+
+    public void addCycle(Cycle cycle) {
+        cycles.add(cycle);
+    }
+
+    public List<Cycle> getCycles() {
+        return cycles;
+    }
 
 }

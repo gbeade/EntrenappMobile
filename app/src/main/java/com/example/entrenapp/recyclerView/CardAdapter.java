@@ -1,8 +1,7 @@
-package com.example.entrenapp;
+package com.example.entrenapp.recyclerView;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,12 +49,17 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
 
     }
 
-    public CardAdapter(List<T> dataset, Integer layoutID, Context context, ViewHolder.OnNoteListener onNoteListener) { //, Consumer<T> binder) {
-        this.dataset = dataset;
+    public CardAdapter(List<T> dataset , Integer layoutID, Context context){
+        this.dataset=dataset;
         this.layoutID = layoutID;
         this.context = context;
         this.r = context.getResources();
         this.packageName = context.getPackageName();
+    }
+
+
+    public CardAdapter(List<T> dataset, Integer layoutID, Context context, ViewHolder.OnNoteListener onNoteListener) { //, Consumer<T> binder) {
+        this(dataset,layoutID,context);
         this.onNoteListener = onNoteListener;
     }
 

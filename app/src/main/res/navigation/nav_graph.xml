@@ -7,18 +7,18 @@
 
     <fragment
         android:id="@+id/routineLandingFragment"
-        android:name="com.example.entrenapp.RoutineLandingFragment"
+        android:name="com.example.entrenapp.bodyActivity.RoutineLandingFragment"
         android:label="fragment_routine_landing"
         tools:layout="@layout/fragment_routine_landing" />
 
     <fragment
         android:id="@+id/myRoutinesFragment"
-        android:name="com.example.entrenapp.MyRoutinesFragment"
+        android:name="com.example.entrenapp.bodyActivity.MyRoutinesFragment"
         android:label="fragment_routine_landing"
         tools:layout="@layout/fragment_my_routines" />
     <fragment
         android:id="@+id/myFavouriteRoutine"
-        android:name="com.example.entrenapp.MyFavouriteRoutine"
+        android:name="com.example.entrenapp.bodyActivity.MyFavouriteRoutine"
         android:label="fragment_my_favourite_routine"
         tools:layout="@layout/fragment_my_favourite_routine" />
 </navigation>

@@ -12,13 +12,19 @@
         <activity
             android:name=".RoutineDescriptionActivity"
             android:exported="false"
-            android:parentActivityName=".BodyActivity"
+            android:parentActivityName=".bodyActivity.BodyActivity"
             />
+
         <activity
-            android:name=".BodyActivity"
+            android:name=".executeRoutineActivity.ExecuteRoutineActivity"
             android:exported="false" />
+
         <activity
-            android:name=".MainActivity"
+            android:name=".bodyActivity.BodyActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".mainActivity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

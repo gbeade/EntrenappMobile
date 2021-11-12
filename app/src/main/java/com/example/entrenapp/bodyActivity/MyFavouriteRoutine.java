@@ -1,10 +1,9 @@
-package com.example.entrenapp;
+package com.example.entrenapp.bodyActivity;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,12 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.entrenapp.R;
+import com.example.entrenapp.bodyActivity.FragmentRoutine;
 import com.example.entrenapp.databinding.FragmentMyFavouriteRoutineBinding;
-import com.example.entrenapp.databinding.FragmentMyRoutinesBinding;
+import com.example.entrenapp.recyclerView.CardAdapter;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 

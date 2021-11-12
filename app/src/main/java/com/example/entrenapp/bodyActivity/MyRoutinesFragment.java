@@ -1,4 +1,4 @@
-package com.example.entrenapp;
+package com.example.entrenapp.bodyActivity;
 
 import android.os.Bundle;
 
@@ -6,16 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.entrenapp.R;
+import com.example.entrenapp.recyclerView.CardAdapter;
+import com.example.entrenapp.recyclerView.Cardable;
+import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.FragmentMyRoutinesBinding;
-import com.example.entrenapp.databinding.FragmentRoutineLandingBinding;
 
 import java.util.ArrayList;
 import java.util.Date;

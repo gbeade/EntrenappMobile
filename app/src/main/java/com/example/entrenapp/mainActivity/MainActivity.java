@@ -1,7 +1,10 @@
-package com.example.entrenapp;
+package com.example.entrenapp.mainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.entrenapp.bodyActivity.BodyActivity;
 import com.example.entrenapp.databinding.ActivityMainBinding;
+import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
 
 
 import android.content.Intent;
