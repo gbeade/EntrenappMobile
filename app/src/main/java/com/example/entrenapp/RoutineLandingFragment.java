@@ -41,7 +41,7 @@ public class RoutineLandingFragment extends FragmentRoutine {
 
         fillRoutines();
         binding.recommendedRoutinesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        RecyclerView.Adapter adapter1 = new CardAdapter(this.dataset, R.layout.extense_square_card, getActivity());
+        RecyclerView.Adapter adapter1 = new CardAdapter(this.dataset, R.layout.extense_square_card, getActivity(),this);
         binding.recommendedRoutinesRecyclerView.setAdapter(adapter1);
         SnapHelper snapHelper1 = new LinearSnapHelper();
         snapHelper1.attachToRecyclerView(binding.recommendedRoutinesRecyclerView);
@@ -49,7 +49,7 @@ public class RoutineLandingFragment extends FragmentRoutine {
         binding.recommendedRoutinesRecyclerView.smoothScrollBy(1, 0);
 
         binding.myRoutinesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        RecyclerView.Adapter adapter2 = new CardAdapter(this.dataset, R.layout.summary_square_card, getActivity());
+        RecyclerView.Adapter adapter2 = new CardAdapter(this.dataset, R.layout.summary_square_card, getActivity(),this);
         binding.myRoutinesRecyclerView.setAdapter(adapter2);
         SnapHelper snapHelper2 = new LinearSnapHelper();
         snapHelper2.attachToRecyclerView(binding.myRoutinesRecyclerView);
@@ -57,7 +57,7 @@ public class RoutineLandingFragment extends FragmentRoutine {
         binding.myRoutinesRecyclerView.smoothScrollBy(1, 0);
 
         binding.favouriteRoutinesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-        RecyclerView.Adapter adapter3 = new CardAdapter(this.dataset, R.layout.summary_square_card, getActivity());
+        RecyclerView.Adapter adapter3 = new CardAdapter(this.dataset, R.layout.summary_square_card, getActivity(),this);
         binding.favouriteRoutinesRecyclerView.setAdapter(adapter3);
         SnapHelper snapHelper3 = new LinearSnapHelper();
         snapHelper3.attachToRecyclerView(binding.favouriteRoutinesRecyclerView);

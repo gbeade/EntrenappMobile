@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Entrenapp">
         <activity
+            android:name=".RoutineDescriptionActivity"
+            android:exported="false" />
+        <activity
             android:name=".BodyActivity"
             android:exported="false" />
         <activity

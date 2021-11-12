@@ -1,5 +1,9 @@
 package com.example.entrenapp;
 
+import android.content.Intent;
+import android.os.Parcelable;
+import android.util.Log;
+
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -21,5 +25,11 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
         dataset.add(new Routine("Picar", "Atletico", Routine.Difficulty.XTREME, false, new Date(), 10, 25));
     }
 
+    @Override
+    public void onNoteClick(int position) {
+        Intent intent = new Intent(getActivity(), RoutineDescriptionActivity.class);
+        intent.putExtra("Routine", (Parcelable) this.dataset.get(position));
+        startActivity(intent);
 
+    }
 }

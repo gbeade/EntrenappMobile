@@ -20,14 +20,18 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
     Context context;
     Resources r;
     String packageName;
+    private ViewHolder.OnNoteListener onNoteListener;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private View view;
+        private OnNoteListener onNoteListener;
 
-        public ViewHolder(View view) {
+        public ViewHolder(View view,OnNoteListener onNoteListener) {
             super(view);
             this.view = view;
+            this.onNoteListener=onNoteListener;
+            view.setOnClickListener(this);
         }
 
         public void bindTextViewWithData(int subtitleBodyContentId, String entry) {
@@ -35,14 +39,24 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
             textView.setText(entry);
         }
 
+        @Override
+        public void onClick(View v) {
+            this.onNoteListener.onNoteClick(getAdapterPosition());
+        }
+
+        public interface OnNoteListener{
+            void onNoteClick(int position);
+        }
+
     }
 
-    public CardAdapter(List<T> dataset, Integer layoutID, Context context) { //, Consumer<T> binder) {
+    public CardAdapter(List<T> dataset, Integer layoutID, Context context, ViewHolder.OnNoteListener onNoteListener) { //, Consumer<T> binder) {
         this.dataset = dataset;
         this.layoutID = layoutID;
         this.context = context;
         this.r = context.getResources();
         this.packageName = context.getPackageName();
+        this.onNoteListener = onNoteListener;
     }
 
 
@@ -54,7 +68,7 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(layoutID, viewGroup, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view,this.onNoteListener);
     }
 
     // Replace the contents of a view (invoked by the layout manager)

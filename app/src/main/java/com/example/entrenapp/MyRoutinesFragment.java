@@ -41,7 +41,7 @@ public class MyRoutinesFragment extends FragmentRoutine {
                               @Nullable Bundle savedInstanceState) {
 
         fillRoutines();
-        RecyclerView.Adapter adapter = new CardAdapter(this.dataset.stream().filter(filterFun).collect(Collectors.toList()), R.layout.extense_square_card, getActivity());
+        RecyclerView.Adapter adapter = new CardAdapter(this.dataset.stream().filter(filterFun).collect(Collectors.toList()), R.layout.extense_square_card, getActivity(),this);
         binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.routineRecyclerView.setAdapter(adapter);
     }
