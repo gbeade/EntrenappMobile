@@ -18,6 +18,7 @@ import com.example.entrenapp.apiClasses.Exercise;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.ActivityExecuteRoutineBinding;
 import com.example.entrenapp.recyclerView.CardAdapter;
+import com.example.entrenapp.recyclerView.TimeTickCardAdapter;
 
 import java.text.CollationElementIterator;
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
                 textView.setText(Integer.toString(i));
 
                 // En cada iteración, recargamos el carrusel y volvemos al principio
-                RecyclerView.Adapter adapter = new CardAdapter(cycle.getExercises(), R.layout.exec_exercise_card, this);
+                RecyclerView.Adapter adapter = new TimeTickCardAdapter(cycle.getExercises(), R.layout.exec_exercise_card, this);
                 binding.cycleRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
                 binding.cycleRecyclerView.setAdapter(adapter);
                 binding.cycleRecyclerView.scrollToPosition(0);
@@ -66,7 +67,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
                 int j =0;
                 for (Exercise exercise: cycle.getExercises()) {
                     // Esperar la duracion del ejercicio y hacer el swipe a la derecha
-                    binding.cycleRecyclerView.scrollToPosition(j);
+                    binding.cycleRecyclerView.smoothScrollToPosition(j);
                     j ++;
                 }
             }
@@ -75,12 +76,11 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
     private void fillRoutine(){
         Cycle c = new Cycle(0, "Ciclo de entrada en calor", "Para entrar en calor", "warmup", 0, 2, 0);
-        c.addExercise(new Exercise(0, "Abdominales ligeros", "Tipo", 10));
-        c.addExercise(new Exercise(1, "Respiros profundos", "Tipo", 20));
-        c.addExercise(new Exercise(2, "Estiramiento de brazos", "Tipo", 13));
+        c.addExercise(new Exercise(0, "Abdominales ligeros", "Tipo", 3));
+        c.addExercise(new Exercise(1, "Respiros profundos", "Tipo", 4));
+        c.addExercise(new Exercise(2, "Estiramiento de brazos", "Tipo", 3));
         routine.addCycle(c);
     }
-
 
 
 }
