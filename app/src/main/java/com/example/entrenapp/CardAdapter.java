@@ -45,13 +45,15 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
         this.packageName = context.getPackageName();
     }
 
+
+
+
     // Create new views (invoked by the layout manager)
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(layoutID, viewGroup, false);
-
         return new ViewHolder(view);
     }
 

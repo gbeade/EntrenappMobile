@@ -8,12 +8,12 @@
     <item
         android:id="@+id/myRoutinesFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_grade"
-        android:title="@string/favourite"/>
+        android:icon="@drawable/ic_baseline_sports_24"
+        android:title="@string/your_routines"/>
 
-<!--    <item-->
-<!--        android:id="@+id/myRoutinesFragment"-->
-<!--        android:enabled="true"-->
-<!--        android:icon="@drawable/ic_grade"-->
-<!--        android:title="@string/favourite"/>-->
+    <item
+        android:id="@+id/myFavouriteRoutine"
+        android:enabled="true"
+        android:icon="@drawable/ic_grade"
+        android:title="@string/favourite_routines"/>
 </menu>

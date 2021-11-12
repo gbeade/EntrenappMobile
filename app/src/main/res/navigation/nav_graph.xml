@@ -16,4 +16,9 @@
         android:name="com.example.entrenapp.MyRoutinesFragment"
         android:label="fragment_routine_landing"
         tools:layout="@layout/fragment_my_routines" />
+    <fragment
+        android:id="@+id/myFavouriteRoutine"
+        android:name="com.example.entrenapp.MyFavouriteRoutine"
+        android:label="fragment_my_favourite_routine"
+        tools:layout="@layout/fragment_my_favourite_routine" />
 </navigation>

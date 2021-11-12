@@ -21,10 +21,9 @@ import com.example.entrenapp.databinding.FragmentRoutineLandingBinding;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class RoutineLandingFragment extends Fragment {
+public class RoutineLandingFragment extends FragmentRoutine {
 
     private FragmentRoutineLandingBinding binding;
-    private ArrayList<Cardable> dataset = new ArrayList<>();
 
     @Nullable
     @Override
@@ -66,8 +65,8 @@ public class RoutineLandingFragment extends Fragment {
         binding.favouriteRoutinesRecyclerView.smoothScrollBy(1, 0);
     }
 
-
-    private void fillRoutines(){
+    @Override
+    protected void fillRoutines(){
         for(int i = 0 ; i < 4 ; i++)
             dataset.add(new Routine("EjemploDeClase", "Brazos", Routine.Difficulty.XTREME, false, new Date(), 4, 10));
     }
