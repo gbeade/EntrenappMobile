@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/routineLandingFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_search"
-        android:title="@string/sample"/>
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"/>
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/myRoutinesFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_share"
-        android:title="@string/sample"/>
+        android:icon="@drawable/ic_grade"
+        android:title="@string/favourite"/>
+
+<!--    <item-->
+<!--        android:id="@+id/myRoutinesFragment"-->
+<!--        android:enabled="true"-->
+<!--        android:icon="@drawable/ic_grade"-->
+<!--        android:title="@string/favourite"/>-->
 </menu>

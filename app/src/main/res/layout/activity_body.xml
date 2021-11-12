@@ -7,7 +7,6 @@
     tools:context=".BodyActivity">
 
     <include
-        android:id="@+id/toolbar"
         layout="@layout/toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +23,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="0dp"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_body"
         app:layout_constraintHorizontal_bias="0.0"
 
         app:layout_constraintLeft_toLeftOf="parent"
@@ -33,14 +32,16 @@
         app:layout_constraintVertical_bias="0.0"
         app:navGraph="@navigation/nav_graph" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+
+    <include
+        layout="@layout/bottom_navigation_body"
+        android:id="@+id/bottom_navigation_body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nav_host_fragment"
-        app:menu="@menu/bottom_navigation_menu"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="@+id/nav_host_fragment"
+         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

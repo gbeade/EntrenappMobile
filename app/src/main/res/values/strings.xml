@@ -21,7 +21,9 @@
     <string name="time_interval3">45-60</string>
     <string name="save">Guardar</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="sample">Sample text</string>
+    <string name="favourite">Favoritas</string>
+    <string name="home">Principal</string>
+
 
 
 </resources>
