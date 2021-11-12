@@ -23,7 +23,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="favourite">Favoritas</string>
     <string name="home">Principal</string>
-
+    <string name="myRoutines">Mis rutinas</string>
 
 
 </resources>

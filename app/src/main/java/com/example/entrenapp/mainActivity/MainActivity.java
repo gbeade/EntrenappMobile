@@ -1,7 +1,11 @@
-package com.example.entrenapp;
+package com.example.entrenapp.mainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.entrenapp.YourRoutinesActivity;
+import com.example.entrenapp.bodyActivity.BodyActivity;
 import com.example.entrenapp.databinding.ActivityMainBinding;
+import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
 
 
 import android.content.Intent;
@@ -28,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void login() {
-        Intent intent = new Intent(this, BodyActivity.class); // YourRoutinesActivity.class); //YourRoutinesActivity.class);
+        Intent intent = new Intent(this, ExecuteRoutineActivity.class); // YourRoutinesActivity.class); //YourRoutinesActivity.class);
         startActivity(intent);
     }
 

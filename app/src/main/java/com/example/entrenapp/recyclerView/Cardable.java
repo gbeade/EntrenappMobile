@@ -1,4 +1,4 @@
-package com.example.entrenapp;
+package com.example.entrenapp.recyclerView;
 
 import java.util.List;
 

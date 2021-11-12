@@ -1,4 +1,4 @@
-package com.example.entrenapp;
+package com.example.entrenapp.bodyActivity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 
 
+import com.example.entrenapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BodyActivity extends AppCompatActivity {
@@ -22,9 +23,9 @@ public class BodyActivity extends AppCompatActivity {
 //        ActivityBodyBinding binding = ActivityBodyBinding.inflate(getLayoutInflater());
 //        setContentView(binding.getRoot());
 
-         bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-        NavigationUI.setupWithNavController(bottomNavigationView,navHostFragment.getNavController());
+        NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.getNavController());
 
 
 //        ActivityBodyBinding binding = ActivityBodyBinding.inflate(getLayoutInflater());

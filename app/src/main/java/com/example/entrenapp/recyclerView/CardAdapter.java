@@ -1,8 +1,7 @@
-package com.example.entrenapp;
+package com.example.entrenapp.recyclerView;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

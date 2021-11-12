@@ -1,16 +1,16 @@
 package com.example.entrenapp;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.entrenapp.recyclerView.CardAdapter;
+import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.ActivityYourRoutinesBinding;
 import com.example.entrenapp.databinding.ToolbarMainBinding;
 

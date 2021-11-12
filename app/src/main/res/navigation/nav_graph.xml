@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/routineLandingFragment"
-        android:name="com.example.entrenapp.RoutineLandingFragment"
+        android:name="com.example.entrenapp.bodyActivity.RoutineLandingFragment"
         android:label="fragment_routine_landing"
         tools:layout="@layout/fragment_routine_landing" />
 
     <fragment
         android:id="@+id/myRoutinesFragment"
-        android:name="com.example.entrenapp.MyRoutinesFragment"
+        android:name="com.example.entrenapp.bodyActivity.MyRoutinesFragment"
         android:label="fragment_routine_landing"
         tools:layout="@layout/fragment_my_routines" />
 </navigation>
