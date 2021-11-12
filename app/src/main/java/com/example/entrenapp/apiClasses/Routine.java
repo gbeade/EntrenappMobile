@@ -12,6 +12,7 @@ import java.util.List;
 
 public class Routine implements Cardable,Parcelable {
 
+
     protected Routine(Parcel in) {
         name = in.readString();
         category = in.readString();
@@ -27,6 +28,7 @@ public class Routine implements Cardable,Parcelable {
         } else {
             punctuation = in.readInt();
         }
+        cycles = in.createTypedArrayList(Cycle.CREATOR);
     }
 
     public static final Creator<Routine> CREATOR = new Creator<Routine>() {
@@ -63,6 +65,7 @@ public class Routine implements Cardable,Parcelable {
             dest.writeByte((byte) 1);
             dest.writeInt(punctuation);
         }
+        dest.writeTypedList(cycles);
     }
 
     public enum Difficulty {

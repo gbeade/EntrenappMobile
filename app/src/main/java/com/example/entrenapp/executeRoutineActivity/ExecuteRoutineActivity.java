@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.SnapHelper;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -35,12 +36,21 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
         this.routine = getIntent().getParcelableExtra("Routine");
 
+        if(this.routine.getCycles().size() > 0 ){
+            Log.d("Tiene","algo pagina 2");
+            for(Cycle c : this.routine.getCycles())
+                Log.d("Cycle",c.getName());
+        }
+        else {
+            Log.d("No tiene","nadad");
+        }
+
         ActivityExecuteRoutineBinding binding = ActivityExecuteRoutineBinding.inflate(getLayoutInflater());
         View root = binding.getRoot();
         setContentView(root);
 
 
-        fillRoutine();
+//        fillRoutine();
 
         TextView textView;
         textView = (TextView) root.findViewById(R.id.routine_name);
@@ -54,8 +64,10 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
             textView = (TextView) root.findViewById(R.id.subtitle1);
             textView.setText(Integer.toString(cycle.getRepetitions()));
             for (int i=1; i<=cycle.getRepetitions(); i++) {
-                textView = (TextView) root.findViewById(R.id.repetitionsRemaining);
-                textView.setText(Integer.toString(i));
+               textView = (TextView) root.findViewById(R.id.repetitionsRemaining);
+               textView.setText(Integer.toString(i));
+
+               Log.d("ejercicios",String.valueOf(cycle.getExercises().size()));
 
                 // En cada iteración, recargamos el carrusel y volvemos al principio
                 RecyclerView.Adapter adapter = new CardAdapter(cycle.getExercises(), R.layout.exec_exercise_card, this);
@@ -75,13 +87,13 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         }
     }
 
-    private void fillRoutine(){
-        Cycle c = new Cycle(0, "Ciclo de entrada en calor", "Para entrar en calor", "warmup", 0, 2, 0);
-        c.addExercise(new Exercise(0, "Abdominales ligeros", "Tipo", 10));
-        c.addExercise(new Exercise(1, "Respiros profundos", "Tipo", 20));
-        c.addExercise(new Exercise(2, "Estiramiento de brazos", "Tipo", 13));
-        routine.addCycle(c);
-    }
+//    private void fillRoutine(){
+//        Cycle c = new Cycle(0, "Ciclo de entrada en calor", "Para entrar en calor", "warmup", 0, 2, 0);
+//        c.addExercise(new Exercise(0, "Abdominales ligeros", "Tipo", 10));
+//        c.addExercise(new Exercise(1, "Respiros profundos", "Tipo", 20));
+//        c.addExercise(new Exercise(2, "Estiramiento de brazos", "Tipo", 13));
+//        routine.addCycle(c);
+//    }
 
 
 

@@ -40,7 +40,8 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
 
         @Override
         public void onClick(View v) {
-            this.onNoteListener.onNoteClick(getAdapterPosition());
+            if(this.onNoteListener != null)
+                this.onNoteListener.onNoteClick(getAdapterPosition());
         }
 
         public interface OnNoteListener{

@@ -1,9 +1,12 @@
 package com.example.entrenapp.apiClasses;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cycle {
+public class Cycle implements Parcelable {
 
     private int id;
     private String name;
@@ -12,6 +15,28 @@ public class Cycle {
     private int order;
     private int repetitions;
     private int metadata;
+
+    protected Cycle(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        detail = in.readString();
+        type = in.readString();
+        order = in.readInt();
+        repetitions = in.readInt();
+        metadata = in.readInt();
+    }
+
+    public static final Creator<Cycle> CREATOR = new Creator<Cycle>() {
+        @Override
+        public Cycle createFromParcel(Parcel in) {
+            return new Cycle(in);
+        }
+
+        @Override
+        public Cycle[] newArray(int size) {
+            return new Cycle[size];
+        }
+    };
 
     public String getName() {
         return name;
@@ -44,5 +69,21 @@ public class Cycle {
 
     public List<Exercise> getExercises() {
         return exercises;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeString(detail);
+        dest.writeString(type);
+        dest.writeInt(order);
+        dest.writeInt(repetitions);
+        dest.writeInt(metadata);
     }
 }
