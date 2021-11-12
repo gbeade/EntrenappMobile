@@ -11,7 +11,9 @@
         android:theme="@style/Theme.Entrenapp">
         <activity
             android:name=".RoutineDescriptionActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".BodyActivity"
+            />
         <activity
             android:name=".BodyActivity"
             android:exported="false" />
@@ -24,12 +26,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".YourRoutinesActivity"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".FilterRoutineActivity"
-            android:parentActivityName=".YourRoutinesActivity" />
     </application>
 
 </manifest>

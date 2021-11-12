@@ -28,7 +28,7 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     @Override
     public void onNoteClick(int position) {
         Intent intent = new Intent(getActivity(), RoutineDescriptionActivity.class);
-        intent.putExtra("Routine", (Parcelable) this.dataset.get(position));
+        intent.putExtra("Routine",  this.dataset.get(position));
         startActivity(intent);
 
     }

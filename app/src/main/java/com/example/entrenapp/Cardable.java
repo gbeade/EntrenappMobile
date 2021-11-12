@@ -1,5 +1,7 @@
 package com.example.entrenapp;
 
+import android.os.Parcelable;
+
 import java.util.List;
 
 // Decimos que una estructura es 'Cardeable' si ofrece información para ser mostrada en una tarjeta de la forma
@@ -9,7 +11,7 @@ import java.util.List;
 // SUBTITULO: zzz
 //     [ICON 1]  [ICON 2] [ICON 3]
 // Debe devolver una lista ordenada de pares <String, String>
-public interface Cardable {
+public interface Cardable extends Parcelable {
 
     class CardCaption {
         private String captionTitle;

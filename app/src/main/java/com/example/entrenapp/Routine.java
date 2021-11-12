@@ -1,5 +1,7 @@
 package com.example.entrenapp;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 import android.util.Pair;
 
@@ -8,6 +10,59 @@ import java.util.Date;
 import java.util.List;
 
 public class Routine implements Cardable {
+
+    protected Routine(Parcel in) {
+        name = in.readString();
+        category = in.readString();
+        byte tmpIsEquipmentRequired = in.readByte();
+        isEquipmentRequired = tmpIsEquipmentRequired == 0 ? null : tmpIsEquipmentRequired == 1;
+        if (in.readByte() == 0) {
+            duration = null;
+        } else {
+            duration = in.readInt();
+        }
+        if (in.readByte() == 0) {
+            punctuation = null;
+        } else {
+            punctuation = in.readInt();
+        }
+    }
+
+    public static final Creator<Routine> CREATOR = new Creator<Routine>() {
+        @Override
+        public Routine createFromParcel(Parcel in) {
+            return new Routine(in);
+        }
+
+        @Override
+        public Routine[] newArray(int size) {
+            return new Routine[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(category);
+        dest.writeByte((byte) (isEquipmentRequired == null ? 0 : isEquipmentRequired ? 1 : 2));
+        if (duration == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(duration);
+        }
+        if (punctuation == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(punctuation);
+        }
+    }
 
     public enum Difficulty {
         BEGINNER("Principiante"),
@@ -92,6 +147,10 @@ public class Routine implements Cardable {
 
     public void setPunctuation(int punctuation) {
         this.punctuation = punctuation;
+    }
+
+    public int getDuration(){
+        return this.duration;
     }
 
 
