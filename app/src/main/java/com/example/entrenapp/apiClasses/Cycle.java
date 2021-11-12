@@ -15,6 +15,8 @@ public class Cycle implements Parcelable {
     private int order;
     private int repetitions;
     private int metadata;
+    private ArrayList<Exercise> exercises;
+
 
     protected Cycle(Parcel in) {
         id = in.readInt();
@@ -24,6 +26,7 @@ public class Cycle implements Parcelable {
         order = in.readInt();
         repetitions = in.readInt();
         metadata = in.readInt();
+        exercises = in.createTypedArrayList(Exercise.CREATOR);
     }
 
     public static final Creator<Cycle> CREATOR = new Creator<Cycle>() {
@@ -58,10 +61,8 @@ public class Cycle implements Parcelable {
         this.order = order;
         this.repetitions = repetitions;
         this.metadata = metadata;
+        this.exercises = new ArrayList<>();
     }
-
-    // Lista de ejercicios
-    ArrayList<Exercise> exercises = new ArrayList<>();
 
     public void addExercise(Exercise e) {
         exercises.add(e);
@@ -70,6 +71,7 @@ public class Cycle implements Parcelable {
     public List<Exercise> getExercises() {
         return exercises;
     }
+
 
     @Override
     public int describeContents() {
@@ -85,5 +87,6 @@ public class Cycle implements Parcelable {
         dest.writeInt(order);
         dest.writeInt(repetitions);
         dest.writeInt(metadata);
+        dest.writeTypedList(exercises);
     }
 }

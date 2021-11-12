@@ -10,19 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Entrenapp">
         <activity
+            android:name=".ExerciseDescriptionActivity"
+            android:exported="false"
+            android:parentActivityName=".RoutineDescriptionActivity"/>
+        <activity
             android:name=".RoutineDescriptionActivity"
             android:exported="false"
-            android:parentActivityName=".bodyActivity.BodyActivity"
-            />
-
+            android:parentActivityName=".bodyActivity.BodyActivity" />
         <activity
             android:name=".executeRoutineActivity.ExecuteRoutineActivity"
             android:exported="false" />
-
         <activity
             android:name=".bodyActivity.BodyActivity"
             android:exported="false" />
-
         <activity
             android:name=".mainActivity.MainActivity"
             android:exported="true">
@@ -32,7 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

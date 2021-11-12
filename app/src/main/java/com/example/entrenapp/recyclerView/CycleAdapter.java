@@ -1,6 +1,7 @@
 package com.example.entrenapp.recyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.entrenapp.ExerciseDescriptionActivity;
 import com.example.entrenapp.R;
 import com.example.entrenapp.apiClasses.Cycle;
 import com.example.entrenapp.apiClasses.Exercise;
@@ -37,7 +39,11 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.CycleVH> {
     @Override
     public void onBindViewHolder(@NonNull CycleVH holder, int position) {
             holder.getTextView().setText(cycles.get(position).getName());
-            RecyclerView.Adapter adapter = new CardAdapter(cycles.get(position).getExercises(), R.layout.summary_square_card, context);
+            RecyclerView.Adapter adapter = new CardAdapter(cycles.get(position).getExercises(), R.layout.summary_square_card, context, position1 -> {
+                Intent intent = new Intent(context, ExerciseDescriptionActivity.class);
+                intent.putExtra("Exercise",cycles.get(position).getExercises().get(position1));
+                context.startActivity(intent);
+            });
             holder.getRecyclerView().setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false));
             holder.getRecyclerView().setAdapter(adapter);
     }
@@ -47,7 +53,7 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.CycleVH> {
         return cycles.size();
     }
 
-    public static class CycleVH extends RecyclerView.ViewHolder{
+    public static class CycleVH extends RecyclerView.ViewHolder {
 
         private final TextView textView;
         private RecyclerView recyclerView;
@@ -65,6 +71,7 @@ public class CycleAdapter extends RecyclerView.Adapter<CycleAdapter.CycleVH> {
         }
 
         public RecyclerView getRecyclerView(){ return this.recyclerView;}
+
     }
 
 
