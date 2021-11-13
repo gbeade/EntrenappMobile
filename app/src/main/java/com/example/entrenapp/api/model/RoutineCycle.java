@@ -1,5 +1,7 @@
 package com.example.entrenapp.api.model;
 
+
+import com.example.entrenapp.apiClasses.Exercise;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -23,9 +25,9 @@ public class RoutineCycle {
     @SerializedName("repetitions")
     @Expose
     private int repetitions;
-    @SerializedName("metadata")
+    @SerializedName("ejercicios")
     @Expose
-    private Object metadata;
+    private PagedList<Exercise> ejercicios = null;
 
     /**
      * No args constructor for use in serialization
@@ -36,7 +38,7 @@ public class RoutineCycle {
 
     /**
      *
-     * @param metadata
+     * @param ejercicios
      * @param name
      * @param id
      * @param detail
@@ -44,7 +46,7 @@ public class RoutineCycle {
      * @param repetitions
      * @param order
      */
-    public RoutineCycle(int id, String name, String detail, String type, int order, int repetitions, Object metadata) {
+    public RoutineCycle(int id, String name, String detail, String type, int order, int repetitions, PagedList<Exercise> ejercicios) {
         super();
         this.id = id;
         this.name = name;
@@ -52,7 +54,7 @@ public class RoutineCycle {
         this.type = type;
         this.order = order;
         this.repetitions = repetitions;
-        this.metadata = metadata;
+        this.ejercicios = ejercicios;
     }
 
     public int getId() {
@@ -103,12 +105,12 @@ public class RoutineCycle {
         this.repetitions = repetitions;
     }
 
-    public Object getMetadata() {
-        return metadata;
+    public PagedList<Exercise> getEjercicios() {
+        return ejercicios;
     }
 
-    public void setMetadata(Object metadata) {
-        this.metadata = metadata;
+    public void setEjercicios(PagedList<Exercise> ejercicios) {
+        this.ejercicios = ejercicios;
     }
 
 }
