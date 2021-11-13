@@ -13,7 +13,7 @@ import java.util.List;
 public class Routine implements Cardable,Parcelable {
 
 
-    protected Routine(Parcel in) {
+    public Routine(Parcel in) {
         name = in.readString();
         category = in.readString();
         byte tmpIsEquipmentRequired = in.readByte();
@@ -69,13 +69,13 @@ public class Routine implements Cardable,Parcelable {
     }
 
     public enum Difficulty {
-        BEGINNER("Principiante"),
-        EASY("Fácil"),
-        MEDIUM("Mediana"),
-        HARD("Difícil"),
-        XTREME("Extrema");
+        rookie("rookie"),
+        beginner("beginner"),
+        intermediate("intermediate"),
+        advanced("advanced"),
+        expert("expert");
 
-        String label;
+        public final String label;
 
         Difficulty(String label) {
             this.label = label;
@@ -95,7 +95,7 @@ public class Routine implements Cardable,Parcelable {
 
     public Routine(String name, String category, Difficulty difficulty, boolean isEquipmentRequired, Date creationDate, int punctuation, int duration) {
 
-        if ( punctuation > 10 || punctuation < 1 )
+        if ( punctuation > 10 || punctuation < 0 )
             throw new IllegalArgumentException("Routine punctuation must be between 1 and 10");
 
         this.name = name;
@@ -166,7 +166,7 @@ public class Routine implements Cardable,Parcelable {
         al.add(new CardCaption("title", "Nombre", name));
         al.add(new CardCaption("subtitle1", "Fecha", creationDate.toString()));
         al.add(new CardCaption("subtitle2", "Categoría", category));
-        al.add(new CardCaption("subtitle3", "Equipación?", Boolean.toString(isEquipmentRequired)));
+        al.add(new CardCaption("subtitle3", "Equipación?", isEquipmentRequired?"Si":"No"));
         al.add(new CardCaption("subtitle4", "Dificultad", difficulty.toString()));
         al.add(new CardCaption("subtitle5", "Duración", Integer.toString(duration)+"'"));
         return al;

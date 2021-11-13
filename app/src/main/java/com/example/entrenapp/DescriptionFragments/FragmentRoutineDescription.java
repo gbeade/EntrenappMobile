@@ -34,6 +34,7 @@ public class FragmentRoutineDescription extends Fragment {
 
         this.routine = getArguments().getParcelable("Routine");
 
+
         fillRoutine(); //should be an API call.
 
         binding.routineTitle.setText(this.routine.getName());

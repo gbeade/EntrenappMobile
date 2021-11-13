@@ -2,6 +2,7 @@ package com.example.entrenapp;
 
 import android.app.Application;
 
+import com.example.entrenapp.repository.RoutineRepository;
 import com.example.entrenapp.repository.SportRepository;
 import com.example.entrenapp.repository.UserRepository;
 
@@ -11,6 +12,7 @@ public class App extends Application {
     private AppPreferences preferences;
     private UserRepository userRepository;
     private SportRepository sportRepository;
+    private RoutineRepository routineRepository;
 
     public AppPreferences getPreferences() { return preferences; }
 
@@ -22,6 +24,8 @@ public class App extends Application {
         return sportRepository;
     }
 
+    public RoutineRepository getRoutineRepository(){return routineRepository;}
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -31,5 +35,8 @@ public class App extends Application {
         userRepository = new UserRepository(this);
 
         sportRepository = new SportRepository(this);
+
+        routineRepository = new RoutineRepository(this);
+
     }
 }

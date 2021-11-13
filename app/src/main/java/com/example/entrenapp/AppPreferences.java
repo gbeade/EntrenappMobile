@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 
 public class AppPreferences {
     private final String AUTH_TOKEN = "auth_token";
+    private final String USER_ID="USER_ID";
 
     private final SharedPreferences sharedPreferences;
 
@@ -18,7 +19,18 @@ public class AppPreferences {
         editor.apply();
     }
 
+    public void setUserId(Integer id ){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(USER_ID, id);
+        editor.apply();
+    }
+
     public String getAuthToken() {
         return sharedPreferences.getString(AUTH_TOKEN, null);
     }
+
+    public Integer getUserId(){
+        return sharedPreferences.getInt(USER_ID,0);
+    }
+
 }
