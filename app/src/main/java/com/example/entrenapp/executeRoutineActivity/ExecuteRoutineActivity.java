@@ -3,12 +3,15 @@ package com.example.entrenapp.executeRoutineActivity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -20,24 +23,37 @@ import com.example.entrenapp.databinding.ActivityExecuteRoutineBinding;
 import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.recyclerView.TimeTickCardAdapter;
 
+import org.w3c.dom.Text;
+
 import java.text.CollationElementIterator;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class ExecuteRoutineActivity extends AppCompatActivity {
 
+    private View root;
+    ActivityExecuteRoutineBinding binding;
+    RecyclerView rv;
+    RecyclerView.Adapter adapter;
+
     private Routine routine= new Routine("Pecho Plano yyy", "Pecho", Routine.Difficulty.XTREME, false, new Date(), 4, 25);
+    private Iterator<Cycle> cycleIterator;
+    Cycle currentCycle;
+    int currentCycleIdx = -1;
+
+    int currentExerciseOfCycleIdx = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ActivityExecuteRoutineBinding binding = ActivityExecuteRoutineBinding.inflate(getLayoutInflater());
-        View root = binding.getRoot();
+        binding = ActivityExecuteRoutineBinding.inflate(getLayoutInflater());
+        root = binding.getRoot();
         setContentView(root);
-
 
         fillRoutine();
 
@@ -47,38 +63,64 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(binding.cycleRecyclerView);
-        for (Cycle cycle: routine.getCycles()) {
-            textView = (TextView) root.findViewById(R.id.cycle_name);
-            textView.setText(cycle.getName());
-            textView = (TextView) root.findViewById(R.id.subtitle1);
-            textView.setText(Integer.toString(cycle.getRepetitions()));
-            for (int i=1; i<=cycle.getRepetitions(); i++) {
-                textView = (TextView) root.findViewById(R.id.repetitionsRemaining);
-                textView.setText(Integer.toString(i));
+        rv = binding.cycleRecyclerView;
+        cycleIterator = routine.getCycles().iterator();
+        currentCycleIdx = -1;
+        nextCycle();
+    }
 
-                // En cada iteración, recargamos el carrusel y volvemos al principio
-                RecyclerView.Adapter adapter = new TimeTickCardAdapter(cycle.getExercises(), R.layout.exec_exercise_card, this);
+    public void nextCycle() {
+
+        TextView textView;
+        Log.println(Log.VERBOSE, "NEXTCYCLE", Integer.toString(currentCycleIdx));
+        currentCycleIdx ++;
+        // El ciclo a terminado, con todas sus repeticiones
+        // Hay que pasar al proximo o terminar la rutina
+        if (currentCycleIdx == 0 || currentCycleIdx >= currentCycle.getRepetitions()) {
+            if (cycleIterator.hasNext()) {
+                // Fetch cycle instance
+                currentCycle = cycleIterator.next(); // Setup header information for that cycle
+                textView = root.findViewById(R.id.cycle_name);
+                textView.setText(currentCycle.getName());
+                currentCycleIdx = 0;
+                // Setup adapter for the new collection of exercises
+                RecyclerView.Adapter adapter = new TimeTickCardAdapter(currentCycle.getExercises(), R.layout.exec_exercise_card, this);
+                this.adapter = adapter;
                 binding.cycleRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
                 binding.cycleRecyclerView.setAdapter(adapter);
-                binding.cycleRecyclerView.scrollToPosition(0);
-
-
-                // Correr todos los ejercicios. Cada un segundo modificar el cartel!
-                int j =0;
-                for (Exercise exercise: cycle.getExercises()) {
-                    // Esperar la duracion del ejercicio y hacer el swipe a la derecha
-                    binding.cycleRecyclerView.smoothScrollToPosition(j);
-                    j ++;
-                }
+            } else {
+                // Se termino la rutina
+                return;
             }
+        }
+
+        textView = root.findViewById(R.id.cycle_remaining);
+        textView.setText("Repeticiones de este ciclo completas: "+currentCycleIdx+" de "+currentCycle.getRepetitions());
+        binding.cycleRecyclerView.smoothScrollToPosition(0);
+    }
+
+    public void nextExercise(int currentExercise) {
+        currentExerciseOfCycleIdx = currentExercise;
+        if ( currentExerciseOfCycleIdx == currentCycle.getExercises().size()-1 ) {
+            currentExerciseOfCycleIdx = 0;
+            nextCycle();
+        }
+        else {
+            binding.cycleRecyclerView.smoothScrollToPosition(++currentExerciseOfCycleIdx);
         }
     }
 
     private void fillRoutine(){
         Cycle c = new Cycle(0, "Ciclo de entrada en calor", "Para entrar en calor", "warmup", 0, 2, 0);
         c.addExercise(new Exercise(0, "Abdominales ligeros", "Tipo", 3));
-        c.addExercise(new Exercise(1, "Respiros profundos", "Tipo", 4));
+        c.addExercise(new Exercise(1, "Respiros profundos", "Tipo", 3));
         c.addExercise(new Exercise(2, "Estiramiento de brazos", "Tipo", 3));
+        routine.addCycle(c);
+
+        c = new Cycle(0, "Ciclo atletico intenso", "Para entrenar fuerte", "warmup", 0, 1, 0);
+        c.addExercise(new Exercise(0, "Pique veloz", "Tipo", 3));
+        c.addExercise(new Exercise(1, "Salto en soga", "Tipo", 2));
+        c.addExercise(new Exercise(2, "Burpees", "Tipo", 2));
         routine.addCycle(c);
     }
 

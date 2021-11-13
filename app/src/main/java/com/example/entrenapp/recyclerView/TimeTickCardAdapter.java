@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 
 import com.example.entrenapp.apiClasses.Exercise;
+import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,10 +20,10 @@ import java.util.TimerTask;
 
 public class TimeTickCardAdapter extends CardAdapter<Exercise> {
 
-    Activity act;
+    ExecuteRoutineActivity act;
     Map<TimeTickViewHolder, TimeTickViewHolder> map = new HashMap<>();
 
-    public TimeTickCardAdapter(List<Exercise> dataset, Integer layoutID, Activity context) {
+    public TimeTickCardAdapter(List<Exercise> dataset, Integer layoutID, ExecuteRoutineActivity context) {
         super(dataset, layoutID, context);
         act = context;
     }
@@ -68,16 +69,16 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
         private class ModifyTimerTask extends TimerTask {
 
             void timerTick() {
-                if (time == duration)
+                if (time > duration) {
                     bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "✓");
-                else if ( time > duration + 4) {
-//                    notifyItemChanged(getAdapterPosition()+1);
-                    cancel();
-                    return;
+                    if ( time > duration + 3) {
+                        act.nextExercise(getAdapterPosition());
+                        cancel();
+                    }
                 } else {
                     bindTextViewWithData(r.getIdentifier("timer", "id", packageName), (duration-time)+"\'\'");
-                    time++;
                 }
+                time++;
             }
 
             @Override
