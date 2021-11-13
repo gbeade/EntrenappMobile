@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 
 import com.example.entrenapp.api.ApiResponse;
+import com.example.entrenapp.api.model.Error;
 
 
 public abstract class NetworkBoundResource<Model, Domain> {

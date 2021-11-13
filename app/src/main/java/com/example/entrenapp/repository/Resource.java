@@ -5,6 +5,7 @@ package com.example.entrenapp.repository;
 import static com.example.entrenapp.repository.Status.SUCCESS;
 import static com.example.entrenapp.repository.Status.ERROR;
 import static com.example.entrenapp.repository.Status.LOADING;
+import  com.example.entrenapp.api.model.Error;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

@@ -21,7 +21,7 @@ public class ApiResponse<T> {
         return data;
     }
 
-    public java.lang.Error getError() {
+    public Error getError() {
         return error;
     }
 

@@ -55,7 +55,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/editTextTextPersonName"
         style="@style/roundedTextBox"
         android:layout_width="259dp"
         android:layout_height="50dp"
