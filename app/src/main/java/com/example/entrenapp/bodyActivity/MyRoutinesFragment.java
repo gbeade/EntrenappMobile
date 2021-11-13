@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,6 +32,9 @@ import java.util.stream.Collectors;
 public class MyRoutinesFragment extends FragmentRoutine {
     private FragmentMyRoutinesBinding binding;
 
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -51,20 +56,17 @@ public class MyRoutinesFragment extends FragmentRoutine {
 
     @Override
     public void fillRoutines(){
-        app = (App) getActivity().getApplication();
-        app.getRoutineRepository().getMyRoutines().observe(getViewLifecycleOwner(), new Observer<Resource<PagedList<RoutineAPI>>>() {
+        MyRoutineViewModel viewModel = new ViewModelProvider(getActivity()).get(MyRoutineViewModel.class);
+        viewModel.getMyRoutines().observe(getViewLifecycleOwner(), new Observer<Routine>() {
             @Override
-            public void onChanged(Resource<PagedList<RoutineAPI>> pagedListResource) {
-                if(pagedListResource.getData() != null && pagedListResource.getData().getContent().size() > 0){
-                    for(RoutineAPI routine : pagedListResource.getData().getContent()){
-                        dataset.add(new Routine(routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion()));
-                    }
-                    RecyclerView.Adapter adapter = new CardAdapter(dataset.stream().filter(filterFun).collect(Collectors.toList()), R.layout.extense_square_card, getActivity(),onNoteListener);
-                    binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                    binding.routineRecyclerView.setAdapter(adapter);
-                }
+            public void onChanged(Routine routine) {
+                dataset.add(routine);
+                RecyclerView.Adapter adapter = new CardAdapter(dataset.stream().filter(filterFun).collect(Collectors.toList()), R.layout.extense_square_card, getActivity(),onNoteListener);
+                binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                binding.routineRecyclerView.setAdapter(adapter);
             }
         });
+
 
     }
 
