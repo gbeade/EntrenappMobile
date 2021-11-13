@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
@@ -20,6 +22,7 @@ import com.example.entrenapp.apiClasses.Cycle;
 import com.example.entrenapp.apiClasses.Exercise;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.ActivityExecuteRoutineBinding;
+import com.example.entrenapp.mainActivity.MainActivity;
 import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.recyclerView.TimeTickCardAdapter;
 
@@ -37,7 +40,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     private View root;
     ActivityExecuteRoutineBinding binding;
     RecyclerView rv;
-    RecyclerView.Adapter adapter;
+    TimeTickCardAdapter adapter;
 
     private Routine routine= new Routine("Pecho Plano yyy", "Pecho", Routine.Difficulty.XTREME, false, new Date(), 4, 25);
     private Iterator<Cycle> cycleIterator;
@@ -57,12 +60,21 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
         fillRoutine();
 
+        binding.cancel.setOnClickListener(view -> onCancel());
+        binding.playtoggle.setOnClickListener(view -> pauseCurrentExercise());
+        binding.rewind.setOnClickListener(view -> startIterations());
+
+
         TextView textView;
-        textView = (TextView) root.findViewById(R.id.routine_name);
+        textView = root.findViewById(R.id.routine_name);
         textView.setText(routine.getName());
 
         SnapHelper snapHelper = new LinearSnapHelper();
         snapHelper.attachToRecyclerView(binding.cycleRecyclerView);
+        startIterations();
+    }
+
+    public void startIterations() {
         rv = binding.cycleRecyclerView;
         cycleIterator = routine.getCycles().iterator();
         currentCycleIdx = -1;
@@ -84,7 +96,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
                 textView.setText(currentCycle.getName());
                 currentCycleIdx = 0;
                 // Setup adapter for the new collection of exercises
-                RecyclerView.Adapter adapter = new TimeTickCardAdapter(currentCycle.getExercises(), R.layout.exec_exercise_card, this);
+                TimeTickCardAdapter adapter = new TimeTickCardAdapter(currentCycle.getExercises(), R.layout.exec_exercise_card, this);
                 this.adapter = adapter;
                 binding.cycleRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
                 binding.cycleRecyclerView.setAdapter(adapter);
@@ -123,6 +135,17 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         c.addExercise(new Exercise(2, "Burpees", "Tipo", 2));
         routine.addCycle(c);
     }
+
+
+    public void pauseCurrentExercise(){
+        adapter.pauseCurrentExercise();
+    }
+
+    public void onCancel() {
+        Intent intent = new Intent(this, MainActivity.class); // YourRoutinesActivity.class); //YourRoutinesActivity.class);
+        startActivity(intent);
+    }
+
 
 
 }

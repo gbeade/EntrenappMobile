@@ -15,6 +15,7 @@ import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -22,6 +23,8 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
 
     ExecuteRoutineActivity act;
     Map<TimeTickViewHolder, TimeTickViewHolder> map = new HashMap<>();
+    TimeTickViewHolder currentVH;
+    boolean superTimerStopped = false;
 
     public TimeTickCardAdapter(List<Exercise> dataset, Integer layoutID, ExecuteRoutineActivity context) {
         super(dataset, layoutID, context);
@@ -49,6 +52,7 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
     public void onViewAttachedToWindow(@NonNull ViewHolder holder) {
         super.onViewDetachedFromWindow(holder);
         map.get(holder).startTimer();
+        currentVH = map.get(holder);
     }
 
     @Override
@@ -63,22 +67,23 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
         Timer timer;
         Integer time = 0;
         Integer duration = 0;
-
         boolean timerStarted = false;
 
         private class ModifyTimerTask extends TimerTask {
 
             void timerTick() {
-                if (time > duration) {
-                    bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "✓");
-                    if ( time > duration + 3) {
-                        act.nextExercise(getAdapterPosition());
-                        cancel();
+                if (timerStarted && !superTimerStopped) {
+                    if (time > duration) {
+                        bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "✓");
+                        if (time > duration + 3) {
+                            act.nextExercise(getAdapterPosition());
+                            cancel();
+                        }
+                    } else {
+                        bindTextViewWithData(r.getIdentifier("timer", "id", packageName), (duration - time) + "\'\'");
                     }
-                } else {
-                    bindTextViewWithData(r.getIdentifier("timer", "id", packageName), (duration-time)+"\'\'");
+                    time++;
                 }
-                time++;
             }
 
             @Override
@@ -108,10 +113,22 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
             timer.scheduleAtFixedRate(new ModifyTimerTask(), 500, 1000);
         }
 
+        public void resetTimer() {
+            stopTimer();
+            startTimer();
+        }
+
+        public void playPauseTimer() {
+            timerStarted = !timerStarted;
+        }
         public void setTimerStartedTo(int duration) {
             this.duration = duration;
         }
-
     }
+
+    public void pauseCurrentExercise(){
+        superTimerStopped = !superTimerStopped;
+    }
+
 
 }
