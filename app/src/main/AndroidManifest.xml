@@ -10,13 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Entrenapp">
         <activity
-            android:name=".ExerciseDescriptionActivity"
+            android:name=".DescriptionFragments.DescriptionActivity"
             android:exported="false"
-            android:parentActivityName=".RoutineDescriptionActivity"/>
+            android:parentActivityName=".bodyActivity.BodyActivity"/>
         <activity
-            android:name=".RoutineDescriptionActivity"
+            android:name=".DescriptionFragments.ExerciseDescriptionActivity"
             android:exported="false"
-            android:parentActivityName=".bodyActivity.BodyActivity" />
+            />
+
         <activity
             android:name=".executeRoutineActivity.ExecuteRoutineActivity"
             android:exported="false" />

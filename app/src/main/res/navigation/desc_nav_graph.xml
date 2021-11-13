@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/desc_nav_graph"
+    app:startDestination="@id/fragmentRoutineDescription">
+
+    <fragment
+        android:id="@+id/fragmentRoutineDescription"
+        android:name="com.example.entrenapp.DescriptionFragments.FragmentRoutineDescription"
+        android:label="FragmentRoutineDescription"
+        tools:layout="@layout/fragment_routine_description">
+        <action
+            android:id="@+id/action_fragmentRoutineDescription_to_fragmentExerciseDescription"
+            app:destination="@id/fragmentExerciseDescription"
+            >
+
+        </action>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentExerciseDescription"
+        android:name="com.example.entrenapp.DescriptionFragments.FragmentExerciseDescription"
+        android:label="FragmentExerciseDescription"
+        tools:layout="@layout/fragment_exercise_description">
+        <argument
+            android:name="Exercise"
+            app:argType="com.example.entrenapp.apiClasses.Exercise" />
+    </fragment>
+
+
+</navigation>

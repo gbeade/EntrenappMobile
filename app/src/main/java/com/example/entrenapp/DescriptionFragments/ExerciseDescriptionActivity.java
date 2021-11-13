@@ -1,4 +1,4 @@
-package com.example.entrenapp;
+package com.example.entrenapp.DescriptionFragments;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.entrenapp.R;
 import com.example.entrenapp.apiClasses.Exercise;
 import com.example.entrenapp.databinding.ActivityExerciseDescriptionBinding;
 import com.example.entrenapp.databinding.ToolbarMainBinding;

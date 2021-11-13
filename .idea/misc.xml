@@ -13,6 +13,7 @@
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/drawable/rounded_white_rectangle.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/activity_routine_landing.xml" value="0.275" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/activity_body.xml" value="0.22291666666666668" />
+        <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/activity_description.xml" value="0.2" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/activity_execute_routine.xml" value="0.22291666666666668" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/activity_exercise_description.xml" value="0.265625" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/activity_filter_routine.xml" value="0.5" />
@@ -24,8 +25,10 @@
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/cycle_view_holder.xml" value="0.33" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/exec_exercise_card.xml" value="0.22291666666666668" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/extense_square_card.xml" value="0.22291666666666668" />
+        <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_exercise_description.xml" value="0.2767210144927536" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_my_favourite_routine.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_my_routines.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_routine_description.xml" value="0.1648148148148148" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_routine_landing.xml" value="0.25" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/routine_description.xml" value="0.5" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/summary_square_card.xml" value="0.36666666666666664" />

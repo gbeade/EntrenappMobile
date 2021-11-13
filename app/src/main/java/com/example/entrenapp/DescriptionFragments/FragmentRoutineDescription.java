@@ -1,62 +1,63 @@
-package com.example.entrenapp;
-
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.entrenapp.DescriptionFragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+
 
 import com.example.entrenapp.apiClasses.Cycle;
 import com.example.entrenapp.apiClasses.Exercise;
 import com.example.entrenapp.apiClasses.Routine;
-import com.example.entrenapp.databinding.ActivityRoutineDescriptionBinding;
-import com.example.entrenapp.databinding.ToolbarMainBinding;
+import com.example.entrenapp.databinding.FragmentRoutineDescriptionBinding;
+
 import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
-import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.recyclerView.CycleAdapter;
 
-public class RoutineDescriptionActivity extends AppCompatActivity {
+
+public class FragmentRoutineDescription extends Fragment {
 
     private Routine routine;
+    FragmentRoutineDescriptionBinding binding;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        this.routine = getIntent().getParcelableExtra("Routine");
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+
+        this.routine = getArguments().getParcelable("Routine");
 
         fillRoutine(); //should be an API call.
 
-        ActivityRoutineDescriptionBinding binding = ActivityRoutineDescriptionBinding.inflate(getLayoutInflater());
         binding.routineTitle.setText(this.routine.getName());
         binding.duration.setText("Duracion: "+this.routine.getDuration()+" minutos");
 
-        View root = binding.getRoot();
 
-        ToolbarMainBinding binding2 = ToolbarMainBinding.bind(root);
-        setContentView(root);
-
-        binding2.toolbar.inflateMenu(R.menu.menu_main);
-        setSupportActionBar(binding2.toolbar);
-
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-
-        RecyclerView.Adapter adapter = new CycleAdapter(this.routine.getCycles(),this);
-        binding.routineDescriptionCyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        RecyclerView.Adapter adapter = new CycleAdapter(this.routine.getCycles(),getActivity());
+        binding.routineDescriptionCyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
         binding.routineDescriptionCyclerView.setAdapter(adapter);
 
 
         binding.btnTrain.setOnClickListener(v -> train());
     }
 
-    private void train(){
-        Intent intent = new Intent(this, ExecuteRoutineActivity.class);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentRoutineDescriptionBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+
+    private void train(){ //llamado a navController
+        Intent intent = new Intent(getActivity(), ExecuteRoutineActivity.class);
         intent.putExtra("Routine", this.routine);
         startActivity(intent);
     }
@@ -73,6 +74,5 @@ public class RoutineDescriptionActivity extends AppCompatActivity {
         routine.addCycle(c2);
 
     }
-
 
 }

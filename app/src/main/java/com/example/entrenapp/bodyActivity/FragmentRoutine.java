@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Parcelable;
 import androidx.fragment.app.Fragment;
 
-import com.example.entrenapp.RoutineDescriptionActivity;
+import com.example.entrenapp.DescriptionFragments.DescriptionActivity;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.recyclerView.Cardable;
@@ -30,7 +30,7 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
 
     @Override
     public void onNoteClick(int position) {
-        Intent intent = new Intent(getActivity(), RoutineDescriptionActivity.class);
+        Intent intent = new Intent(getActivity(), DescriptionActivity.class);
         intent.putExtra("Routine",  (Parcelable) this.dataset.get(position));
         startActivity(intent);
 

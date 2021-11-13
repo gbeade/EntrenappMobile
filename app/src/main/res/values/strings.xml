@@ -26,6 +26,7 @@
     <string name="favourite_routines">Rutinas favoritas</string>
     <string name="myRoutines">Mis rutinas</string>
     <string name="train">Entrenar</string>
+    <string name="action_back">back</string>
 
 
 </resources>
