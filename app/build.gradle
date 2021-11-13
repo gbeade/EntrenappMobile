@@ -48,4 +48,11 @@ dependencies {
     def nav_version = "2.3.5"
     implementation "androidx.navigation:navigation-fragment:$nav_version"
     implementation "androidx.navigation:navigation-ui:$nav_version"
+
+    def retrofit_version = "2.9.0"
+    def ok_http_version = "4.9.1"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$ok_http_version"
+
 }
