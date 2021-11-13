@@ -1,7 +1,6 @@
 package com.example.entrenapp.api.model;
 
 
-import com.example.entrenapp.apiClasses.Exercise;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -25,9 +24,41 @@ public class RoutineCycle {
     @SerializedName("repetitions")
     @Expose
     private int repetitions;
-    @SerializedName("ejercicios")
+    @SerializedName("metadata")
     @Expose
-    private PagedList<Exercise> ejercicios = null;
+    private Metadata metadata;
+
+    public class Metadata {
+
+        @SerializedName("ejercicios")
+        @Expose
+        private PagedList<Exercise> ejercicios = null;
+
+        /**
+         * No args constructor for use in serialization
+         *
+         */
+        public Metadata() {
+        }
+
+        /**
+         *
+         * @param ejercicios
+         */
+        public Metadata(PagedList<Exercise> ejercicios) {
+            super();
+            this.ejercicios = ejercicios;
+        }
+
+        public PagedList<Exercise> getEjercicios() {
+            return ejercicios;
+        }
+
+        public void setEjercicios(PagedList<Exercise> ejercicios) {
+            this.ejercicios = ejercicios;
+        }
+
+    }
 
     /**
      * No args constructor for use in serialization
@@ -38,7 +69,7 @@ public class RoutineCycle {
 
     /**
      *
-     * @param ejercicios
+     * @param metadata
      * @param name
      * @param id
      * @param detail
@@ -46,7 +77,7 @@ public class RoutineCycle {
      * @param repetitions
      * @param order
      */
-    public RoutineCycle(int id, String name, String detail, String type, int order, int repetitions, PagedList<Exercise> ejercicios) {
+    public RoutineCycle(int id, String name, String detail, String type, int order, int repetitions, Metadata metadata) {
         super();
         this.id = id;
         this.name = name;
@@ -54,7 +85,7 @@ public class RoutineCycle {
         this.type = type;
         this.order = order;
         this.repetitions = repetitions;
-        this.ejercicios = ejercicios;
+        this.metadata = metadata;
     }
 
     public int getId() {
@@ -105,12 +136,12 @@ public class RoutineCycle {
         this.repetitions = repetitions;
     }
 
-    public PagedList<Exercise> getEjercicios() {
-        return ejercicios;
+    public Metadata getMetadata() {
+        return metadata;
     }
 
-    public void setEjercicios(PagedList<Exercise> ejercicios) {
-        this.ejercicios = ejercicios;
+    public void setMetadata(Metadata metadata) {
+        this.metadata = metadata;
     }
 
 }
