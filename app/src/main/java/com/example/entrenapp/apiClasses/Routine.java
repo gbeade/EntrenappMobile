@@ -186,6 +186,10 @@ public class Routine implements Cardable,Parcelable {
         return al;
     }
 
+    public void cleanCycle(){
+        this.cycles = new ArrayList<>();
+    }
+
     // Cycles
     ArrayList<Cycle> cycles = new ArrayList<>();
 
