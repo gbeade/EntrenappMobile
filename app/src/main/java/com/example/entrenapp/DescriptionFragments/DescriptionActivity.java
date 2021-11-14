@@ -20,6 +20,7 @@ import com.example.entrenapp.databinding.ToolbarMainBinding;
 public class DescriptionActivity extends BaseMenuActivity {
     private Routine routine;
     NavController navController;
+    private boolean favourite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,8 @@ public class DescriptionActivity extends BaseMenuActivity {
         ActivityDescriptionBinding binding = ActivityDescriptionBinding.inflate(getLayoutInflater());
 
         this.routine = getIntent().getParcelableExtra("Routine");
+        this.favourite = getIntent().getBooleanExtra("Favourite", false);
+
 
         View root = binding.getRoot();
 
@@ -38,7 +41,8 @@ public class DescriptionActivity extends BaseMenuActivity {
 
 
         Bundle bundle = new Bundle();
-        bundle.putParcelable("Routine",this.routine);
+        bundle.putParcelable("Routine", this.routine);
+        bundle.putBoolean("Favourite",this.favourite);
 
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.desc_nav_host_fragment);

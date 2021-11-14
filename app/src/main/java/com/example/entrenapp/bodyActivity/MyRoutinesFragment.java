@@ -25,6 +25,7 @@ import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.FragmentMyRoutinesBinding;
 import com.example.entrenapp.repository.Resource;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -46,38 +47,22 @@ public class MyRoutinesFragment extends FragmentRoutine {
         return binding.getRoot();
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view,
-                              @Nullable Bundle savedInstanceState) {
 
-        onNoteListener = this;
-        fillRoutines();
-
-    }
 
     @Override
     public void fillRoutines(){
         MyRoutineViewModel viewModel = new ViewModelProvider(getActivity()).get(MyRoutineViewModel.class);
-        viewModel.getMyRoutines().observe(getViewLifecycleOwner(), new Observer<List<Routine>>() {
-            @Override
-            public void onChanged(List<Routine> routine) {
-
-
-                if(routine.size() > 0  && dataset.size() == routine.size()-1) {
-                    dataset.add(routine.get(routine.size()-1));
-                }else{
-                    if(routine.size() > 0 )
-                        for(Routine routineItem : routine)
-                            dataset.add(routineItem);
-                }
-
-                RecyclerView.Adapter adapter = new CardAdapter(dataset.stream().filter(filterFun).collect(Collectors.toList()), R.layout.extense_square_card, getActivity(),onNoteListener);
-                binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                binding.routineRecyclerView.setAdapter(adapter);
-            }
-        });
+        viewModel.getMyRoutines().observe(getViewLifecycleOwner(), routine -> responseViewModel(routine));
 
 
     }
 
+
+
+    @Override
+    public void updateRecyclerView() {
+        RecyclerView.Adapter adapter = new CardAdapter(dataset.stream().filter(filterFun).collect(Collectors.toList()), R.layout.extense_square_card, getActivity(),onNoteListener);
+        binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.routineRecyclerView.setAdapter(adapter);
+    }
 }

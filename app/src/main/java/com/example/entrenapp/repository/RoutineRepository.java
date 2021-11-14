@@ -56,5 +56,27 @@ public class RoutineRepository {
         }.asLiveData();
     }
 
+    public LiveData<Resource<Void>> setFavourite(Integer routineId) {
+        return new NetworkBoundResource<Void, Void>()
+        {
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<Void>> createCall() {
+                return apiService.setFavourite(routineId);
+            }
+        }.asLiveData();
+    }
+
+    public LiveData<Resource<Void>> deleteFavourite(Integer routineId) {
+        return new NetworkBoundResource<Void, Void>()
+        {
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<Void>> createCall() {
+                return apiService.deleteFavourite(routineId);
+            }
+        }.asLiveData();
+    }
+
 
 }

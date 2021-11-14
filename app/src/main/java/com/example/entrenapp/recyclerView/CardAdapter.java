@@ -56,6 +56,7 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
         this.context = context;
         this.r = context.getResources();
         this.packageName = context.getPackageName();
+
     }
 
 
@@ -73,6 +74,7 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(layoutID, viewGroup, false);
+
         return new ViewHolder(view,this.onNoteListener);
     }
 

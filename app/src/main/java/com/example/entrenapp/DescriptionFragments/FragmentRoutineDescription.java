@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,16 +21,15 @@ import android.view.ViewGroup;
 
 
 import com.example.entrenapp.App;
-import com.example.entrenapp.api.model.RoutineCycle;
 import com.example.entrenapp.apiClasses.Cycle;
-import com.example.entrenapp.apiClasses.Exercise;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.FragmentRoutineDescriptionBinding;
-import com.example.entrenapp.api.model.ApiExercise;
+
 
 import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
 import com.example.entrenapp.recyclerView.CycleAdapter;
-import com.example.entrenapp.repository.Status;
+import com.example.entrenapp.repository.Resource;
+
 
 import java.util.List;
 
@@ -37,6 +37,7 @@ import java.util.List;
 public class FragmentRoutineDescription extends Fragment {
 
     private Routine routine;
+    private boolean favourite;
     FragmentRoutineDescriptionBinding binding;
     private App app;
 
@@ -44,12 +45,33 @@ public class FragmentRoutineDescription extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         this.routine = getArguments().getParcelable("Routine");
+        this.favourite = getArguments().getBoolean("Favourite");
 
+
+        app = (App) getActivity().getApplication();
         binding.routineTitle.setText(this.routine.getName());
         binding.duration.setText("Duracion: "+this.routine.getDuration()+" minutos");
 
-        fillRoutine();
+        if(this.favourite){
+            binding.addFavourite.setVisibility(View.GONE);
+            binding.removeFavourite.setVisibility(View.VISIBLE);
+        }else{
+            binding.addFavourite.setVisibility(View.VISIBLE);
+            binding.removeFavourite.setVisibility(View.GONE);
+        }
 
+        binding.addFavourite.setOnClickListener(v -> app.getRoutineRepository().setFavourite(routine.getId()).observe(getViewLifecycleOwner(), voidResource -> {
+            binding.addFavourite.setVisibility(View.GONE);
+            binding.removeFavourite.setVisibility(View.VISIBLE);
+        }));
+
+        binding.removeFavourite.setOnClickListener(v -> app.getRoutineRepository().deleteFavourite(routine.getId()).observe(getViewLifecycleOwner(), voidResource -> {
+            binding.removeFavourite.setVisibility(View.GONE);
+            binding.addFavourite.setVisibility(View.VISIBLE);
+        }));
+
+
+        fillRoutine();
         binding.btnTrain.setOnClickListener(v -> train());
     }
 
@@ -71,18 +93,15 @@ public class FragmentRoutineDescription extends Fragment {
         FragmentRoutineViewModel viewModel = new ViewModelProvider(getActivity()).get(FragmentRoutineViewModel.class);
         viewModel.setRoutineId(this.routine);
 
-        viewModel.getCycle().observe(getViewLifecycleOwner(), new Observer<List<Cycle>>() {
-            @Override
-            public void onChanged(List<Cycle> cycle) {
+        viewModel.getCycle().observe(getViewLifecycleOwner(), cycle -> {
 
-                if(cycle.size() > 0 && routine.getCycles().size() == cycle.size()-1)
-                  routine.addCycle( cycle.get(cycle.size()-1));
+            if(cycle.size() > 0 && routine.getCycles().size() == cycle.size()-1)
+              routine.addCycle( cycle.get(cycle.size()-1));
 
 
-                RecyclerView.Adapter adapter = new CycleAdapter(routine.getCycles(),getActivity());
-                binding.routineDescriptionCyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
-                binding.routineDescriptionCyclerView.setAdapter(adapter);
-            }
+            RecyclerView.Adapter adapter = new CycleAdapter(routine.getCycles(),getActivity());
+            binding.routineDescriptionCyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
+            binding.routineDescriptionCyclerView.setAdapter(adapter);
         });
     }
 

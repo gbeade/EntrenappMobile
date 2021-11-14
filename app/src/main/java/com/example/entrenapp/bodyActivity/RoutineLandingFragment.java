@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,38 +46,30 @@ public class RoutineLandingFragment extends FragmentRoutine {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view,
-                              @Nullable Bundle savedInstanceState) {
-        onNoteListener = this;
-        fillRoutines();
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        SnapHelper snapHelper1 = new LinearSnapHelper();
+        snapHelper1.attachToRecyclerView(binding.recommendedRoutinesRecyclerView);
     }
 
     @Override
     public void fillRoutines(){
         RoutineLandingViewModel viewModel = new ViewModelProvider(getActivity()).get(RoutineLandingViewModel.class);
-        viewModel.getOtherRoutines().observe(getViewLifecycleOwner(), new Observer<List<Routine>>() {
-            @Override
-            public void onChanged(List<Routine> routine) {
+        viewModel.getOtherRoutines().observe(getViewLifecycleOwner(), routine -> {
 
-                if(routine.size() > 0  && dataset.size() == routine.size()-1) {
-                    dataset.add(routine.get(routine.size()-1));
-                }else{
-                    if(routine.size() > 0 )
-                        for(Routine routineItem : routine)
-                            dataset.add(routineItem);
-                }
+            responseViewModel(routine);
 
-                //recycler view
-                binding.recommendedRoutinesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
-                RecyclerView.Adapter adapter1 = new CardAdapter(dataset, R.layout.extense_square_card, getActivity(),onNoteListener);
-                binding.recommendedRoutinesRecyclerView.setAdapter(adapter1);
-                if(routine.size() == 1 ) {
-                    SnapHelper snapHelper1 = new LinearSnapHelper();
-                    snapHelper1.attachToRecyclerView(binding.recommendedRoutinesRecyclerView);
-                    binding.recommendedRoutinesRecyclerView.scrollToPosition(2);
-                    binding.recommendedRoutinesRecyclerView.smoothScrollBy(1, 0);
-                }
-            }
         });
     }
+
+
+    @Override
+    public void updateRecyclerView() {
+        binding.recommendedRoutinesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        RecyclerView.Adapter adapter1 = new CardAdapter(dataset, R.layout.extense_square_card, getActivity(),onNoteListener);
+        binding.recommendedRoutinesRecyclerView.setAdapter(adapter1);
+        binding.recommendedRoutinesRecyclerView.scrollToPosition(2);
+        binding.recommendedRoutinesRecyclerView.smoothScrollBy(1, 0);
+    }
+
 }
