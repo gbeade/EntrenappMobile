@@ -4,6 +4,8 @@ package com.example.entrenapp.api.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class RoutineCycle {
 
     @SerializedName("id")
@@ -32,7 +34,7 @@ public class RoutineCycle {
 
         @SerializedName("ejercicios")
         @Expose
-        private PagedList<Exercise> ejercicios = null;
+        private ArrayList<ApiExercise> ejercicios = null;
 
         /**
          * No args constructor for use in serialization
@@ -45,16 +47,16 @@ public class RoutineCycle {
          *
          * @param ejercicios
          */
-        public Metadata(PagedList<Exercise> ejercicios) {
+        public Metadata(ArrayList<ApiExercise> ejercicios) {
             super();
             this.ejercicios = ejercicios;
         }
 
-        public PagedList<Exercise> getEjercicios() {
+        public ArrayList<ApiExercise> getEjercicios() {
             return ejercicios;
         }
 
-        public void setEjercicios(PagedList<Exercise> ejercicios) {
+        public void setEjercicios(ArrayList<ApiExercise> ejercicios) {
             this.ejercicios = ejercicios;
         }
 

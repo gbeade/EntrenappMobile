@@ -3,7 +3,7 @@ package com.example.entrenapp.api.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Exercise {
+public class ApiExercise {
 
     @SerializedName("time")
     @Expose
@@ -19,7 +19,7 @@ public class Exercise {
      * No args constructor for use in serialization
      *
      */
-    public Exercise() {
+    public ApiExercise() {
     }
 
     /**
@@ -28,7 +28,7 @@ public class Exercise {
      * @param time
      * @param id
      */
-    public Exercise(String time, String name, int id) {
+    public ApiExercise(String time, String name, int id) {
         super();
         this.time = time;
         this.name = name;

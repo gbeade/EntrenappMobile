@@ -12,8 +12,12 @@ import java.util.List;
 
 public class Routine implements Cardable,Parcelable {
 
-
     protected Routine(Parcel in) {
+        if (in.readByte() == 0) {
+            id = null;
+        } else {
+            id = in.readInt();
+        }
         name = in.readString();
         category = in.readString();
         byte tmpIsEquipmentRequired = in.readByte();
@@ -50,6 +54,12 @@ public class Routine implements Cardable,Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        if (id == null) {
+            dest.writeByte((byte) 0);
+        } else {
+            dest.writeByte((byte) 1);
+            dest.writeInt(id);
+        }
         dest.writeString(name);
         dest.writeString(category);
         dest.writeByte((byte) (isEquipmentRequired == null ? 0 : isEquipmentRequired ? 1 : 2));
@@ -82,6 +92,7 @@ public class Routine implements Cardable,Parcelable {
         }
     }
 
+    private Integer id;
     private String name;
     private String category;
     private Difficulty difficulty;
@@ -106,6 +117,8 @@ public class Routine implements Cardable,Parcelable {
         this.punctuation = punctuation;
         this.duration = duration;
     }
+
+    public Integer getId() { return id; }
 
     public String getName() {
         return name;

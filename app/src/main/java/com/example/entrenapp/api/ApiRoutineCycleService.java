@@ -18,15 +18,18 @@ public interface ApiRoutineCycleService {
     @GET("/routines/{routineId}/cycles")
     LiveData<ApiResponse<PagedList<RoutineCycle>>> getRoutineCycles(@Path("routineId") int routineId);
 
+    //No hace falta
     @POST("/routines/{routineId}/cycles")
     LiveData<ApiResponse<RoutineCycle>> addRoutineCycle(@Path("routineId") int routineId, @Body RoutineCycle cycle);
 
     @GET("/routines/{routineId}/cycles/{cycleId}")
     LiveData<ApiResponse<RoutineCycle>> getRoutineCycle(@Path("routineId") int routineId, @Path("cycleId") int cycleId);
 
+    //No hace falta
     @PUT("/routines/{routineId}/cycles/{cycleId}")
     LiveData<ApiResponse<RoutineCycle>> modifyRoutineCycle(@Path("routineId") int routineId, @Path("cycleId") int cycleId, @Body RoutineCycle cycle);
 
+    //No hace falta
     @DELETE("/routines/{routineId}/cycles/{cycleId}")
     LiveData<ApiResponse<Void>> deleteRoutineCycle(@Path("routineId") int routineId, @Path("cycleId") int cycleId);
 
