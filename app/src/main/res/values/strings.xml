@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [<!ENTITY appname "ENTRENAPP"><!ENTITY author "MrGreen">]>
 <resources>
     <string name="app_name">Entrenapp</string>
-    <string name="welcome_message">Hola, bienvenido a Entrenapp</string>
+    <string name="welcome_message">Hola, bienvenido a <b>ENTRENAPP</b></string>
     <string name="login_message">Inicia sesión</string>
     <string name="register_message">Regístrate</string>
     <string name="email">Email</string>
@@ -28,6 +28,10 @@
     <string name="train">Entrenar</string>
     <string name="action_back">back</string>
     <string name="recommended_routines">Rutinas recomendadas</string>
+    <string name="contrasenia">Contraseña</string>
+    <string name="login_user">Usuario</string>
+    <string name="registrate"><u>Regístrate</u></string>
+    <string name="Login_no_account">¿No tenés cuenta?</string>
 
 
 </resources>
