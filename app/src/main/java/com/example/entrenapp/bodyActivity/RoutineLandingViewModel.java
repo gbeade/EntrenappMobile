@@ -15,11 +15,13 @@ import com.example.entrenapp.api.model.RoutineAPI;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.repository.Resource;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class RoutineLandingViewModel extends AndroidViewModel {
 
-    private MutableLiveData<Routine> OtherRoutines;
+    private MutableLiveData<List<Routine>> OtherRoutines;
     private Integer UserId;
     private App app;
 
@@ -29,9 +31,12 @@ public class RoutineLandingViewModel extends AndroidViewModel {
         UserId = app.getPreferences().getUserId();
     }
 
-    public LiveData<Routine> getOtherRoutines(){
+    public LiveData<List<Routine>> getOtherRoutines(){
         if(OtherRoutines == null){
             OtherRoutines = new MutableLiveData<>();
+            if(OtherRoutines.getValue() == null){
+                OtherRoutines.setValue(new ArrayList<>());
+            }
             loadMyRoutines();
         }
 
@@ -46,8 +51,12 @@ public class RoutineLandingViewModel extends AndroidViewModel {
             public void onChanged(Resource<PagedList<RoutineAPI>> pagedListResource) {
                 if(pagedListResource.getData() != null && pagedListResource.getData().getContent().size() > 0){
                     for(RoutineAPI routine : pagedListResource.getData().getContent()){
-                        if(! UserId.equals(routine.getUser().getId()) )
-                            OtherRoutines.postValue(new Routine(routine.getId(), routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion()));
+                        if(! UserId.equals(routine.getUser().getId()) ){
+                            List<Routine> routineList = new ArrayList<>(OtherRoutines.getValue());
+                            Routine routine1 = new Routine(routine.getId(), routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion());
+                            routineList.add(routine1);
+                            OtherRoutines.setValue(routineList);
+                        }
                     }
                 }
             }

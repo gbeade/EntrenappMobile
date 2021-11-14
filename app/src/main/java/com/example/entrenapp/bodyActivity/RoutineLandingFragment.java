@@ -28,6 +28,7 @@ import com.example.entrenapp.repository.Resource;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class RoutineLandingFragment extends FragmentRoutine {
 
@@ -53,18 +54,28 @@ public class RoutineLandingFragment extends FragmentRoutine {
     @Override
     public void fillRoutines(){
         RoutineLandingViewModel viewModel = new ViewModelProvider(getActivity()).get(RoutineLandingViewModel.class);
-        viewModel.getOtherRoutines().observe(getViewLifecycleOwner(), new Observer<Routine>() {
+        viewModel.getOtherRoutines().observe(getViewLifecycleOwner(), new Observer<List<Routine>>() {
             @Override
-            public void onChanged(Routine routine) {
-                dataset.add(routine);
+            public void onChanged(List<Routine> routine) {
+
+                if(routine.size() > 0  && dataset.size() == routine.size()-1) {
+                    dataset.add(routine.get(routine.size()-1));
+                }else{
+                    if(routine.size() > 0 )
+                        for(Routine routineItem : routine)
+                            dataset.add(routineItem);
+                }
+
                 //recycler view
                 binding.recommendedRoutinesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
                 RecyclerView.Adapter adapter1 = new CardAdapter(dataset, R.layout.extense_square_card, getActivity(),onNoteListener);
                 binding.recommendedRoutinesRecyclerView.setAdapter(adapter1);
-                SnapHelper snapHelper1 = new LinearSnapHelper();
-                snapHelper1.attachToRecyclerView(binding.recommendedRoutinesRecyclerView);
-                binding.recommendedRoutinesRecyclerView.scrollToPosition(2);
-                binding.recommendedRoutinesRecyclerView.smoothScrollBy(1, 0);
+                if(routine.size() == 1 ) {
+                    SnapHelper snapHelper1 = new LinearSnapHelper();
+                    snapHelper1.attachToRecyclerView(binding.recommendedRoutinesRecyclerView);
+                    binding.recommendedRoutinesRecyclerView.scrollToPosition(2);
+                    binding.recommendedRoutinesRecyclerView.smoothScrollBy(1, 0);
+                }
             }
         });
     }

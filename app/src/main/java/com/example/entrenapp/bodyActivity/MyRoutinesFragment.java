@@ -26,6 +26,7 @@ import com.example.entrenapp.databinding.FragmentMyRoutinesBinding;
 import com.example.entrenapp.repository.Resource;
 
 import java.util.Date;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
@@ -57,10 +58,19 @@ public class MyRoutinesFragment extends FragmentRoutine {
     @Override
     public void fillRoutines(){
         MyRoutineViewModel viewModel = new ViewModelProvider(getActivity()).get(MyRoutineViewModel.class);
-        viewModel.getMyRoutines().observe(getViewLifecycleOwner(), new Observer<Routine>() {
+        viewModel.getMyRoutines().observe(getViewLifecycleOwner(), new Observer<List<Routine>>() {
             @Override
-            public void onChanged(Routine routine) {
-                dataset.add(routine);
+            public void onChanged(List<Routine> routine) {
+
+
+                if(routine.size() > 0  && dataset.size() == routine.size()-1) {
+                    dataset.add(routine.get(routine.size()-1));
+                }else{
+                    if(routine.size() > 0 )
+                        for(Routine routineItem : routine)
+                            dataset.add(routineItem);
+                }
+
                 RecyclerView.Adapter adapter = new CardAdapter(dataset.stream().filter(filterFun).collect(Collectors.toList()), R.layout.extense_square_card, getActivity(),onNoteListener);
                 binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                 binding.routineRecyclerView.setAdapter(adapter);

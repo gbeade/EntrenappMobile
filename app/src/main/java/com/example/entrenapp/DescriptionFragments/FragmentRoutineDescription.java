@@ -74,9 +74,10 @@ public class FragmentRoutineDescription extends Fragment {
         viewModel.getCycle().observe(getViewLifecycleOwner(), new Observer<List<Cycle>>() {
             @Override
             public void onChanged(List<Cycle> cycle) {
-                routine.cleanCycle();
-                for(Cycle cycleItem : cycle)
-                    routine.addCycle(cycleItem);
+
+                if(cycle.size() > 0 && routine.getCycles().size() == cycle.size()-1)
+                  routine.addCycle( cycle.get(cycle.size()-1));
+
 
                 RecyclerView.Adapter adapter = new CycleAdapter(routine.getCycles(),getActivity());
                 binding.routineDescriptionCyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));

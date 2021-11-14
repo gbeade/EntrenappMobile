@@ -14,19 +14,23 @@ import com.example.entrenapp.api.model.RoutineAPI;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.repository.Resource;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class MyFavouriteRoutineViewModel extends AndroidViewModel {
 
-    private MutableLiveData<Routine> myFavouriteRoutines;
+    private MutableLiveData<List<Routine>> myFavouriteRoutines;
 
     public MyFavouriteRoutineViewModel(@NonNull Application application) {
         super(application);
     }
 
-    public LiveData<Routine> getMyFavouriteRoutines(){
+    public LiveData<List<Routine>> getMyFavouriteRoutines(){
         if(myFavouriteRoutines == null){
             myFavouriteRoutines = new MutableLiveData<>();
+            if(myFavouriteRoutines.getValue()==null)
+                myFavouriteRoutines.setValue(new ArrayList<>());
             loadMyRoutines();
         }
 
@@ -41,12 +45,13 @@ public class MyFavouriteRoutineViewModel extends AndroidViewModel {
             public void onChanged(Resource<PagedList<RoutineAPI>> pagedListResource) {
                 if(pagedListResource.getData() != null && pagedListResource.getData().getContent().size() > 0){
                     for(RoutineAPI routine : pagedListResource.getData().getContent()){
-                        myFavouriteRoutines.postValue(new Routine(routine.getId(), routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion()));
-                    }
+                        List<Routine> routineList = new ArrayList<>(myFavouriteRoutines.getValue());
+                        Routine routine1 = new Routine(routine.getId(), routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion());
+                        routineList.add(routine1);
+                        myFavouriteRoutines.setValue(routineList);                    }
                 }
             }
         });
-
     }
 
 
