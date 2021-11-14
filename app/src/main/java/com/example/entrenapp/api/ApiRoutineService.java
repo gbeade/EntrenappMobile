@@ -7,7 +7,10 @@ import androidx.lifecycle.LiveData;
 import com.example.entrenapp.api.model.PagedList;
 import com.example.entrenapp.api.model.RoutineAPI;
 
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface ApiRoutineService {
 
@@ -19,5 +22,8 @@ public interface ApiRoutineService {
 
     @GET("favourites")
     LiveData<ApiResponse<PagedList<RoutineAPI>>> getMyFavouriteRoutines();
+
+    @PUT("routine/{routineId}")
+    LiveData<ApiResponse<RoutineAPI>> modifyRoutine(@Path("routineId") int routineId, @Body RoutineAPI routine);
 
 }

@@ -28,9 +28,9 @@ public class RoutineCycle {
     private int repetitions;
     @SerializedName("metadata")
     @Expose
-    private Metadata metadata;
+    private RoutineCycleMetadata metadata;
 
-    public class Metadata {
+    public class RoutineCycleMetadata {
 
         @SerializedName("ejercicios")
         @Expose
@@ -40,14 +40,14 @@ public class RoutineCycle {
          * No args constructor for use in serialization
          *
          */
-        public Metadata() {
+        public RoutineCycleMetadata() {
         }
 
         /**
          *
          * @param ejercicios
          */
-        public Metadata(ArrayList<ApiExercise> ejercicios) {
+        public RoutineCycleMetadata(ArrayList<ApiExercise> ejercicios) {
             super();
             this.ejercicios = ejercicios;
         }
@@ -79,7 +79,7 @@ public class RoutineCycle {
      * @param repetitions
      * @param order
      */
-    public RoutineCycle(int id, String name, String detail, String type, int order, int repetitions, Metadata metadata) {
+    public RoutineCycle(int id, String name, String detail, String type, int order, int repetitions, RoutineCycleMetadata metadata) {
         super();
         this.id = id;
         this.name = name;
@@ -138,11 +138,11 @@ public class RoutineCycle {
         this.repetitions = repetitions;
     }
 
-    public Metadata getMetadata() {
+    public RoutineCycleMetadata getMetadata() {
         return metadata;
     }
 
-    public void setMetadata(Metadata metadata) {
+    public void setMetadata(RoutineCycleMetadata metadata) {
         this.metadata = metadata;
     }
 
