@@ -24,6 +24,7 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     protected App app ;
     protected CardAdapter.ViewHolder.OnNoteListener onNoteListener;
     protected boolean favourite = false;
+    protected boolean isfavouriteable= true;
 
 
     abstract public void fillRoutines();
@@ -35,6 +36,7 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
         Intent intent = new Intent(getActivity(), DescriptionActivity.class);
         intent.putExtra("Routine",  (Parcelable) this.dataset.get(position));
         intent.putExtra("Favourite",this.favourite);
+        intent.putExtra("IsFavouritable",this.isfavouriteable);
         getActivity().getViewModelStore().clear();
         startActivity(intent);
     }

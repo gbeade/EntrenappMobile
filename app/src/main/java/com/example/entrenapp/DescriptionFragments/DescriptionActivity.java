@@ -21,6 +21,7 @@ public class DescriptionActivity extends BaseMenuActivity {
     private Routine routine;
     NavController navController;
     private boolean favourite;
+    private boolean isFavouritable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,7 @@ public class DescriptionActivity extends BaseMenuActivity {
 
         this.routine = getIntent().getParcelableExtra("Routine");
         this.favourite = getIntent().getBooleanExtra("Favourite", false);
+        this.isFavouritable = getIntent().getBooleanExtra("IsFavouritable",true);
 
 
         View root = binding.getRoot();
@@ -43,6 +45,7 @@ public class DescriptionActivity extends BaseMenuActivity {
         Bundle bundle = new Bundle();
         bundle.putParcelable("Routine", this.routine);
         bundle.putBoolean("Favourite",this.favourite);
+        bundle.putBoolean("IsFavouritable",this.isFavouritable);
 
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.desc_nav_host_fragment);

@@ -30,10 +30,13 @@ import com.example.entrenapp.repository.Resource;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class RoutineLandingFragment extends FragmentRoutine {
 
     private FragmentRoutineLandingBinding binding;
+    private List<Routine> favouriteRoutines = new ArrayList<>();
 
     @Nullable
     @Override
@@ -54,11 +57,24 @@ public class RoutineLandingFragment extends FragmentRoutine {
 
     @Override
     public void fillRoutines(){
+
+        new ViewModelProvider(getActivity()).get(MyFavouriteRoutineViewModel.class).getMyFavouriteRoutines().observe(getViewLifecycleOwner(), routines -> {
+            if(routines.size() > 0  && favouriteRoutines.size() == routines.size()-1) {
+                favouriteRoutines.add(routines.get(routines.size()-1));
+            }else{
+                if(routines.size() >= 0 ){
+                    favouriteRoutines = new ArrayList<>();
+                    for(Routine routineItem : routines)
+                        favouriteRoutines.add(routineItem);
+                }
+            }
+
+        });
+
+
         RoutineLandingViewModel viewModel = new ViewModelProvider(getActivity()).get(RoutineLandingViewModel.class);
         viewModel.getOtherRoutines().observe(getViewLifecycleOwner(), routine -> {
-
-            responseViewModel(routine);
-
+                responseViewModel(routine.stream().filter(routine1 -> !favouriteRoutines.contains(routine1)).collect(Collectors.toList()));
         });
     }
 

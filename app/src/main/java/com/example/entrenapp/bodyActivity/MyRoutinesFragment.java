@@ -42,7 +42,7 @@ public class MyRoutinesFragment extends FragmentRoutine {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
+        this.isfavouriteable = false;
         binding = FragmentMyRoutinesBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }

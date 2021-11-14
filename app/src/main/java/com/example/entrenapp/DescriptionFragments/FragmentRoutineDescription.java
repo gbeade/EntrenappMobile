@@ -38,6 +38,7 @@ public class FragmentRoutineDescription extends Fragment {
 
     private Routine routine;
     private boolean favourite;
+    private boolean isFavouritable;
     FragmentRoutineDescriptionBinding binding;
     private App app;
 
@@ -46,30 +47,36 @@ public class FragmentRoutineDescription extends Fragment {
 
         this.routine = getArguments().getParcelable("Routine");
         this.favourite = getArguments().getBoolean("Favourite");
+        this.isFavouritable = getArguments().getBoolean("IsFavouritable");
 
 
         app = (App) getActivity().getApplication();
         binding.routineTitle.setText(this.routine.getName());
-        binding.duration.setText("Duracion: "+this.routine.getDuration()+" minutos");
+        binding.duration.setText("Duracion: " + this.routine.getDuration() + " minutos");
 
-        if(this.favourite){
-            binding.addFavourite.setVisibility(View.GONE);
-            binding.removeFavourite.setVisibility(View.VISIBLE);
+        if (this.isFavouritable) {
+            if (this.favourite) {
+                binding.addFavourite.setVisibility(View.GONE);
+                binding.removeFavourite.setVisibility(View.VISIBLE);
+            } else {
+                binding.addFavourite.setVisibility(View.VISIBLE);
+                binding.removeFavourite.setVisibility(View.GONE);
+            }
+
+
+            binding.addFavourite.setOnClickListener(v -> app.getRoutineRepository().setFavourite(routine.getId()).observe(getViewLifecycleOwner(), voidResource -> {
+                binding.addFavourite.setVisibility(View.GONE);
+                binding.removeFavourite.setVisibility(View.VISIBLE);
+            }));
+
+            binding.removeFavourite.setOnClickListener(v -> app.getRoutineRepository().deleteFavourite(routine.getId()).observe(getViewLifecycleOwner(), voidResource -> {
+                binding.removeFavourite.setVisibility(View.GONE);
+                binding.addFavourite.setVisibility(View.VISIBLE);
+            }));
         }else{
-            binding.addFavourite.setVisibility(View.VISIBLE);
+            binding.addFavourite.setVisibility(View.GONE);
             binding.removeFavourite.setVisibility(View.GONE);
         }
-
-        binding.addFavourite.setOnClickListener(v -> app.getRoutineRepository().setFavourite(routine.getId()).observe(getViewLifecycleOwner(), voidResource -> {
-            binding.addFavourite.setVisibility(View.GONE);
-            binding.removeFavourite.setVisibility(View.VISIBLE);
-        }));
-
-        binding.removeFavourite.setOnClickListener(v -> app.getRoutineRepository().deleteFavourite(routine.getId()).observe(getViewLifecycleOwner(), voidResource -> {
-            binding.removeFavourite.setVisibility(View.GONE);
-            binding.addFavourite.setVisibility(View.VISIBLE);
-        }));
-
 
         fillRoutine();
         binding.btnTrain.setOnClickListener(v -> train());
@@ -83,7 +90,7 @@ public class FragmentRoutineDescription extends Fragment {
     }
 
 
-    private void train(){ //llamado a navController
+    private void train(){
         Intent intent = new Intent(getActivity(), ExecuteRoutineActivity.class);
         intent.putExtra("Routine", this.routine);
         startActivity(intent);
