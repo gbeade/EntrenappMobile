@@ -5,10 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".bodyActivity.RoutineLandingFragment">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -38,65 +34,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
-            android:text="Rutinas recomendadas"
+            android:text="@string/recommended_routines"
             android:textColor="@color/accent"
             android:textSize="26dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/header2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="5dp"
-            android:text="Tus rutinas"
-            android:textColor="@color/accent"
-            android:textSize="26dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recommendedRoutinesRecyclerView" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/myRoutinesRecyclerView"
-            android:layout_width="377dp"
-            android:layout_height="170dp"
-            android:layout_marginTop="5dp"
-
-            android:clipToPadding="false"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header2" />
-
-        <TextView
-            android:id="@+id/header3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="5dp"
-            android:text="Rutinas favoritas"
-            android:textColor="@color/accent"
-            android:textSize="26dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/myRoutinesRecyclerView" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/favouriteRoutinesRecyclerView"
-            android:layout_width="377dp"
-            android:layout_height="170dp"
-            android:layout_marginTop="5dp"
-
-            android:clipToPadding="false"
-            android:paddingStart="12dp"
-            android:paddingEnd="12dp"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header3" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 </FrameLayout>
