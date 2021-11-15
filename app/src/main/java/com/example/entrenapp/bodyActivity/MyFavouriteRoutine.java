@@ -27,6 +27,12 @@ public class MyFavouriteRoutine extends FragmentRoutine {
 
     private FragmentMyFavouriteRoutineBinding binding;
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(binding.routineRecyclerView);
+    }
 
     @Override
     public void onDetach() {
