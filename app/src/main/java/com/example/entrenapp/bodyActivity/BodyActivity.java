@@ -2,6 +2,7 @@ package com.example.entrenapp.bodyActivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -25,10 +26,10 @@ import com.example.entrenapp.databinding.ToolbarMainBinding;
 import com.example.entrenapp.repository.Status;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class BodyActivity extends BaseMenuActivity {
-    BottomNavigationView bottomNavigationView;
+public class BodyActivity extends AppCompatActivity {
+    private BottomNavigationView bottomNavigationView;
     private App app;
-    ViewModel filter;
+    private FilterViewModel filter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,42 @@ public class BodyActivity extends BaseMenuActivity {
         });
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem menuItem) {
+                // Do something when expanded
+                return true;  // Return true to expand action view
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem menuItem) {
+                // Do something when action item collapses
+                return true;  // Return true to collapse action view
+            }
+        });
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            public boolean onQueryTextChange(String newText) {
+                filter.addLetter(newText);
+                return false;
+            }
+
+            public boolean onQueryTextSubmit(String query) {
+                Log.d("", "onQueryTextSubmit -> " + query);
+                searchItem.collapseActionView();
+                return true;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {

@@ -52,7 +52,7 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
         if(datasetFiltered == null)
             intent.putExtra("Routine",  (Parcelable) this.dataset.get(position));
         else
-            intent.putExtra("Routine",  (Parcelable) this.datasetFiltered.get(position));
+            intent.putExtra("Routine", this.datasetFiltered.get(position));
         intent.putExtra("Favourite",this.favourite);
         intent.putExtra("IsFavouritable",this.isfavouriteable);
         new ViewModelProvider(getActivity()).get(RoutineLandingViewModel.class).clear();
