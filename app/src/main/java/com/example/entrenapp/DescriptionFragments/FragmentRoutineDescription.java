@@ -52,7 +52,7 @@ public class FragmentRoutineDescription extends Fragment {
 
         app = (App) getActivity().getApplication();
         binding.routineTitle.setText(this.routine.getName());
-        binding.duration.setText("Duracion: " + this.routine.getDuration() + " minutos");
+        binding.duration.setText("Duración: " + this.routine.getDuration() + " minutos");
 
         if (this.isFavouritable) {
             if (this.favourite) {
