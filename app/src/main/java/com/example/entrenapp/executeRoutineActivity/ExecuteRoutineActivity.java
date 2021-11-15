@@ -35,6 +35,7 @@ import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 
+// Todo: falla con un solo ejercicio
 public class ExecuteRoutineActivity extends AppCompatActivity {
 
     private View root;
@@ -50,7 +51,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     int currentExerciseOfCycleIdx = 0;
     int currentRepetitionOfExercise = 0;
 
-    boolean simplifiedExecution = false;
+    boolean simplifiedExecution = true;
 
 
     @Override
@@ -90,7 +91,11 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
         TextView textView;
         currentCycleIdx ++;
-        // El ciclo a terminado, con todas sus repeticiones
+
+
+        if ( currentCycleIdx > 0 && currentCycle.getExercises().size() == 1) resetAdapter();
+
+        // El ciclo ha terminado, con todas sus repeticiones
         // Hay que pasar al proximo o terminar la rutina
         if (currentCycleIdx == 0 || currentCycleIdx >= currentCycle.getRepetitions()) {
             if (cycleIterator.hasNext()) {
@@ -100,17 +105,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
                 textView.setText(currentCycle.getName());
                 currentCycleIdx = 0;
                 // Setup adapter for the new collection of exercises
-                TimeTickCardAdapter adapter;
-                if (simplifiedExecution) {
-                    binding.cycleRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-                    adapter = new TimeTickCardAdapter(currentCycle.getExercises(), R.layout.exercise_summary_card, this);
-                    adapter.setSimplified(true);
-                } else {
-                    binding.cycleRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-                    adapter = new TimeTickCardAdapter(currentCycle.getExercises(), R.layout.exec_exercise_card, this);
-                }
-                this.adapter = adapter;
-                binding.cycleRecyclerView.setAdapter(adapter);
+                resetAdapter();
             } else {
                 //Se termino la rutina, cambiar por el intent a la pagina de favoritos
                 onCancel();
@@ -121,7 +116,21 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         textView = root.findViewById(R.id.cycle_remaining);
         textView.setText("Repeticiones de este ciclo completas: "+currentCycleIdx+" de "+currentCycle.getRepetitions());
         binding.cycleRecyclerView.smoothScrollToPosition(0);
-        adapter.startCounterOnPosition(0); // TODO por que esta en null el hijo de puta, hace que no funcione 
+        //adapter.startCounterOnPosition(0); // TODO por que esta en null el hijo de puta, hace que no funcione
+    }
+
+    private void resetAdapter() {
+        TimeTickCardAdapter adapter;
+        if (simplifiedExecution) {
+            binding.cycleRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+            adapter = new TimeTickCardAdapter(currentCycle.getExercises(), R.layout.exercise_summary_card, this);
+            adapter.setSimplified(true);
+        } else {
+            binding.cycleRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+            adapter = new TimeTickCardAdapter(currentCycle.getExercises(), R.layout.exec_exercise_card, this);
+        }
+        this.adapter = adapter;
+        binding.cycleRecyclerView.setAdapter(adapter);
     }
 
     public void nextExercise(int currentExercise) {
@@ -151,15 +160,14 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
     private void fillRoutine(){
         Cycle c = new Cycle(0, "Ciclo de entrada en calor", "Para entrar en calor", "warmup", 0, 2, 0);
-        c.addExercise(new Exercise(0, "Abdominales ligeros", "Tipo", 3, 1));
-        c.addExercise(new Exercise(1, "Respiros profundos", "Tipo", 3));
-        c.addExercise(new Exercise(2, "Estiramiento de brazos", "Tipo", 3));
+        c.addExercise(new Exercise(0, "Abdominales ligeros", "Tipo", 1, 3));
+        c.addExercise(new Exercise(1, "Respiros profundos", "Tipo", 1));
         routine.addCycle(c);
 
         c = new Cycle(0, "Ciclo atletico intenso", "Para entrenar fuerte", "warmup", 0, 1, 0);
         c.addExercise(new Exercise(0, "Pique veloz", "Tipo", 3));
-        c.addExercise(new Exercise(1, "Salto en soga", "Tipo", 2));
-        c.addExercise(new Exercise(2, "Burpees", "Tipo", 2));
+//        c.addExercise(new Exercise(1, "Salto en soga", "Tipo", 2));
+//        c.addExercise(new Exercise(2, "Burpees", "Tipo", 2));
         routine.addCycle(c);
     }
 
