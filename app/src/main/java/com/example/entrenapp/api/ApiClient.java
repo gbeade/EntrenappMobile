@@ -24,6 +24,7 @@ public class ApiClient {
     // del emulador. La forma de salir del emulador para acceder al localhost
     // de host del mismo es usando la IP 10.0.2.2.
     public static final String BASE_URL = "http://10.0.2.2:8080/api/";
+    //public static final String BASE_URL = "http://192.168.0.38:8080/api/";
 
     private ApiClient() {
     }

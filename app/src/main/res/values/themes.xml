@@ -10,8 +10,9 @@
         <item name="colorSecondaryVariant">@color/accent</item>
         <item name="colorOnSecondary">@color/accent</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
+        <item name="android:actionOverflowButtonStyle">@style/MyTheme</item>
     </style>
 
 
@@ -32,6 +33,9 @@
         <item name="android:padding">10dp</item>
         <item name="android:background">@drawable/rounded_white_rectangle</item>
         <item name="android:textColor">@color/grey</item>
+    </style>
+    <style name="MyTheme" parent="android:style/Widget.Holo.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_baseline_more_vert_24</item>
     </style>
 
 

@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/primary"
     android:layout_height="match_parent"
-    >
+    android:background="@color/primary">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/routineDescriptionCyclerView"
-        android:layout_width="396dp"
-        android:layout_height="360dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="387dp"
+        android:layout_height="353dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
 
 
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/duration" />
 
@@ -23,12 +23,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="200dp"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="200dp"
         android:textColor="@color/accent"
         android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,7 +52,7 @@
         android:layout_width="317dp"
         android:layout_height="65dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="92dp"
         android:text="@string/train"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.44"
