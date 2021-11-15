@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [<!ENTITY appname "ENTRENAPP"><!ENTITY author "MrGreen">]>
 <resources>
-    <string name="app_name">Entrenapp</string>
+    <string name="app_name">ENTRENAPP</string>
     <string name="welcome_message">Hola, bienvenido a <b>ENTRENAPP</b></string>
     <string name="login_message">Inicia sesión</string>
     <string name="register_message">Regístrate</string>

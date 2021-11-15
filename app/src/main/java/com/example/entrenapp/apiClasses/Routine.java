@@ -180,7 +180,7 @@ public class Routine implements Cardable,Parcelable {
         al.add(new CardCaption("title", "Nombre", name));
         al.add(new CardCaption("subtitle1", "Fecha", creationDate.toString()));
         al.add(new CardCaption("subtitle2", "Categoría", category));
-        al.add(new CardCaption("subtitle3", "Equipación?", isEquipmentRequired?"Si":"No"));
+        al.add(new CardCaption("subtitle3", "Equipación", isEquipmentRequired?"Si":"No"));
         al.add(new CardCaption("subtitle4", "Dificultad", difficulty.toString()));
         al.add(new CardCaption("subtitle5", "Duración", Integer.toString(duration)+"'"));
         return al;

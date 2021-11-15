@@ -8,8 +8,8 @@
     android:background="@color/primary">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="300dp"
+        android:layout_height="291dp"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="20dp"
         app:cardElevation="1dp"
@@ -24,29 +24,37 @@
         app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white">
+            android:layout_width="279dp"
+            android:layout_height="284dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/subtitle2_header"
+            app:layout_constraintTop_toBottomOf="@+id/subtitle2_header">
 
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="167dp"
                 android:padding="5dp"
                 android:text="Título de la tarjeta"
                 android:textAlignment="center"
                 android:textColor="@color/primary"
                 android:textSize="20dp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/subtitle5"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="0dp" />
 
+
             <TextView
                 android:id="@+id/subtitle1_header"
-                android:layout_width="140dp"
+                android:layout_width="101dp"
                 android:layout_height="35dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
                 android:padding="5dp"
                 android:text="Subtítulo 1"
                 android:textColor="@color/primary"
@@ -57,26 +65,23 @@
 
             <TextView
                 android:id="@+id/subtitle1"
-                android:layout_width="220dp"
+                android:layout_width="152dp"
                 android:layout_height="34dp"
                 android:layout_marginEnd="5dp"
                 android:padding="5dp"
                 android:text="Contenido del subtítulo 1"
                 android:textColor="@color/primary"
                 android:textSize="18dp"
-                app:layout_constraintBottom_toBottomOf="@+id/subtitle1_header"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.857"
+                app:layout_constraintHorizontal_bias="0.2"
                 app:layout_constraintStart_toEndOf="@+id/subtitle1_header"
-                app:layout_constraintTop_toTopOf="@+id/subtitle1_header"
-                app:layout_constraintVertical_bias="1.0" />
-
+                app:layout_constraintTop_toTopOf="@+id/subtitle1_header" />
 
             <TextView
                 android:id="@+id/subtitle2_header"
-                android:layout_width="140dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
+                android:layout_width="103dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="16dp"
                 android:padding="5dp"
                 android:text="Subtítulo 2"
                 android:textColor="@color/primary"
@@ -87,27 +92,57 @@
 
             <TextView
                 android:id="@+id/subtitle2"
-                android:layout_width="220dp"
-                android:layout_height="34dp"
+                android:layout_width="152dp"
+                android:layout_height="36dp"
                 android:layout_marginEnd="5dp"
                 android:padding="5dp"
                 android:text="Contenido del subtítulo 2"
                 android:textColor="@color/primary"
                 android:textSize="18dp"
-                app:layout_constraintBottom_toBottomOf="@+id/subtitle2_header"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.857"
+                app:layout_constraintHorizontal_bias="0.043"
                 app:layout_constraintStart_toEndOf="@+id/subtitle2_header"
-                app:layout_constraintTop_toTopOf="@+id/subtitle2_header"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="@+id/subtitle2_header" />
 
             <TextView
                 android:id="@+id/subtitle3_header"
-                android:layout_width="140dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
+                android:layout_width="101dp"
+                android:layout_height="38dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="7dp"
                 android:padding="5dp"
                 android:text="Subtítulo 3"
+                android:textColor="@color/primary"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/subtitle4_header"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/subtitle2_header"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/subtitle3"
+                android:layout_width="150dp"
+                android:layout_height="37dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="5dp"
+                android:padding="5dp"
+                android:text="Contenido del subtítulo 3"
+                android:textColor="@color/primary"
+                android:textSize="18dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/subtitle3_header"
+                app:layout_constraintTop_toBottomOf="@+id/subtitle1" />
+
+            <TextView
+                android:id="@+id/subtitle4_header"
+                android:layout_width="102dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="44dp"
+                android:padding="5dp"
+                android:text="Subtítulo 4"
                 android:textColor="@color/primary"
                 android:textSize="18dp"
                 android:textStyle="bold"
@@ -115,55 +150,26 @@
                 app:layout_constraintTop_toBottomOf="@+id/subtitle2_header" />
 
             <TextView
-                android:id="@+id/subtitle3"
-                android:layout_width="220dp"
-                android:layout_height="34dp"
-                android:layout_marginEnd="5dp"
-                android:padding="5dp"
-                android:text="Contenido del subtítulo 3"
-                android:textColor="@color/primary"
-                android:textSize="18dp"
-                app:layout_constraintBottom_toBottomOf="@+id/subtitle3_header"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.857"
-                app:layout_constraintStart_toEndOf="@+id/subtitle3_header"
-                app:layout_constraintTop_toTopOf="@+id/subtitle3_header"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <TextView
-                android:id="@+id/subtitle4_header"
-                android:layout_width="140dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
-                android:padding="5dp"
-                android:text="Subtítulo 4"
-                android:textColor="@color/primary"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/subtitle3_header" />
-
-            <TextView
                 android:id="@+id/subtitle4"
-                android:layout_width="220dp"
-                android:layout_height="34dp"
+                android:layout_width="151dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="5dp"
                 android:padding="5dp"
                 android:text="Contenido del subtítulo 4"
                 android:textColor="@color/primary"
                 android:textSize="18dp"
-                app:layout_constraintBottom_toBottomOf="@+id/subtitle4_header"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.857"
-                app:layout_constraintStart_toEndOf="@+id/subtitle4_header"
-                app:layout_constraintTop_toTopOf="@+id/subtitle4_header"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/subtitle4_header"
+                app:layout_constraintTop_toBottomOf="@+id/subtitle2" />
 
             <TextView
                 android:id="@+id/subtitle5_header"
-                android:layout_width="140dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="5dp"
+                android:layout_width="106dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
                 android:padding="5dp"
                 android:text="Subtítulo 5"
                 android:textColor="@color/primary"
@@ -174,19 +180,17 @@
 
             <TextView
                 android:id="@+id/subtitle5"
-                android:layout_width="220dp"
-                android:layout_height="34dp"
-                android:layout_marginEnd="5dp"
+                android:layout_width="147dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="40dp"
                 android:padding="5dp"
                 android:text="Contenido del subtítulo 5"
                 android:textColor="@color/primary"
                 android:textSize="18dp"
-                app:layout_constraintBottom_toBottomOf="@+id/subtitle5_header"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.857"
-                app:layout_constraintStart_toEndOf="@+id/subtitle5_header"
-                app:layout_constraintTop_toTopOf="@+id/subtitle5_header"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintHorizontal_bias="0.931"
+                app:layout_constraintStart_toStartOf="@+id/subtitle5_header" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

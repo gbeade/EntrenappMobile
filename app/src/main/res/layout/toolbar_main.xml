@@ -13,5 +13,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@string/app_name"
-        app:titleTextColor="@color/accent" />
+        app:titleTextColor="@color/accent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="57dp"
+            android:layout_height="54dp"
+            app:srcCompat="@mipmap/ic_launcher" />
+    </androidx.appcompat.widget.Toolbar>
 </merge>
