@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 
 import androidx.navigation.fragment.NavHostFragment;
@@ -16,12 +17,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.entrenapp.App;
 import com.example.entrenapp.BaseMenuActivity;
 import com.example.entrenapp.R;
+import com.example.entrenapp.api.model.RoutineAPI;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.ActivityDescriptionBinding;
 import com.example.entrenapp.databinding.ToolbarMainBinding;
+import com.example.entrenapp.repository.Resource;
 
+import java.util.Date;
 import java.util.StringTokenizer;
 
 public class DescriptionActivity extends BaseMenuActivity {
@@ -29,11 +34,15 @@ public class DescriptionActivity extends BaseMenuActivity {
     NavController navController;
     private boolean favourite;
     private boolean isFavouritable;
+    private App app;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityDescriptionBinding binding = ActivityDescriptionBinding.inflate(getLayoutInflater());
+
+        app = (App) getApplication();
 
         int id;
         if(getIntent().getData() == null) {
@@ -46,6 +55,13 @@ public class DescriptionActivity extends BaseMenuActivity {
             String auxId = tokenizer.nextToken();
             auxId = tokenizer.nextToken();
             id = Integer.parseInt(auxId);
+            app.getRoutineRepository().getRoutineById(id).observe(this, new Observer<Resource<RoutineAPI>>() {
+                @Override
+                public void onChanged(Resource<RoutineAPI> routineAPIResource) {
+                    RoutineAPI dataStorage = routineAPIResource.getData();
+                    routine = new Routine(dataStorage.getId(), dataStorage.getName(), dataStorage.getMetadata().getSport(), Routine.Difficulty.valueOf(dataStorage.getDifficulty()), dataStorage.getMetadata().getEquipacion(), new Date(dataStorage.getDate()), dataStorage.getScore(), dataStorage.getMetadata().getDuracion());
+                }
+            });
         }
 
         View root = binding.getRoot();
