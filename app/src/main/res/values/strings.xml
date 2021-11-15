@@ -28,6 +28,7 @@
     <string name="train">Entrenar</string>
     <string name="action_back">back</string>
     <string name="recommended_routines">Rutinas recomendadas</string>
+    <string name="baseUrl">http://entrenapp.com</string>
 
 
 </resources>
