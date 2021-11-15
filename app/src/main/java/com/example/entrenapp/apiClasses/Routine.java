@@ -4,6 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
+import androidx.annotation.Nullable;
+
 import com.example.entrenapp.recyclerView.Cardable;
 
 import java.util.ArrayList;
@@ -199,6 +201,16 @@ public class Routine implements Cardable,Parcelable {
 
     public List<Cycle> getCycles() {
         return cycles;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if(obj == this)
+            return true;
+        if( ! (obj instanceof Routine))
+            return false;
+        Routine other = (Routine) obj;
+        return other.getId() == this.id;
     }
 
 }

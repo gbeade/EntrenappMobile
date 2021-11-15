@@ -38,6 +38,18 @@ public class RoutineAPI {
     @Expose
     private UserRoutine user;
 
+    public RoutineAPI(Integer id, String name, String detail, Long date, Integer score, Boolean isPublic, String difficulty, RoutineMetadata metadata, UserRoutine user){
+        this.id = id;
+        this.name = name;
+        this.detail = detail;
+        this.date = date;
+        this.score = score;
+        this.isPublic = isPublic;
+        this.difficulty = difficulty;
+        this.metadata = metadata;
+        this.user = user;
+    }
+
 
     public Integer getId() {
         return id;

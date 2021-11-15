@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -25,6 +28,7 @@ import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.FragmentMyRoutinesBinding;
 import com.example.entrenapp.repository.Resource;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,43 +45,38 @@ public class MyRoutinesFragment extends FragmentRoutine {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
+        this.isfavouriteable = false;
         binding = FragmentMyRoutinesBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view,
-                              @Nullable Bundle savedInstanceState) {
 
-        onNoteListener = this;
-        fillRoutines();
-
-    }
 
     @Override
     public void fillRoutines(){
         MyRoutineViewModel viewModel = new ViewModelProvider(getActivity()).get(MyRoutineViewModel.class);
-        viewModel.getMyRoutines().observe(getViewLifecycleOwner(), new Observer<List<Routine>>() {
-            @Override
-            public void onChanged(List<Routine> routine) {
-
-
-                if(routine.size() > 0  && dataset.size() == routine.size()-1) {
-                    dataset.add(routine.get(routine.size()-1));
-                }else{
-                    if(routine.size() > 0 )
-                        for(Routine routineItem : routine)
-                            dataset.add(routineItem);
-                }
-
-                RecyclerView.Adapter adapter = new CardAdapter(dataset.stream().filter(filterFun).collect(Collectors.toList()), R.layout.extense_square_card, getActivity(),onNoteListener);
-                binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                binding.routineRecyclerView.setAdapter(adapter);
-            }
-        });
+        viewModel.getMyRoutines().observe(getViewLifecycleOwner(), routine -> responseViewModel(routine));
 
 
     }
+
+
+    @Override
+    public void updateRecyclerView() {
+        RecyclerView.Adapter adapter = new CardAdapter(dataset.stream().filter(filterFun).collect(Collectors.toList()), R.layout.extense_square_card, getActivity(),onNoteListener);
+        binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        binding.routineRecyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuItem filter = menu.findItem(R.id.action_filter);
+        filter.setVisible(false);
+        MenuItem search = menu.findItem(R.id.action_search);
+        search.setVisible(true);
+    }
+
+
 
 }

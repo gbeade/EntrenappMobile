@@ -3,6 +3,8 @@ package com.example.entrenapp.apiClasses;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import com.example.entrenapp.recyclerView.Cardable;
 
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ public class Exercise implements Cardable, Parcelable {
     private String name;
     private String type;
     private int duration;
+    private int repetitions = 1;
 
     protected Exercise(Parcel in) {
         id = in.readInt();
@@ -21,6 +24,7 @@ public class Exercise implements Cardable, Parcelable {
         type = in.readString();
         duration = in.readInt();
     }
+
 
     public static final Creator<Exercise> CREATOR = new Creator<Exercise>() {
         @Override
@@ -50,6 +54,7 @@ public class Exercise implements Cardable, Parcelable {
         return duration;
     }
 
+    public int getRepetitions() { return repetitions;}
 
 
     public Exercise(int id, String name, String type, int duration) {
@@ -57,6 +62,15 @@ public class Exercise implements Cardable, Parcelable {
         this.name = name;
         this.type = type;
         this.duration = duration;
+        this.repetitions = 1;
+    }
+
+    public Exercise(int id, String name, String type, int duration, int repetitions) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.duration = duration;
+        this.repetitions = repetitions;
     }
 
     @Override
@@ -69,6 +83,14 @@ public class Exercise implements Cardable, Parcelable {
     }
 
 
+
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.id+" "+this.name+" "+this.duration+" "+this.repetitions;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -80,5 +102,6 @@ public class Exercise implements Cardable, Parcelable {
         dest.writeString(name);
         dest.writeString(type);
         dest.writeInt(duration);
+        dest.writeInt(repetitions);
     }
 }

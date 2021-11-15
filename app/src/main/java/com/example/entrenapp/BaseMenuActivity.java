@@ -64,8 +64,7 @@ public class BaseMenuActivity extends AppCompatActivity {
 //            startActivity(shareIntent);
             return true;
         }else if(item.getItemId() == R.id.action_filter) {
-            Intent intent = new Intent(this, FilterRoutineActivity.class);
-            startActivity(intent);
+
             return true;
 
         }else {
