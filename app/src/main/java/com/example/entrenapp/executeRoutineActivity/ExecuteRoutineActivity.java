@@ -51,7 +51,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     int currentExerciseOfCycleIdx = 0;
     int currentRepetitionOfExercise = 0;
 
-    boolean simplifiedExecution = true;
+    boolean simplifiedExecution = false;
 
 
     @Override
@@ -149,6 +149,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         currentRepetitionOfExercise = 0;
         if (currentExerciseOfCycleIdx == currentCycle.getExercises().size() - 1) {
             currentExerciseOfCycleIdx = 0;
+            init = false;
             nextCycle();
         } else {
             //if (currentExercise > 0) adapter.stopCounterOnPosition(currentExercise);
@@ -177,6 +178,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         if ( simplifiedExecution && !init) {
             adapter.startCounterOnPosition(0);
             init = true;
+            return;
         }
         adapter.togglePlay();
     }

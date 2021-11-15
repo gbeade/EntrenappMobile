@@ -148,6 +148,7 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
     }
 
     public void togglePlay() {
+        Log.i("PLAY", "PRESSED");
         superTimerStopped = !superTimerStopped;
     }
 
