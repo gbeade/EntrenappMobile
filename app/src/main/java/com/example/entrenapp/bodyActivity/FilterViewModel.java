@@ -14,6 +14,7 @@ public class FilterViewModel extends ViewModel {
     private MutableLiveData<Range> duration = new MutableLiveData<>();
     private MutableLiveData<Boolean> Equipment = new MutableLiveData<>();
     private MutableLiveData<String> Sport =new  MutableLiveData<>();
+    private MutableLiveData<String> name = new MutableLiveData<>();
 
     public LiveData<Routine.Difficulty> getDifficulty() {
         return difficulty;
@@ -46,4 +47,17 @@ public class FilterViewModel extends ViewModel {
     public void setSport(String sport) {
         Sport.setValue(sport);
     }
+
+    public void addLetter(String letter){
+        this.name.setValue(letter);
+    }
+
+    public void clearName(){
+        this.name = new MutableLiveData<>();
+    }
+
+    public MutableLiveData<String> getName(){
+        return this.name;
+    }
+
 }

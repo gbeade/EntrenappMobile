@@ -32,28 +32,6 @@ public class RoutineLandingFragment extends FragmentRoutine {
 
     private FragmentRoutineLandingBinding binding;
     private List<Routine> favouriteRoutines = new ArrayList<>();
-    private List<Routine> datasetFiltered ;
-    private FilterViewModel filterViewModel;
-
-    @Override
-    protected void initializeFilteredRoutine(){
-         datasetFiltered = new ArrayList<>();
-        for(Cardable c : dataset){
-            datasetFiltered.add((Routine) c);
-        }
-
-        if(filterViewModel.getDuration().getValue() != null){
-            datasetFiltered = datasetFiltered.stream().filter(routine -> {
-                return filterViewModel.getDuration().getValue().contains(routine.getDuration());
-            }).collect(Collectors.toList());
-        }
-
-        if(filterViewModel.getDifficulty().getValue() != null){
-            datasetFiltered = datasetFiltered.stream().filter(routine -> routine.getDifficulty() == filterViewModel.getDifficulty().getValue() ).collect(Collectors.toList());
-        }
-
-        updateRecyclerView();
-    }
 
 
     @Nullable
@@ -67,6 +45,9 @@ public class RoutineLandingFragment extends FragmentRoutine {
         filterViewModel.getDuration().observe(getViewLifecycleOwner(), range -> initializeFilteredRoutine());
         filterViewModel.getDifficulty().observe(getViewLifecycleOwner(), difficulty -> initializeFilteredRoutine());
         new ViewModelProvider(getActivity()).get(MyFavouriteRoutineViewModel.class).getMyFavouriteRoutines().observe(getViewLifecycleOwner(), routines -> {
+            if(routines == null)
+                return ;
+
             for(Routine r : routines)
                 if(!favouriteRoutines.contains(r))
                     favouriteRoutines.add(r);
@@ -74,14 +55,12 @@ public class RoutineLandingFragment extends FragmentRoutine {
         return binding.getRoot();
     }
 
-
     @Override
-    public void onStart() {
-        super.onStart();
-        initializeFilteredRoutine();
-        updateRecyclerView();
+    public void onDetach() {
+        super.onDetach();
+        filterViewModel.setDifficulty(null);
+        filterViewModel.setDuration(null);
     }
-
 
 
     @Override
@@ -89,16 +68,14 @@ public class RoutineLandingFragment extends FragmentRoutine {
         super.onViewCreated(view, savedInstanceState);
         SnapHelper snapHelper1 = new LinearSnapHelper();
         snapHelper1.attachToRecyclerView(binding.recommendedRoutinesRecyclerView);
-        initializeFilteredRoutine();
-        updateRecyclerView();
-
     }
 
     @Override
     public void fillRoutines(){
         RoutineLandingViewModel viewModel = new ViewModelProvider(getActivity()).get(RoutineLandingViewModel.class);
         viewModel.getOtherRoutines().observe(getViewLifecycleOwner(), routine -> {
-            responseViewModel(routine.stream().filter(routine1 -> !favouriteRoutines.contains(routine1)).collect(Collectors.toList()));
+            if(routine!=null)
+               responseViewModel(routine.stream().filter(routine1 -> !favouriteRoutines.contains(routine1)).collect(Collectors.toList()));
         });
     }
 

@@ -29,7 +29,12 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        //si tenemos el token , go to next
+        app = ((App)getApplication());
+        if(app.getPreferences().getAuthToken() != null){
+            Intent intent = new Intent(this, BodyActivity.class);
+            startActivity(intent);
+        }
+
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -41,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
         username = binding.editTextTextPersonName;
         password = binding.editTextTextPassword;
-        app = ((App)getApplication());
 
 
     }

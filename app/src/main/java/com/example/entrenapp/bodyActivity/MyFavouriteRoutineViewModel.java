@@ -54,5 +54,11 @@ public class MyFavouriteRoutineViewModel extends AndroidViewModel {
         });
     }
 
+    public void clear(){
+        if(this.myFavouriteRoutines!=null){
+            this.myFavouriteRoutines=null;
+        }
+    }
+
 
 }
