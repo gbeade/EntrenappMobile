@@ -20,7 +20,9 @@ import android.view.View;
 import com.example.entrenapp.App;
 import com.example.entrenapp.BaseMenuActivity;
 import com.example.entrenapp.R;
+import com.example.entrenapp.api.model.PagedList;
 import com.example.entrenapp.api.model.RoutineAPI;
+import com.example.entrenapp.api.model.User;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.ActivityDescriptionBinding;
 import com.example.entrenapp.databinding.ToolbarMainBinding;
@@ -29,12 +31,13 @@ import com.example.entrenapp.repository.Resource;
 import java.util.Date;
 import java.util.StringTokenizer;
 
-public class DescriptionActivity extends BaseMenuActivity {
+public class DescriptionActivity extends AppCompatActivity {
     private Routine routine;
     NavController navController;
     private boolean favourite;
     private boolean isFavouritable;
     private App app;
+    private Integer routineUserId;
 
 
     @Override
@@ -49,18 +52,34 @@ public class DescriptionActivity extends BaseMenuActivity {
             this.routine = getIntent().getParcelableExtra("Routine");
             this.favourite = getIntent().getBooleanExtra("Favourite", false);
             this.isFavouritable = getIntent().getBooleanExtra("IsFavouritable", true);
+            fillArguments();
         }
         else {
+            favourite = false;
+            isFavouritable = false;
+
+            app.getRoutineRepository().getMyFavouriteRoutines().observe(this, new Observer<Resource<PagedList<RoutineAPI>>>() {
+                @Override
+                public void onChanged(Resource<PagedList<RoutineAPI>> pagedListResource) {
+
+                }
+            });
+            app.getUserRepository().getCurrentUser();
+
             StringTokenizer tokenizer = new StringTokenizer(getIntent().getData().toString(), "=");
             String auxId = tokenizer.nextToken();
             auxId = tokenizer.nextToken();
             id = Integer.parseInt(auxId);
-            app.getRoutineRepository().getRoutineById(id).observe(this, new Observer<Resource<RoutineAPI>>() {
-                @Override
-                public void onChanged(Resource<RoutineAPI> routineAPIResource) {
-                    RoutineAPI dataStorage = routineAPIResource.getData();
-                    routine = new Routine(dataStorage.getId(), dataStorage.getName(), dataStorage.getMetadata().getSport(), Routine.Difficulty.valueOf(dataStorage.getDifficulty()), dataStorage.getMetadata().getEquipacion(), new Date(dataStorage.getDate()), dataStorage.getScore(), dataStorage.getMetadata().getDuracion());
-                }
+            app.getRoutineRepository().getRoutineById(id).observe(this, routineAPIResource -> {
+                if(routineAPIResource.getData() == null)
+                    return ;
+
+                RoutineAPI dataStorage = routineAPIResource.getData();
+                routineUserId = dataStorage.getUser().getId();
+                routine = new Routine(dataStorage.getId(), dataStorage.getName(), dataStorage.getMetadata().getSport(), Routine.Difficulty.valueOf(dataStorage.getDifficulty()), dataStorage.getMetadata().getEquipacion(), new Date(dataStorage.getDate()), dataStorage.getScore(), dataStorage.getMetadata().getDuracion());
+//                favourite = app.getRoutineRepository().getMyRoutines().getValue().getData().getContent().contains(routine);
+//                isFavouritable = app.getUserRepository().getCurrentUser().getValue().getData().getId().equals(routineUserId);
+                fillArguments();
             });
         }
 
@@ -72,16 +91,22 @@ public class DescriptionActivity extends BaseMenuActivity {
         binding2.toolbar.inflateMenu(R.menu.menu_main);
         setSupportActionBar(binding2.toolbar);
 
+
+    }
+
+    private void fillArguments(){
         Bundle bundle = new Bundle();
-        bundle.putParcelable("Routine", this.routine);
-        bundle.putBoolean("Favourite",this.favourite);
-        bundle.putBoolean("IsFavouritable",this.isFavouritable);
+
+        bundle.putParcelable("Routine", routine);
+        bundle.putBoolean("Favourite",favourite);
+        bundle.putBoolean("IsFavouritable",isFavouritable);
 
         NavHostFragment navHostFragment =
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.desc_nav_host_fragment);
-         navController = navHostFragment.getNavController();
+        navController = navHostFragment.getNavController();
         navController.setGraph(R.navigation.desc_nav_graph,bundle);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -92,10 +117,21 @@ public class DescriptionActivity extends BaseMenuActivity {
             }
             return true;
         }else if(item.getItemId() == R.id.action_share){
-            Intent intent = new Intent(Intent.ACTION_VIEW);
-            String url = R.string.baseUrl + "/routine?id=" + Integer.toString(this.routine.getId());
+//            Intent intent = new Intent();
+//            intent.setAction(Intent.ACTION_SEND);//ACTION_VIEW
+            String url = "http://entrenapp.com" + "/routine?id=" + Integer.toString(this.routine.getId());
+//            intent.setData(Uri.parse(url));
+//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//            intent.setType("text/plain");
+//
+//            Intent shareIntent = Intent.createChooser(intent, null);
+//            startActivity(shareIntent);
+
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_SEND);
+            intent.putExtra(Intent.EXTRA_TEXT, url);
             intent.setData(Uri.parse(url));
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setType("text/plain");
 
             Intent shareIntent = Intent.createChooser(intent, null);
             startActivity(shareIntent);
