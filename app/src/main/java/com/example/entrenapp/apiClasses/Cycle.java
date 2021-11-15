@@ -3,7 +3,11 @@ package com.example.entrenapp.apiClasses;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Cycle implements Parcelable {
@@ -88,5 +92,11 @@ public class Cycle implements Parcelable {
         dest.writeInt(repetitions);
         dest.writeInt(metadata);
         dest.writeTypedList(exercises);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.id+" " + this.name+" "+this.detail+" "+this.type+" "+this.order+" "+this.repetitions+" "+this.metadata+" "+ Arrays.toString(this.exercises.toArray());
     }
 }

@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="10dp"
                 android:text="Nombre del ejercicio"
                 android:textAlignment="center"
                 android:textColor="@color/accent"
@@ -62,10 +62,10 @@
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
             <TextView
-                android:id="@+id/title2"
+                android:id="@+id/timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="0dp"
                 android:text="69''"
                 android:textAlignment="center"
                 android:textColor="@color/accent"

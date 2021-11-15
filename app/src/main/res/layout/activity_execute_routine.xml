@@ -10,20 +10,19 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cycleRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="550dp"
-            android:layout_marginTop="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="388dp"
+            android:layout_height="480dp"
+            android:layout_marginTop="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cycle_name" />
+            app:layout_constraintTop_toBottomOf="@+id/cycle_remaining" />
 
         <TextView
             android:id="@+id/routine_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="0dp"
             android:text="Nombre de la rutina"
             android:textAlignment="center"
             android:textColor="@color/accent"
@@ -49,29 +48,12 @@
             app:layout_constraintTop_toBottomOf="@+id/routine_name" />
 
         <TextView
-            android:id="@+id/repetitionsRemaining"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="7dp"
-            android:text="3"
-            android:textAlignment="center"
-            android:textColor="@color/accent"
-            android:textSize="15dp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="@+id/remainingMessage"
-            app:layout_constraintStart_toEndOf="@+id/remainingMessage"
-            app:layout_constraintTop_toTopOf="@+id/remainingMessage"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
-            android:id="@+id/remainingMessage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/cycle_remaining"
+            android:layout_width="365dp"
+            android:layout_height="18dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="32dp"
             android:text="Repeticiones de este ciclo restantes:"
-            android:textAlignment="center"
             android:textColor="@color/accent"
             android:textSize="15dp"
             android:textStyle="italic"
@@ -79,32 +61,47 @@
             app:layout_constraintTop_toBottomOf="@+id/cycle_name" />
 
         <TextView
-            android:id="@+id/de"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="11dp"
-            android:text="de"
+            android:id="@+id/rewind"
+            android:layout_width="100dp"
+            android:layout_height="119dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="-40dp"
+            android:layout_marginEnd="27dp"
+            android:text="⟳"
             android:textAlignment="center"
             android:textColor="@color/accent"
-            android:textSize="15dp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="@+id/remainingMessage"
-            app:layout_constraintStart_toEndOf="@+id/repetitionsRemaining"
-            app:layout_constraintTop_toTopOf="@+id/remainingMessage" />
+            android:textSize="100dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/playtoggle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cycleRecyclerView" />
 
         <TextView
-            android:id="@+id/subtitle1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="10"
+            android:id="@+id/playtoggle"
+            android:layout_width="99dp"
+            android:layout_height="101dp"
+            android:layout_marginTop="-20dp"
+            android:text="⏯︎"
             android:textAlignment="center"
             android:textColor="@color/accent"
-            android:textSize="15dp"
-            android:textStyle="italic"
-            app:layout_constraintBottom_toBottomOf="@+id/remainingMessage"
-            app:layout_constraintStart_toEndOf="@+id/de"
-            app:layout_constraintTop_toTopOf="@+id/remainingMessage" />
+            android:textSize="80dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cycleRecyclerView" />
+
+        <TextView
+            android:id="@+id/cancel"
+            android:layout_width="99dp"
+            android:layout_height="101dp"
+            android:layout_marginStart="23dp"
+            android:text="X"
+            android:textAlignment="center"
+            android:textColor="@color/accent"
+            android:textSize="80dp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@+id/playtoggle"
+            app:layout_constraintTop_toTopOf="@+id/playtoggle" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -14,8 +14,8 @@ import java.util.List;
 public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAdapter.ViewHolder> {
 
 
-    private List<T> dataset;
-    private Integer layoutID;
+    List<T> dataset;
+    Integer layoutID;
     Context context;
     Resources r;
     String packageName;
@@ -81,7 +81,6 @@ public class CardAdapter<T extends Cardable> extends RecyclerView.Adapter<CardAd
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-
         int xmlTagID = 0;
         for (Cardable.CardCaption c: dataset.get(position).getCaptions()) {
                 // Cambio el título de cada caption
