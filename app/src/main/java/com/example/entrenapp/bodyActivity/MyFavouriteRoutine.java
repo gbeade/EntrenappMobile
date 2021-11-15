@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 public class MyFavouriteRoutine extends FragmentRoutine {
 
     private FragmentMyFavouriteRoutineBinding binding;
-    private List<Routine> datasetFiltered ;
     private FilterViewModel filterViewModel;
 
 
@@ -56,6 +55,13 @@ public class MyFavouriteRoutine extends FragmentRoutine {
         super.onStart();
         initializeFilteredRoutine();
         updateRecyclerView();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        filterViewModel.setDifficulty(null);
+        filterViewModel.setDuration(null);
     }
 
     @Override

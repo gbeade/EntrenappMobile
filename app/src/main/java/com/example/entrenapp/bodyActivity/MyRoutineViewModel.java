@@ -63,5 +63,11 @@ public class MyRoutineViewModel extends AndroidViewModel {
 
     }
 
+    public void clear(){
+        if(this.myRoutines!=null){
+            this.myRoutines=null;
+        }
+    }
+
 
 }

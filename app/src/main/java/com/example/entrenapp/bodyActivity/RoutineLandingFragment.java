@@ -32,7 +32,6 @@ public class RoutineLandingFragment extends FragmentRoutine {
 
     private FragmentRoutineLandingBinding binding;
     private List<Routine> favouriteRoutines = new ArrayList<>();
-    private List<Routine> datasetFiltered ;
     private FilterViewModel filterViewModel;
 
     @Override
@@ -67,11 +66,21 @@ public class RoutineLandingFragment extends FragmentRoutine {
         filterViewModel.getDuration().observe(getViewLifecycleOwner(), range -> initializeFilteredRoutine());
         filterViewModel.getDifficulty().observe(getViewLifecycleOwner(), difficulty -> initializeFilteredRoutine());
         new ViewModelProvider(getActivity()).get(MyFavouriteRoutineViewModel.class).getMyFavouriteRoutines().observe(getViewLifecycleOwner(), routines -> {
+            if(routines == null)
+                return ;
+
             for(Routine r : routines)
                 if(!favouriteRoutines.contains(r))
                     favouriteRoutines.add(r);
         });
         return binding.getRoot();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        filterViewModel.setDifficulty(null);
+        filterViewModel.setDuration(null);
     }
 
 
@@ -98,7 +107,8 @@ public class RoutineLandingFragment extends FragmentRoutine {
     public void fillRoutines(){
         RoutineLandingViewModel viewModel = new ViewModelProvider(getActivity()).get(RoutineLandingViewModel.class);
         viewModel.getOtherRoutines().observe(getViewLifecycleOwner(), routine -> {
-            responseViewModel(routine.stream().filter(routine1 -> !favouriteRoutines.contains(routine1)).collect(Collectors.toList()));
+            if(routine!=null)
+               responseViewModel(routine.stream().filter(routine1 -> !favouriteRoutines.contains(routine1)).collect(Collectors.toList()));
         });
     }
 

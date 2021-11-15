@@ -64,4 +64,10 @@ public class RoutineLandingViewModel extends AndroidViewModel {
 
     }
 
+    public void clear(){
+        if(this.OtherRoutines!=null){
+            this.OtherRoutines=null;
+        }
+    }
+
 }

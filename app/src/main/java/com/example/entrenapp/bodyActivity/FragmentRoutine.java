@@ -12,6 +12,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
@@ -33,6 +34,7 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     protected CardAdapter.ViewHolder.OnNoteListener onNoteListener;
     protected boolean favourite = false;
     protected boolean isfavouriteable= true;
+    protected List<Routine> datasetFiltered = null ;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,10 +49,16 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     @Override
     public void onNoteClick(int position) {
         Intent intent = new Intent(getActivity(), DescriptionActivity.class);
-        intent.putExtra("Routine",  (Parcelable) this.dataset.get(position));
+        if(datasetFiltered == null)
+            intent.putExtra("Routine",  (Parcelable) this.dataset.get(position));
+        else
+            intent.putExtra("Routine",  (Parcelable) this.datasetFiltered.get(position));
         intent.putExtra("Favourite",this.favourite);
         intent.putExtra("IsFavouritable",this.isfavouriteable);
-        getActivity().getViewModelStore().clear();
+        new ViewModelProvider(getActivity()).get(RoutineLandingViewModel.class).clear();
+        new ViewModelProvider(getActivity()).get(MyRoutineViewModel.class).clear();
+        new ViewModelProvider(getActivity()).get(MyFavouriteRoutineViewModel.class).clear();
+        //getActivity().getViewModelStore().clear();
         startActivity(intent);
     }
 
@@ -68,6 +76,9 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     }
 
     protected void responseViewModel(List<Routine> routine){
+        if(routine== null)
+            return;
+
         for(Routine r : routine){
             if(!dataset.contains(r))
                 dataset.add(r);
