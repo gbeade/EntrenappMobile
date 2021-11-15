@@ -3,13 +3,21 @@ package com.example.entrenapp.bodyActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
+
 import com.example.entrenapp.App;
 import com.example.entrenapp.DescriptionFragments.DescriptionActivity;
+import com.example.entrenapp.R;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.recyclerView.Cardable;
@@ -26,6 +34,11 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     protected boolean favourite = false;
     protected boolean isfavouriteable= true;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
 
     abstract public void fillRoutines();
 
@@ -51,21 +64,31 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         onNoteListener = this;
+        requireActivity().invalidateOptionsMenu();
     }
 
     protected void responseViewModel(List<Routine> routine){
-        if(routine.size() > 0  && dataset.size() == routine.size()-1) {
-            dataset.add(routine.get(routine.size()-1));
-        }else{
-            if(routine.size() >= 0 ){
-                dataset = new ArrayList<>();
-                for(Routine routineItem : routine)
-                    dataset.add(routineItem);
-            }
+        for(Routine r : routine){
+            if(!dataset.contains(r))
+                dataset.add(r);
         }
 
+        initializeFilteredRoutine();
         updateRecyclerView();
     }
+
+    protected void initializeFilteredRoutine(){
+        return;
+     }
+
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        MenuItem search = menu.findItem(R.id.action_search);
+        search.setVisible(false);
+    }
+
+
 
 
 }

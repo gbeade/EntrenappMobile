@@ -9,7 +9,11 @@
         android:id="@+id/routineLandingFragment"
         android:name="com.example.entrenapp.bodyActivity.RoutineLandingFragment"
         android:label="fragment_routine_landing"
-        tools:layout="@layout/fragment_routine_landing" />
+        tools:layout="@layout/fragment_routine_landing" >
+        <action
+            android:id="@+id/action_routineLandingFragment_to_filterRoutineFragment"
+            app:destination="@id/filterRoutineFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/myRoutinesFragment"
@@ -20,5 +24,15 @@
         android:id="@+id/myFavouriteRoutine"
         android:name="com.example.entrenapp.bodyActivity.MyFavouriteRoutine"
         android:label="fragment_my_favourite_routine"
-        tools:layout="@layout/fragment_my_favourite_routine" />
+        tools:layout="@layout/fragment_my_favourite_routine" >
+        <action
+            android:id="@+id/action_myFavouriteRoutine_to_filterRoutineFragment"
+            app:destination="@id/filterRoutineFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterRoutineFragment"
+        android:name="com.example.entrenapp.bodyActivity.FilterRoutineFragment"
+        android:label="FilterRoutineFragment"
+        tools:layout="@layout/fragment_filter_routine"
+        />
 </navigation>

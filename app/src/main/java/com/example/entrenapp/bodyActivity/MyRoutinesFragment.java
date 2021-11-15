@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -58,11 +61,22 @@ public class MyRoutinesFragment extends FragmentRoutine {
     }
 
 
-
     @Override
     public void updateRecyclerView() {
         RecyclerView.Adapter adapter = new CardAdapter(dataset.stream().filter(filterFun).collect(Collectors.toList()), R.layout.extense_square_card, getActivity(),onNoteListener);
         binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.routineRecyclerView.setAdapter(adapter);
     }
+
+    @Override
+    public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+        MenuItem filter = menu.findItem(R.id.action_filter);
+        filter.setVisible(false);
+        MenuItem search = menu.findItem(R.id.action_search);
+        search.setVisible(true);
+    }
+
+
+
 }

@@ -13,7 +13,6 @@
             android:layout_height="match_parent"
             android:background="@color/primary">
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/routineRecyclerView"
                 android:layout_width="match_parent"
