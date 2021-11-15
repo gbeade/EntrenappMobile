@@ -26,36 +26,7 @@ import java.util.stream.Collectors;
 public class MyFavouriteRoutine extends FragmentRoutine {
 
     private FragmentMyFavouriteRoutineBinding binding;
-    private FilterViewModel filterViewModel;
 
-
-
-    @Override
-    protected void initializeFilteredRoutine(){
-        datasetFiltered = new ArrayList<>();
-        for(Cardable c : dataset){
-            datasetFiltered.add((Routine) c);
-        }
-
-        if(filterViewModel.getDuration().getValue() != null){
-            datasetFiltered = datasetFiltered.stream().filter(routine -> {
-                return filterViewModel.getDuration().getValue().contains(routine.getDuration());
-            }).collect(Collectors.toList());
-        }
-
-        if(filterViewModel.getDifficulty().getValue() != null){
-            datasetFiltered = datasetFiltered.stream().filter(routine -> routine.getDifficulty() == filterViewModel.getDifficulty().getValue() ).collect(Collectors.toList());
-        }
-
-        updateRecyclerView();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        initializeFilteredRoutine();
-        updateRecyclerView();
-    }
 
     @Override
     public void onDetach() {
@@ -81,13 +52,7 @@ public class MyFavouriteRoutine extends FragmentRoutine {
         viewModel.getMyFavouriteRoutines().observe(getViewLifecycleOwner(), routine -> responseViewModel(routine));
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initializeFilteredRoutine();
-        updateRecyclerView();
 
-    }
 
     @Override
     public void updateRecyclerView() {
