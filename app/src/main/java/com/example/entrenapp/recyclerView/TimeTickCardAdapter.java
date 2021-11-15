@@ -2,6 +2,7 @@ package com.example.entrenapp.recyclerView;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import com.example.entrenapp.apiClasses.Exercise;
 import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
 
+import java.sql.Time;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +26,13 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
     ExecuteRoutineActivity act;
     Map<TimeTickViewHolder, TimeTickViewHolder> map = new HashMap<>();
     TimeTickViewHolder currentVH;
+    Map<Integer, TimeTickViewHolder> positionToVHMap = new HashMap<>();
     boolean superTimerStopped = false;
+    boolean isSimplified = false;
+
+    public void setSimplified( boolean s) {
+        isSimplified = s;
+    }
 
     public TimeTickCardAdapter(List<Exercise> dataset, Integer layoutID, ExecuteRoutineActivity context) {
         super(dataset, layoutID, context);
@@ -36,7 +44,6 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(layoutID, viewGroup, false);
-        Timer timer = new Timer();
         TimeTickViewHolder ttvh = new TimeTickViewHolder(view);
         map.put(ttvh, ttvh);
         return ttvh;
@@ -45,13 +52,14 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
     @Override
     public void onViewDetachedFromWindow(@NonNull ViewHolder holder) {
         super.onViewDetachedFromWindow(holder);
-        map.get(holder).stopTimer();
+        if (!isSimplified) map.get(holder).stopTimer();
+        map.get(holder).bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "-");
     }
 
     @Override
     public void onViewAttachedToWindow(@NonNull ViewHolder holder) {
         super.onViewDetachedFromWindow(holder);
-        map.get(holder).startTimer();
+        if (!isSimplified) map.get(holder).startTimer(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         currentVH = map.get(holder);
     }
 
@@ -59,6 +67,8 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         super.onBindViewHolder(viewHolder, position);
         map.get(viewHolder).setTimerStartedTo(dataset.get(position).getDuration());
+        map.get(viewHolder).bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "-");
+        positionToVHMap.put(position, map.get(viewHolder));
     }
 
     public class TimeTickViewHolder extends ViewHolder {
@@ -68,17 +78,20 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
         Integer time = 0;
         Integer duration = 0;
         boolean timerStarted = false;
+        int countdown = 3;
 
         private class ModifyTimerTask extends TimerTask {
 
             void timerTick() {
                 if (timerStarted && !superTimerStopped) {
-                    if (time > duration) {
+                    if ( countdown >= 0 ) {
+                        bindTextViewWithData(r.getIdentifier("timer", "id", packageName), countdown+"!");
+                        countdown --;
+                        return;
+                    } else if (time > duration) {
                         bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "✓");
-                        if (time > duration + 3) {
-                            act.nextExercise(getAdapterPosition());
-                            cancel();
-                        }
+                        act.nextExercise(getAdapterPosition());
+                        cancel();
                     } else {
                         bindTextViewWithData(r.getIdentifier("timer", "id", packageName), (duration - time) + "\'\'");
                     }
@@ -127,7 +140,29 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
     }
 
     public void pauseCurrentExercise(){
+        superTimerStopped = true;
+    }
+
+    public void playCurrentExercise() {
+        superTimerStopped = false;
+    }
+
+    public void togglePlay() {
         superTimerStopped = !superTimerStopped;
+    }
+
+    public void startCounterOnPosition(int position) {
+        if( isSimplified && positionToVHMap.containsKey(position) )
+            positionToVHMap.get(position).startTimer();
+    }
+
+    public void stopCounterOnPosition(int position) {
+       if( isSimplified && positionToVHMap.containsKey(position) )
+           positionToVHMap.get(position).stopTimer();
+    }
+
+    public boolean isPaused() {
+        return !superTimerStopped;
     }
 
 

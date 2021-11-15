@@ -11,6 +11,7 @@ public class Exercise implements Cardable {
     private String name;
     private String type;
     private int duration;
+    private int repetitions = 1;
 
     public int getId() {
         return id;
@@ -28,6 +29,7 @@ public class Exercise implements Cardable {
         return duration;
     }
 
+    public int getRepetitions() { return repetitions;}
 
 
     public Exercise(int id, String name, String type, int duration) {
@@ -35,6 +37,15 @@ public class Exercise implements Cardable {
         this.name = name;
         this.type = type;
         this.duration = duration;
+        this.repetitions = 1;
+    }
+
+    public Exercise(int id, String name, String type, int duration, int repetitions) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.duration = duration;
+        this.repetitions = repetitions;
     }
 
     @Override
