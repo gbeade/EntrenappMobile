@@ -7,10 +7,11 @@
     android:background="@color/primary">
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="-322dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -117,8 +118,10 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout2"
-                android:layout_width="406dp"
-                android:layout_height="wrap_content"
+                android:layout_width="400dp"
+                android:layout_height="330dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:background="@color/primary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -128,13 +131,12 @@
                     android:id="@+id/time"
                     android:layout_width="373dp"
                     android:layout_height="43dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="32dp"
                     android:text="@string/time"
                     android:textColor="@color/accent"
                     android:textSize="26sp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.242"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -210,19 +212,20 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <Button
-                android:id="@+id/btn_save"
-                style="@style/roundedYellowButton"
-                android:layout_width="388dp"
-                android:layout_height="48dp"
-
-                android:layout_marginTop="36dp"
-                android:text="@string/save"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="2dp" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/btn_save"
+        style="@style/roundedYellowButton"
+        android:layout_width="388dp"
+        android:layout_height="48dp"
+
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
