@@ -14,6 +14,12 @@ public class ApiExercise {
     @SerializedName("id")
     @Expose
     private int id;
+    @SerializedName("reps")
+    @Expose
+    private int reps;
+    @SerializedName("equipacion")
+    @Expose
+    private boolean equipacion;
 
     /**
      * No args constructor for use in serialization
@@ -27,12 +33,16 @@ public class ApiExercise {
      * @param name
      * @param time
      * @param id
+     * @param reps
+     * @param equipacion
      */
-    public ApiExercise(String time, String name, int id) {
+    public ApiExercise(String time, String name, int id, int reps, boolean equipacion) {
         super();
         this.time = time;
         this.name = name;
         this.id = id;
+        this.reps = reps;
+        this.equipacion = equipacion;
     }
 
     public String getTime() {
@@ -58,5 +68,13 @@ public class ApiExercise {
     public void setId(int id) {
         this.id = id;
     }
+
+    public int getReps() { return reps; }
+
+    public void setReps(int reps) { this.reps = reps; }
+
+    public boolean getEquipacion() { return equipacion; }
+
+    public void setEquipacion(boolean equipacion) { this.equipacion = equipacion; }
 
 }
