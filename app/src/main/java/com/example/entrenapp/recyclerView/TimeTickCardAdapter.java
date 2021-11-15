@@ -90,8 +90,8 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
                         return;
                     } else if (time > duration) {
                         bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "✓");
-                        act.nextExercise(getAdapterPosition());
                         cancel();
+                        act.nextExercise(getAdapterPosition());
                     } else {
                         bindTextViewWithData(r.getIdentifier("timer", "id", packageName), (duration - time) + "\'\'");
                     }
@@ -148,7 +148,6 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
     }
 
     public void togglePlay() {
-        Log.i("PLAY", "PRESSED");
         superTimerStopped = !superTimerStopped;
     }
 
