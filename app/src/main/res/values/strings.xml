@@ -26,4 +26,12 @@
     <string name="myRoutines">Mis rutinas</string>
 
 
+
+    <string name="rsg_ready">Listo</string>
+    <string name="rsg_set">Preparado</string>
+    <string name="rsg_go">Ya</string>
+
+
+
+
 </resources>
