@@ -48,14 +48,13 @@
         android:id="@+id/imageView2"
         android:layout_width="341dp"
         android:layout_height="191dp"
-        app:tint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.199"
-        tools:srcCompat="@drawable/ic_grade" />
+        android:src="@drawable/exercise" />
 
     <TextView
         android:id="@+id/textView4"
