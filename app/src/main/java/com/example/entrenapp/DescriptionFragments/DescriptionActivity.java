@@ -88,7 +88,8 @@ public class DescriptionActivity extends AppCompatActivity {
                 app.getUserRepository().getCurrentUser().observe(this, userResource -> {
                     if(userResource.getData() == null)
                         return ;
-                    isFavouritable = !userResource.getData().getId().equals(routine.getId());
+
+                    isFavouritable = !routineUserId.equals(userResource.getData().getId());
                     app.getRoutineRepository().getMyFavouriteRoutines().observe(activity, pagedListResource -> {
                         if(pagedListResource.getData() == null)
                             return;
@@ -128,7 +129,6 @@ public class DescriptionActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.action_back){
-            Log.d("HOLa","HOSA");
             if(getIntent().getData() != null){
                 Intent intent = new Intent(this,BodyActivity.class);
                 startActivity(intent);
