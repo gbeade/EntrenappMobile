@@ -36,6 +36,7 @@
     <string name="repeticiones">Repeticiones</string>
     <string name="duraci_n">Duración</string>
     <string name="ninguna">Ninguna</string>
+    <string name="baseUrl">http://entrenapp.com</string>
 
 
 </resources>

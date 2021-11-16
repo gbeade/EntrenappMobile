@@ -84,4 +84,16 @@ public class RoutineRepository {
         }.asLiveData();
     }
 
+    public LiveData<Resource<RoutineAPI>> getRoutineById(Integer routineId) {
+        return new NetworkBoundResource<RoutineAPI, RoutineAPI>() {
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<RoutineAPI>> createCall() {
+                return apiService.getRoutineById(routineId);
+            }
+        }.asLiveData();
+    }
+
+
+
 }

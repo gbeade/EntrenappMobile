@@ -1,5 +1,6 @@
 package com.example.entrenapp;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,7 +55,6 @@ public class BaseMenuActivity extends AppCompatActivity {
 //            startActivity(intent);
             return true;
         } else if (item.getItemId() == R.id.action_share) {
-            // User chose the "Share" action, share current item...
 //            Intent intent = new Intent();
 //            intent.setAction(Intent.ACTION_SEND);
 //            intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.message));

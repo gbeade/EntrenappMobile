@@ -39,4 +39,8 @@ public interface ApiRoutineService {
     LiveData<ApiResponse<RoutineAPI>> modifyRoutine(@Path("routineId") int routineId, @Body RoutineAPI routine);
 
 
+    @GET("routines/{routineId}")
+    LiveData<ApiResponse<RoutineAPI>> getRoutineById(@Path("routineId") int routineId);
+
+
 }
