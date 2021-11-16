@@ -109,6 +109,10 @@ public class DescriptionActivity extends AppCompatActivity {
         binding2.toolbar.inflateMenu(R.menu.menu_main);
         setSupportActionBar(binding2.toolbar);
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
     }
 
