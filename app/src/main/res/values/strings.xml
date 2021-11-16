@@ -53,6 +53,7 @@
     <string name="equipacionExtra">Equipacion extra</string>
     <string name="agregadoFavoritos">Rutina agregada a favoritos</string>
     <string name="eliminadaFavoritos">Rutina eliminada de favoritos</string>
+    <string name="errorLogin">El usuario o la contraseña es incorrecta</string>
 
 
 </resources>

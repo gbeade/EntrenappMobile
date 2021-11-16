@@ -3,11 +3,14 @@ package com.example.entrenapp.mainActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.entrenapp.App;
+import com.example.entrenapp.R;
 import com.example.entrenapp.api.model.Credentials;
 import com.example.entrenapp.bodyActivity.BodyActivity;
 import com.example.entrenapp.databinding.ActivityMainBinding;
 import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
 import com.example.entrenapp.repository.Status;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 
 import android.content.Intent;
@@ -36,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -63,8 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             } else {
-                Log.d("Error","Usuario incorrect");
-
+                Snackbar.make(binding.btnLogin, R.string.errorLogin, BaseTransientBottomBar.LENGTH_SHORT).show();
             }
 
 

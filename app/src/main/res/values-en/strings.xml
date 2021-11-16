@@ -44,4 +44,5 @@
     <string name="equipacionExtra">Extra equipement</string>
     <string name="agregadoFavoritos">Routine added to favourites</string>
     <string name="eliminadaFavoritos">Routine deleted from favourites</string>
+    <string name="errorLogin">The username or the password is incorrect</string>
 </resources>
