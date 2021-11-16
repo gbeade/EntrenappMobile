@@ -51,5 +51,8 @@
     <string name="yes">Si</string>
     <string name="no" translatable="false">No</string>
     <string name="equipacionExtra">Equipacion extra</string>
+    <string name="agregadoFavoritos">Rutina agregada a favoritos</string>
+    <string name="eliminadaFavoritos">Rutina eliminada de favoritos</string>
+
 
 </resources>

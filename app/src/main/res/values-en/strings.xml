@@ -42,4 +42,6 @@
     <string name="equipacion">Equipement</string>
     <string name="yes">Yes</string>
     <string name="equipacionExtra">Extra equipement</string>
+    <string name="agregadoFavoritos">Routine added to favourites</string>
+    <string name="eliminadaFavoritos">Routine deleted from favourites</string>
 </resources>

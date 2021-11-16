@@ -70,13 +70,13 @@ public class FragmentRoutineDescription extends Fragment {
             binding.addFavourite.setOnClickListener(v -> app.getRoutineRepository().setFavourite(routine.getId()).observe(getViewLifecycleOwner(), voidResource -> {
                 binding.addFavourite.setVisibility(View.GONE);
                 binding.removeFavourite.setVisibility(View.VISIBLE);
-                Toast.makeText(getActivity(), "La rutina se agrego con exito", Toast.LENGTH_SHORT).show();
+                Snackbar.make(binding.btnTrain, R.string.agregadoFavoritos, BaseTransientBottomBar.LENGTH_SHORT).show();
             }));
 
             binding.removeFavourite.setOnClickListener(v -> app.getRoutineRepository().deleteFavourite(routine.getId()).observe(getViewLifecycleOwner(), voidResource -> {
                 binding.removeFavourite.setVisibility(View.GONE);
                 binding.addFavourite.setVisibility(View.VISIBLE);
-                Toast.makeText(getActivity(), "La rutina se elimino con exito", Toast.LENGTH_SHORT).show();
+                Snackbar.make(binding.btnTrain, R.string.eliminadaFavoritos, BaseTransientBottomBar.LENGTH_SHORT).show();
             }));
         }else{
             binding.addFavourite.setVisibility(View.GONE);
