@@ -58,7 +58,8 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
         new ViewModelProvider(getActivity()).get(RoutineLandingViewModel.class).clear();
         new ViewModelProvider(getActivity()).get(MyRoutineViewModel.class).clear();
         new ViewModelProvider(getActivity()).get(MyFavouriteRoutineViewModel.class).clear();
-        //getActivity().getViewModelStore().clear();
+        this.dataset= new ArrayList<>();
+   //     getActivity().getViewModelStore().clear();
         startActivity(intent);
     }
 

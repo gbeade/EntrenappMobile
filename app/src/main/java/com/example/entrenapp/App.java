@@ -46,5 +46,6 @@ public class App extends Application {
 
         ContextSingleton.getInstance(getApplicationContext());
 
+
     }
 }
