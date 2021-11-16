@@ -42,5 +42,13 @@
     <string name="second">segundo</string>
     <string name="seconds">segundos</string>
     <string name="minute">minutos</string>
+    <string name="name">Nombre</string>
+    <string name="type">Tipo</string>
+    <string name="date">Fecha</string>
+    <string name="category">Categoria</string>
+    <string name="difficulty">Dificultad</string>
+    <string name="equipacion">Equipacion</string>
+    <string name="yes">Si</string>
+    <string name="no" translatable="false">No</string>
 
 </resources>

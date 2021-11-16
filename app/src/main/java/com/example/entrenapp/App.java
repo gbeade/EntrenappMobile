@@ -44,5 +44,7 @@ public class App extends Application {
 
         routineRepository = new RoutineRepository(this);
 
+        ContextSingleton.getInstance(getApplicationContext());
+
     }
 }

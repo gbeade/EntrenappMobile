@@ -35,4 +35,11 @@
     <string name="ninguna">None</string>
     <string name="registrate"><u>Register</u></string>
     <string name="minute">minute</string>
+    <string name="name">Name</string>
+    <string name="type">Type</string>
+    <string name="date">Date</string>
+    <string name="category">Category</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="equipacion">Equipement</string>
+    <string name="yes">Yes</string>
 </resources>

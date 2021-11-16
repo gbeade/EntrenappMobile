@@ -1,10 +1,13 @@
 package com.example.entrenapp.apiClasses;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import com.example.entrenapp.ContextSingleton;
+import com.example.entrenapp.R;
 import com.example.entrenapp.recyclerView.Cardable;
 
 import java.util.ArrayList;
@@ -76,9 +79,10 @@ public class Exercise implements Cardable, Parcelable {
     @Override
     public List<CardCaption> getCaptions() {
         ArrayList<CardCaption> al = new ArrayList<>();
-        al.add(new CardCaption("title", "Nombre", name));
-        al.add(new CardCaption("subtitle1", "Duración", Integer.toString(duration)));
-        al.add(new CardCaption("subtitle2", "Tipo", type));
+        Context context = ContextSingleton.getContext();
+        al.add(new CardCaption("title", context.getString(R.string.name), name));
+        al.add(new CardCaption("subtitle1",context.getString(R.string.duraci_n), Integer.toString(duration)));
+        al.add(new CardCaption("subtitle2", context.getString(R.string.type), type));
         return al;
     }
 

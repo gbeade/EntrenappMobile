@@ -1,11 +1,14 @@
 package com.example.entrenapp.apiClasses;
 
+import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 
 import androidx.annotation.Nullable;
 
+import com.example.entrenapp.ContextSingleton;
+import com.example.entrenapp.R;
 import com.example.entrenapp.recyclerView.Cardable;
 
 import java.util.ArrayList;
@@ -179,12 +182,13 @@ public class Routine implements Cardable,Parcelable {
     @Override
     public List<CardCaption> getCaptions() {
         ArrayList<CardCaption> al = new ArrayList<>();
-        al.add(new CardCaption("title", "Nombre", name));
-        al.add(new CardCaption("subtitle1", "Fecha", creationDate.toString()));
-        al.add(new CardCaption("subtitle2", "Categoría", category));
-        al.add(new CardCaption("subtitle3", "Equipación", isEquipmentRequired?"Si":"No"));
-        al.add(new CardCaption("subtitle4", "Dificultad", difficulty.toString()));
-        al.add(new CardCaption("subtitle5", "Duración", Integer.toString(duration)+"'"));
+        Context context = ContextSingleton.getContext();
+        al.add(new CardCaption("title", context.getString(R.string.name), name));
+        al.add(new CardCaption("subtitle1", context.getString(R.string.date), creationDate.toString()));
+        al.add(new CardCaption("subtitle2", context.getString(R.string.category), category));
+        al.add(new CardCaption("subtitle3",context.getString(R.string.equipacion), isEquipmentRequired?context.getString(R.string.yes):context.getString(R.string.no)));
+        al.add(new CardCaption("subtitle4", context.getString(R.string.difficulty), difficulty.toString()));
+        al.add(new CardCaption("subtitle5", context.getString(R.string.duraci_n), duration +"'"));
         return al;
     }
 

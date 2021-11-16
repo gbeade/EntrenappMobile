@@ -26,9 +26,11 @@ public class FragmentRoutineViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Cycle>> cycleList;
     private Routine routine;
+    private Application app;
 
     public FragmentRoutineViewModel(@NonNull Application application) {
         super(application);
+        app= application;
     }
 
     public LiveData<List<Cycle>> getCycle(){
