@@ -55,4 +55,12 @@
     <string name="filter">Filtrar</string>
     <string name="select_sport">Elige un deporte asociado:</string>
 
+
+    <string name="rsg_ready">Listo</string>
+    <string name="rsg_set">Preparado</string>
+    <string name="rsg_go">Ya</string>
+
+
+
+
 </resources>

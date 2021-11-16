@@ -7,9 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
+import com.example.entrenapp.R;
 import com.example.entrenapp.apiClasses.Exercise;
 import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
 
@@ -65,8 +67,10 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
-        super.onBindViewHolder(viewHolder, position);
         map.get(viewHolder).setTimerStartedTo(dataset.get(position).getDuration());
+        map.get(viewHolder).setRepetitionsOfTimer(dataset.get(position).getRepetitions());
+        map.get(viewHolder).setExerciseName(dataset.get(position).getName());
+        super.onBindViewHolder(viewHolder, position);
         map.get(viewHolder).bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "-");
         positionToVHMap.put(position, map.get(viewHolder));
     }
@@ -77,27 +81,52 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
         Timer timer;
         Integer time = 0;
         Integer duration = 0;
+        int repetitions = 0;
+        int currentRepetition = 0;
+        String name;
         boolean timerStarted = false;
         int countdown = 3;
+        private String[] rsg = { r.getString(R.string.rsg_ready), r.getString(R.string.rsg_set), r.getString(R.string.rsg_go)};
 
         private class ModifyTimerTask extends TimerTask {
 
             void timerTick() {
                 if (timerStarted && !superTimerStopped) {
-                    if ( countdown >= 0 ) {
-                        bindTextViewWithData(r.getIdentifier("timer", "id", packageName), countdown+"!");
+                    if (countdown == 3) bindName();
+                    if ( countdown > 0 ) {
+                        bindTextViewWithData(r.getIdentifier("timer", "id", packageName), rsg[3-countdown]);
                         countdown --;
                         return;
-                    } else if (time > duration) {
-                        bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "✓");
-                        act.nextExercise(getAdapterPosition());
+                    } else if ( duration == 0) {
+                        bindTextViewWithData(r.getIdentifier("timer", "id", packageName), repetitions+" reps.");
                         cancel();
-                    } else {
-                        bindTextViewWithData(r.getIdentifier("timer", "id", packageName), (duration - time) + "\'\'");
-                    }
-                    time++;
+                        if ( isSimplified) {
+                            act.togglePlayPauseExercise();
+                            act.nextExercise(getAdapterPosition());
+                        }
+                        return;
+                    } else if (time > duration) {
+                           bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "✓");
+                            if ( time > duration + 2) {
+                                if (currentRepetition >= repetitions-1) {
+                                    cancel();
+                                    act.nextExercise(getAdapterPosition());
+                                } else {
+                                    bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "✓");
+                                    currentRepetition ++;
+                                    countdown = 3;
+                                    time = 0;
+                                    bindName();
+                                    return;
+                                }
+                            }
+                        } else {
+                            bindTextViewWithData(r.getIdentifier("timer", "id", packageName), (duration - time ) + "\'\'");
+                        }
+                        time++;
+                 }
                 }
-            }
+
 
             @Override
             public void run() {
@@ -110,6 +139,8 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
             super(view,null);
             bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "-");
             duration = 0;
+            repetitions = 0;
+            currentRepetition = 0;
         }
 
         public void stopTimer() {
@@ -122,6 +153,8 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
         public void startTimer() {
             timerStarted = true;
             time = 0;
+            countdown = 3;
+            currentRepetition = 0;
             timer = new Timer();
             timer.scheduleAtFixedRate(new ModifyTimerTask(), 500, 1000);
         }
@@ -137,6 +170,16 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
         public void setTimerStartedTo(int duration) {
             this.duration = duration;
         }
+        public void setRepetitionsOfTimer(int repetitions) {
+            this.repetitions = repetitions;
+        }
+        public void setExerciseName(String name) {this.name = name;}
+        public String getExerciseName() {return this.name;}
+        public void bindName() {
+            if (repetitions == 1 || duration == 0) return;
+            bindTextViewWithData(r.getIdentifier("title", "id", packageName), name+" ("+(currentRepetition+1)+"/"+repetitions+")");
+        }
+
     }
 
     public void pauseCurrentExercise(){
@@ -165,5 +208,11 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
         return !superTimerStopped;
     }
 
+    public void cleanTicks() {
+        for (TimeTickViewHolder tv: map.keySet()) {
+            tv.bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "-");
+            tv.bindTextViewWithData(r.getIdentifier("title", "id", packageName), tv.getExerciseName());
+        }
+    }
 
 }
