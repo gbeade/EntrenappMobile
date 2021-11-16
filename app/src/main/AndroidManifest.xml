@@ -40,7 +40,8 @@
             android:exported="false" />
         <activity
             android:name=".bodyActivity.BodyActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
         <activity
             android:name=".mainActivity.MainActivity"
             android:exported="true">

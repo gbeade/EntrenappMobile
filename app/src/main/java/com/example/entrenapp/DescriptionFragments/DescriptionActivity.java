@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.navigation.NavController;
 
 import androidx.navigation.fragment.NavHostFragment;
 
+import android.app.Activity;
+import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +27,7 @@ import com.example.entrenapp.api.model.PagedList;
 import com.example.entrenapp.api.model.RoutineAPI;
 import com.example.entrenapp.api.model.User;
 import com.example.entrenapp.apiClasses.Routine;
+import com.example.entrenapp.bodyActivity.BodyActivity;
 import com.example.entrenapp.databinding.ActivityDescriptionBinding;
 import com.example.entrenapp.databinding.ToolbarMainBinding;
 import com.example.entrenapp.repository.Resource;
@@ -38,6 +42,7 @@ public class DescriptionActivity extends AppCompatActivity {
     private boolean isFavouritable;
     private App app;
     private Integer routineUserId;
+    private LifecycleOwner activity;
 
 
     @Override
@@ -46,6 +51,7 @@ public class DescriptionActivity extends AppCompatActivity {
         ActivityDescriptionBinding binding = ActivityDescriptionBinding.inflate(getLayoutInflater());
 
         app = (App) getApplication();
+        activity = this;
 
         int id;
         if(getIntent().getData() == null) {
@@ -55,6 +61,8 @@ public class DescriptionActivity extends AppCompatActivity {
             fillArguments();
         }
         else {
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+            stackBuilder.addParentStack(BodyActivity.class);
             favourite = false;
             isFavouritable = false;
 
@@ -77,9 +85,18 @@ public class DescriptionActivity extends AppCompatActivity {
                 RoutineAPI dataStorage = routineAPIResource.getData();
                 routineUserId = dataStorage.getUser().getId();
                 routine = new Routine(dataStorage.getId(), dataStorage.getName(), dataStorage.getMetadata().getSport(), Routine.Difficulty.valueOf(dataStorage.getDifficulty()), dataStorage.getMetadata().getEquipacion(), new Date(dataStorage.getDate()), dataStorage.getScore(), dataStorage.getMetadata().getDuracion());
-//                favourite = app.getRoutineRepository().getMyRoutines().getValue().getData().getContent().contains(routine);
-//                isFavouritable = app.getUserRepository().getCurrentUser().getValue().getData().getId().equals(routineUserId);
-                fillArguments();
+                app.getUserRepository().getCurrentUser().observe(this, userResource -> {
+                    if(userResource.getData() == null)
+                        return ;
+                    isFavouritable = !userResource.getData().getId().equals(routine.getId());
+                    app.getRoutineRepository().getMyFavouriteRoutines().observe(activity, pagedListResource -> {
+                        if(pagedListResource.getData() == null)
+                            return;
+                        favourite = pagedListResource.getData().getContent().contains(routine);
+                        fillArguments();
+                    });
+                });
+
             });
         }
 
@@ -111,6 +128,12 @@ public class DescriptionActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.action_back){
+            Log.d("HOLa","HOSA");
+            if(getIntent().getData() != null){
+                Intent intent = new Intent(this,BodyActivity.class);
+                startActivity(intent);
+                finish();
+            }
             boolean empty = !navController.popBackStack();
             if(empty){
                 finish();
@@ -121,7 +144,6 @@ public class DescriptionActivity extends AppCompatActivity {
 //            intent.setAction(Intent.ACTION_SEND);//ACTION_VIEW
             String url = "http://entrenapp.com" + "/routine?id=" + Integer.toString(this.routine.getId());
 //            intent.setData(Uri.parse(url));
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 //            intent.setType("text/plain");
 //
 //            Intent shareIntent = Intent.createChooser(intent, null);
@@ -132,6 +154,7 @@ public class DescriptionActivity extends AppCompatActivity {
             intent.putExtra(Intent.EXTRA_TEXT, url);
             intent.setData(Uri.parse(url));
             intent.setType("text/plain");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             Intent shareIntent = Intent.createChooser(intent, null);
             startActivity(shareIntent);
