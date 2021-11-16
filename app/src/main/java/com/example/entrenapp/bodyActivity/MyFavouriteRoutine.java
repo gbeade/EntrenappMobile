@@ -42,6 +42,7 @@ public class MyFavouriteRoutine extends FragmentRoutine {
         filterViewModel.setDifficulty(null);
         filterViewModel.setDuration(null);
         filterViewModel.setEquipment(false);
+        filterViewModel.setSport(null);
     }
 
     @Override
@@ -53,6 +54,7 @@ public class MyFavouriteRoutine extends FragmentRoutine {
         filterViewModel.getDuration().observe(getViewLifecycleOwner(), range -> initializeFilteredRoutine());
         filterViewModel.getDifficulty().observe(getViewLifecycleOwner(), difficulty -> initializeFilteredRoutine());
         filterViewModel.getEquipment().observe(getViewLifecycleOwner(), aBoolean -> initializeFilteredRoutine());
+        filterViewModel.getSport().observe(getViewLifecycleOwner(), s -> initializeFilteredRoutine());
         return binding.getRoot();
     }
 

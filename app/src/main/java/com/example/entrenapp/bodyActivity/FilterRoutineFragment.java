@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -18,11 +19,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
+import com.example.entrenapp.App;
 import com.example.entrenapp.R;
+import com.example.entrenapp.api.model.PagedList;
+import com.example.entrenapp.api.model.Sport;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.FragmentFilterRoutineBinding;
+import com.example.entrenapp.repository.Resource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class FilterRoutineFragment extends Fragment {
@@ -34,6 +45,9 @@ public class FilterRoutineFragment extends Fragment {
     private Button difficultyButtonWhite;
     private Button durationButtonWhite;
     private Button durationButton;
+    private App app;
+    private List<String> sports = new ArrayList<>();
+    private String sportSelected;
 
 
     private void show(Button button){
@@ -92,6 +106,7 @@ public class FilterRoutineFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        app = (App) getActivity().getApplication();
         getActivity().invalidateOptionsMenu();
         binding = FragmentFilterRoutineBinding.inflate(inflater,container,false);
         filter = new ViewModelProvider(getActivity()).get(FilterViewModel.class);
@@ -114,10 +129,36 @@ public class FilterRoutineFragment extends Fragment {
             filter.setDuration(duration);
             filter.setDifficulty(difficulty);
             filter.setEquipment(binding.checkBox.isChecked());
+            filter.setSport(sportSelected);
             NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
             NavController navController = navHostFragment.getNavController();
             navController.navigateUp();
         });
+
+            if(filter.getSport().getValue() != null){
+                sports.add(filter.getSport().getValue());
+            }
+            sports.add(app.getString(R.string.ninguno));
+
+            new ViewModelProvider(getActivity()).get(SportViewModel.class).getSports().observe(getViewLifecycleOwner(), new Observer<List<Sport>>() {
+                @Override
+                public void onChanged(List<Sport> sportsList) {
+                    if(sportsList.size() == 0)
+                        return;
+                    if(filter.getSport().getValue() != null)
+                        sports.remove(app.getString(R.string.ninguno));
+
+                    for(Sport sport : sportsList)
+                        if(!sports.contains(sport.getName()))
+                            sports.add(sport.getName());
+
+                    if(filter.getSport().getValue() != null)
+                        sports.add(app.getString(R.string.ninguno));
+
+                    initSelect();
+                }
+            });
+
 
         if(filter.getDuration().getValue() !=null){
             if(filter.getDuration().getValue().equals(new Range(15,30))){
@@ -161,6 +202,8 @@ public class FilterRoutineFragment extends Fragment {
         }
 
 
+
+
         return binding.getRoot();
     }
 
@@ -179,6 +222,29 @@ public class FilterRoutineFragment extends Fragment {
         search.setVisible(false);
         MenuItem back = menu.findItem(R.id.action_back);
         back.setVisible(true);
+    }
+
+
+    private void initSelect(){
+        Spinner spinner = binding.spinner;
+        ArrayAdapter<String> sportsAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_dropdown_item, sports);
+        spinner.setAdapter(sportsAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (parent.getItemAtPosition(position).toString().equals(getString(R.string.ninguno))){
+                    sportSelected = null;
+                    return;
+                }
+                sportSelected=parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 

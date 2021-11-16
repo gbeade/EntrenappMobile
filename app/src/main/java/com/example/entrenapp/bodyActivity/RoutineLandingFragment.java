@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
@@ -46,6 +47,7 @@ public class RoutineLandingFragment extends FragmentRoutine {
         filterViewModel.getDuration().observe(getViewLifecycleOwner(), range -> initializeFilteredRoutine());
         filterViewModel.getDifficulty().observe(getViewLifecycleOwner(), difficulty -> initializeFilteredRoutine());
         filterViewModel.getEquipment().observe(getViewLifecycleOwner(), aBoolean -> initializeFilteredRoutine());
+        filterViewModel.getSport().observe(getViewLifecycleOwner(), s -> initializeFilteredRoutine());
 
         new ViewModelProvider(getActivity()).get(MyFavouriteRoutineViewModel.class).getMyFavouriteRoutines().observe(getViewLifecycleOwner(), routines -> {
             if(routines == null)
@@ -64,6 +66,7 @@ public class RoutineLandingFragment extends FragmentRoutine {
         filterViewModel.setDifficulty(null);
         filterViewModel.setDuration(null);
         filterViewModel.setEquipment(false);
+        filterViewModel.setSport(null);
     }
 
 

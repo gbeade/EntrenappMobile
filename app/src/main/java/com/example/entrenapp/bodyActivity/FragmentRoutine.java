@@ -38,6 +38,7 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.dataset = new ArrayList<>();
         setHasOptionsMenu(true);
     }
 
@@ -112,6 +113,11 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
 
         if(filterViewModel.getEquipment() != null && filterViewModel.getEquipment().getValue() != null && filterViewModel.getEquipment().getValue().booleanValue()){
             datasetFiltered = datasetFiltered.stream().filter(routine -> routine.getMetadata().getEquipacion().booleanValue()).collect(Collectors.toList());
+        }
+
+        if(filterViewModel.getSport().getValue() != null){
+            Log.e("deporte",filterViewModel.getSport().getValue());
+            datasetFiltered = datasetFiltered.stream().filter(routine -> routine.getMetadata().getSport().equals(filterViewModel.getSport().getValue())).collect(Collectors.toList());
         }
 
         updateRecyclerView();

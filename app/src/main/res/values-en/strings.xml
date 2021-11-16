@@ -42,4 +42,7 @@
     <string name="equipacion">Equipement</string>
     <string name="yes">Yes</string>
     <string name="equipacionExtra">Extra equipement</string>
+    <string name="ninguno">None</string>
+    <string name="filter">Filter</string>
+    <string name="select_sport">Select an associated sport:</string>
 </resources>
