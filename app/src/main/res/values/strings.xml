@@ -32,6 +32,10 @@
     <string name="login_user">Usuario</string>
     <string name="registrate"><u>Regístrate</u></string>
     <string name="Login_no_account">¿No tenés cuenta?</string>
+    <string name="categor_a_del_ejercicio">Categoría del ejercicio</string>
+    <string name="repeticiones">Repeticiones</string>
+    <string name="duraci_n">Duración</string>
+    <string name="ninguna">Ninguna</string>
 
 
 </resources>
