@@ -17,7 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.Toast;
 
 
 import com.example.entrenapp.App;
@@ -30,6 +30,8 @@ import com.example.entrenapp.databinding.FragmentRoutineDescriptionBinding;
 import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
 import com.example.entrenapp.recyclerView.CycleAdapter;
 import com.example.entrenapp.repository.Resource;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 
 import java.util.List;
@@ -68,11 +70,13 @@ public class FragmentRoutineDescription extends Fragment {
             binding.addFavourite.setOnClickListener(v -> app.getRoutineRepository().setFavourite(routine.getId()).observe(getViewLifecycleOwner(), voidResource -> {
                 binding.addFavourite.setVisibility(View.GONE);
                 binding.removeFavourite.setVisibility(View.VISIBLE);
+                Toast.makeText(getActivity(), "La rutina se agrego con exito", Toast.LENGTH_SHORT).show();
             }));
 
             binding.removeFavourite.setOnClickListener(v -> app.getRoutineRepository().deleteFavourite(routine.getId()).observe(getViewLifecycleOwner(), voidResource -> {
                 binding.removeFavourite.setVisibility(View.GONE);
                 binding.addFavourite.setVisibility(View.VISIBLE);
+                Toast.makeText(getActivity(), "La rutina se elimino con exito", Toast.LENGTH_SHORT).show();
             }));
         }else{
             binding.addFavourite.setVisibility(View.GONE);
