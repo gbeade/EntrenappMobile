@@ -71,10 +71,9 @@ public class MyRoutinesFragment extends FragmentRoutine {
     public void updateRecyclerView() {
         binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         RecyclerView.Adapter adapter1;
-        if(datasetFiltered.size() > 0){
-            adapter1 = new CardAdapter(datasetFiltered, R.layout.extense_square_card, getActivity(),onNoteListener);
-        }else {
-            adapter1 = new CardAdapter(dataset, R.layout.extense_square_card, getActivity(),onNoteListener);
+        adapter1 = new CardAdapter(datasetFiltered, R.layout.extense_square_card, getActivity(),onNoteListener);
+        if(datasetFiltered.size() == 0 ){
+            Log.e("No hay","Resultados");
         }
         binding.routineRecyclerView.setAdapter(adapter1);
     }

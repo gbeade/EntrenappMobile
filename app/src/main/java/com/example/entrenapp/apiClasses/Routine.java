@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 
 import com.example.entrenapp.ContextSingleton;
 import com.example.entrenapp.R;
+import com.example.entrenapp.api.model.RoutineAPI;
 import com.example.entrenapp.recyclerView.Cardable;
 
 import java.util.ArrayList;
@@ -105,11 +106,12 @@ public class Routine implements Cardable,Parcelable {
     private Date creationDate;
     private Integer duration;
     private Integer punctuation;
+    private RoutineAPI.RoutineMetadata metadata;
 
 
 
 
-    public Routine(Integer id, String name, String category, Difficulty difficulty, boolean isEquipmentRequired, Date creationDate, int punctuation, int duration) {
+    public Routine(Integer id, String name, String category, Difficulty difficulty, boolean isEquipmentRequired, Date creationDate, int punctuation, int duration,RoutineAPI.RoutineMetadata metadata) {
 
         if ( punctuation > 10 || punctuation < 0 )
             throw new IllegalArgumentException("Routine punctuation must be between 1 and 10");
@@ -122,6 +124,11 @@ public class Routine implements Cardable,Parcelable {
         this.creationDate = creationDate;
         this.punctuation = punctuation;
         this.duration = duration;
+        this.metadata = metadata;
+    }
+
+    public RoutineAPI.RoutineMetadata getMetadata(){
+        return metadata;
     }
 
     public Integer getId() { return id; }

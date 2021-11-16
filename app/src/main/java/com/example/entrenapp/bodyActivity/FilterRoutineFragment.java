@@ -113,6 +113,7 @@ public class FilterRoutineFragment extends Fragment {
         binding.btnSave.setOnClickListener(v -> {
             filter.setDuration(duration);
             filter.setDifficulty(difficulty);
+            filter.setEquipment(binding.checkBox.isChecked());
             NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
             NavController navController = navHostFragment.getNavController();
             navController.navigateUp();
@@ -154,6 +155,11 @@ public class FilterRoutineFragment extends Fragment {
                 show(this.difficultyButton);
                 hide(this.difficultyButtonWhite);
         }
+
+        if(filter.getEquipment()!=null && filter.getEquipment().getValue()!= null&& filter.getEquipment().getValue().booleanValue()){
+            binding.checkBox.setChecked(true);
+        }
+
 
         return binding.getRoot();
     }

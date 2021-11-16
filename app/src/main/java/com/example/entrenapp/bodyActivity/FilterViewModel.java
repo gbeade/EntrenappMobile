@@ -37,8 +37,10 @@ public class FilterViewModel extends ViewModel {
     }
 
     public void setEquipment(boolean equipment) {
-        Equipment.setValue(equipment);
+        Equipment.setValue(new Boolean(equipment));
     }
+
+    public LiveData<Boolean> getEquipment(){return Equipment;}
 
     public LiveData<String> getSport() {
         return Sport;

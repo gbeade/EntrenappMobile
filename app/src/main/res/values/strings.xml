@@ -50,5 +50,6 @@
     <string name="equipacion">Equipacion</string>
     <string name="yes">Si</string>
     <string name="no" translatable="false">No</string>
+    <string name="equipacionExtra">Equipacion extra</string>
 
 </resources>

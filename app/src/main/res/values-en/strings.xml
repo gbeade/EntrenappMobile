@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ENTRENAPP</string>
     <string name="welcome_message">Hello, welcome to <b> ENTRENAPP </b></string>
     <string name="login_message">Login</string>
     <string name="register_message">Register</string>
@@ -42,4 +41,5 @@
     <string name="difficulty">Difficulty</string>
     <string name="equipacion">Equipement</string>
     <string name="yes">Yes</string>
+    <string name="equipacionExtra">Extra equipement</string>
 </resources>

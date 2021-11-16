@@ -3,6 +3,7 @@ package com.example.entrenapp.bodyActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.example.entrenapp.recyclerView.Cardable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public abstract class FragmentRoutine extends Fragment implements CardAdapter.ViewHolder.OnNoteListener{
@@ -105,6 +107,10 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
 
         if(filterViewModel.getDifficulty().getValue() != null){
             datasetFiltered = datasetFiltered.stream().filter(routine -> routine.getDifficulty() == filterViewModel.getDifficulty().getValue() ).collect(Collectors.toList());
+        }
+
+        if(filterViewModel.getEquipment() != null && filterViewModel.getEquipment().getValue() != null && filterViewModel.getEquipment().getValue().booleanValue()){
+            datasetFiltered = datasetFiltered.stream().filter(routine -> routine.getMetadata().getEquipacion().booleanValue()).collect(Collectors.toList());
         }
 
         updateRecyclerView();

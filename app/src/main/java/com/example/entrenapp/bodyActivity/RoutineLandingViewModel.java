@@ -53,7 +53,7 @@ public class RoutineLandingViewModel extends AndroidViewModel {
                     for(RoutineAPI routine : pagedListResource.getData().getContent()){
                         if(! UserId.equals(routine.getUser().getId()) ){
                             List<Routine> routineList = new ArrayList<>(OtherRoutines.getValue());
-                            Routine routine1 = new Routine(routine.getId(), routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion());
+                            Routine routine1 = new Routine(routine.getId(), routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion(),routine.getMetadata());
                             routineList.add(routine1);
                             OtherRoutines.setValue(routineList);
                         }

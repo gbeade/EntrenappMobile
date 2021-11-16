@@ -84,7 +84,7 @@ public class DescriptionActivity extends AppCompatActivity {
 
                 RoutineAPI dataStorage = routineAPIResource.getData();
                 routineUserId = dataStorage.getUser().getId();
-                routine = new Routine(dataStorage.getId(), dataStorage.getName(), dataStorage.getMetadata().getSport(), Routine.Difficulty.valueOf(dataStorage.getDifficulty()), dataStorage.getMetadata().getEquipacion(), new Date(dataStorage.getDate()), dataStorage.getScore(), dataStorage.getMetadata().getDuracion());
+                routine = new Routine(dataStorage.getId(), dataStorage.getName(), dataStorage.getMetadata().getSport(), Routine.Difficulty.valueOf(dataStorage.getDifficulty()), dataStorage.getMetadata().getEquipacion(), new Date(dataStorage.getDate()), dataStorage.getScore(), dataStorage.getMetadata().getDuracion(),dataStorage.getMetadata());
                 app.getUserRepository().getCurrentUser().observe(this, userResource -> {
                     if(userResource.getData() == null)
                         return ;

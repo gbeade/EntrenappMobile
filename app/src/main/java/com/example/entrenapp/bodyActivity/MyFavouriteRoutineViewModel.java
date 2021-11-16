@@ -44,7 +44,7 @@ public class MyFavouriteRoutineViewModel extends AndroidViewModel {
             if(pagedListResource.getData() != null && pagedListResource.getData().getContent().size() > 0){
                 for(RoutineAPI routine : pagedListResource.getData().getContent()){
                     List<Routine> routineList = new ArrayList<>(myFavouriteRoutines.getValue());
-                    Routine routine1 = new Routine(routine.getId(), routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion());
+                    Routine routine1 = new Routine(routine.getId(), routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion(), routine.getMetadata());
                     routineList.add(routine1);
                     myFavouriteRoutines.setValue(routineList);                    }
             }

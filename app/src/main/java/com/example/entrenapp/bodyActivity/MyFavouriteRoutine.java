@@ -4,12 +4,14 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +41,7 @@ public class MyFavouriteRoutine extends FragmentRoutine {
         super.onDetach();
         filterViewModel.setDifficulty(null);
         filterViewModel.setDuration(null);
+        filterViewModel.setEquipment(false);
     }
 
     @Override
@@ -49,6 +52,7 @@ public class MyFavouriteRoutine extends FragmentRoutine {
         filterViewModel = new ViewModelProvider(getActivity()).get(FilterViewModel.class);
         filterViewModel.getDuration().observe(getViewLifecycleOwner(), range -> initializeFilteredRoutine());
         filterViewModel.getDifficulty().observe(getViewLifecycleOwner(), difficulty -> initializeFilteredRoutine());
+        filterViewModel.getEquipment().observe(getViewLifecycleOwner(), aBoolean -> initializeFilteredRoutine());
         return binding.getRoot();
     }
 
@@ -64,11 +68,11 @@ public class MyFavouriteRoutine extends FragmentRoutine {
     public void updateRecyclerView() {
         binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         RecyclerView.Adapter adapter1;
-        if(datasetFiltered.size()>0){
-            adapter1 = new CardAdapter(datasetFiltered, R.layout.extense_square_card, getActivity(),onNoteListener);
-        }else {
-            adapter1 = new CardAdapter(dataset, R.layout.extense_square_card, getActivity(),onNoteListener);
+        adapter1 = new CardAdapter(datasetFiltered, R.layout.extense_square_card, getActivity(),onNoteListener);
+        if(datasetFiltered.size() == 0 ){
+            Log.e("No hay","Resultados");
         }
+
         binding.routineRecyclerView.setAdapter(adapter1);
     }
 

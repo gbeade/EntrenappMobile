@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,8 @@ public class RoutineLandingFragment extends FragmentRoutine {
 
         filterViewModel.getDuration().observe(getViewLifecycleOwner(), range -> initializeFilteredRoutine());
         filterViewModel.getDifficulty().observe(getViewLifecycleOwner(), difficulty -> initializeFilteredRoutine());
+        filterViewModel.getEquipment().observe(getViewLifecycleOwner(), aBoolean -> initializeFilteredRoutine());
+
         new ViewModelProvider(getActivity()).get(MyFavouriteRoutineViewModel.class).getMyFavouriteRoutines().observe(getViewLifecycleOwner(), routines -> {
             if(routines == null)
                 return ;
@@ -60,6 +63,7 @@ public class RoutineLandingFragment extends FragmentRoutine {
         super.onDetach();
         filterViewModel.setDifficulty(null);
         filterViewModel.setDuration(null);
+        filterViewModel.setEquipment(false);
     }
 
 
@@ -84,10 +88,9 @@ public class RoutineLandingFragment extends FragmentRoutine {
     public void updateRecyclerView() {
         binding.recommendedRoutinesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         RecyclerView.Adapter adapter1;
-        if(datasetFiltered.size()>0){
-            adapter1 = new CardAdapter(datasetFiltered, R.layout.extense_square_card, getActivity(),onNoteListener);
-        }else {
-            adapter1 = new CardAdapter(dataset, R.layout.extense_square_card, getActivity(),onNoteListener);
+        adapter1 = new CardAdapter(datasetFiltered, R.layout.extense_square_card, getActivity(),onNoteListener);
+        if(datasetFiltered.size() == 0 ){
+            Log.e("No hay","Resultados");
         }
         binding.recommendedRoutinesRecyclerView.setAdapter(adapter1);
     }
