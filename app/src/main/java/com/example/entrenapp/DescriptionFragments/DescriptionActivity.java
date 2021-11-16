@@ -75,7 +75,7 @@ public class DescriptionActivity extends AppCompatActivity {
             app.getUserRepository().getCurrentUser();
 
             StringTokenizer tokenizer = new StringTokenizer(getIntent().getData().toString(), "=");
-            String auxId = tokenizer.nextToken();
+            String auxId;
             auxId = tokenizer.nextToken();
             id = Integer.parseInt(auxId);
             app.getRoutineRepository().getRoutineById(id).observe(this, routineAPIResource -> {
@@ -140,22 +140,13 @@ public class DescriptionActivity extends AppCompatActivity {
             }
             return true;
         }else if(item.getItemId() == R.id.action_share){
-//            Intent intent = new Intent();
-//            intent.setAction(Intent.ACTION_SEND);//ACTION_VIEW
-            String url = "http://entrenapp.com" + "/routine?id=" + Integer.toString(this.routine.getId());
-//            intent.setData(Uri.parse(url));
-//            intent.setType("text/plain");
-//
-//            Intent shareIntent = Intent.createChooser(intent, null);
-//            startActivity(shareIntent);
-
+            String url = "http://entrenapp.com"  + "/routine?id=" + this.routine.getId();
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_SEND);
             intent.putExtra(Intent.EXTRA_TEXT, url);
             intent.setData(Uri.parse(url));
             intent.setType("text/plain");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
             Intent shareIntent = Intent.createChooser(intent, null);
             startActivity(shareIntent);
             return true;
@@ -185,12 +176,10 @@ public class DescriptionActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             public boolean onQueryTextChange(String newText) {
-                Log.d("AppBar", "onQueryTextChange -> " + newText);
                 return false;
             }
 
             public boolean onQueryTextSubmit(String query) {
-                Log.d("AppBar", "onQueryTextSubmit -> " + query);
                 searchItem.collapseActionView();
                 return true;
             }

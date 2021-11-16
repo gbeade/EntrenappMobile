@@ -91,7 +91,6 @@ public class BodyActivity extends AppCompatActivity {
             }
 
             public boolean onQueryTextSubmit(String query) {
-                Log.d("", "onQueryTextSubmit -> " + query);
                 searchItem.collapseActionView();
                 return true;
             }
@@ -121,7 +120,6 @@ public class BodyActivity extends AppCompatActivity {
             navController.navigate(R.id.filterRoutineFragment);
             return true;
         }else if(item.getItemId() == R.id.action_search) {
-            Log.d("Searchimg", "searching");
             return true;
         }else if(item.getItemId() == R.id.action_back)   {
             navController.navigateUp();

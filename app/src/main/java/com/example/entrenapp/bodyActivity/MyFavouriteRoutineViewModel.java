@@ -40,16 +40,13 @@ public class MyFavouriteRoutineViewModel extends AndroidViewModel {
 
     private void loadMyRoutines(){
         App app = (App) getApplication();
-        app.getRoutineRepository().getMyFavouriteRoutines().observeForever(new Observer<Resource<PagedList<RoutineAPI>>>() {
-            @Override
-            public void onChanged(Resource<PagedList<RoutineAPI>> pagedListResource) {
-                if(pagedListResource.getData() != null && pagedListResource.getData().getContent().size() > 0){
-                    for(RoutineAPI routine : pagedListResource.getData().getContent()){
-                        List<Routine> routineList = new ArrayList<>(myFavouriteRoutines.getValue());
-                        Routine routine1 = new Routine(routine.getId(), routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion());
-                        routineList.add(routine1);
-                        myFavouriteRoutines.setValue(routineList);                    }
-                }
+        app.getRoutineRepository().getMyFavouriteRoutines().observeForever(pagedListResource -> {
+            if(pagedListResource.getData() != null && pagedListResource.getData().getContent().size() > 0){
+                for(RoutineAPI routine : pagedListResource.getData().getContent()){
+                    List<Routine> routineList = new ArrayList<>(myFavouriteRoutines.getValue());
+                    Routine routine1 = new Routine(routine.getId(), routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion());
+                    routineList.add(routine1);
+                    myFavouriteRoutines.setValue(routineList);                    }
             }
         });
     }

@@ -21,6 +21,7 @@ import android.view.ViewGroup;
 
 
 import com.example.entrenapp.App;
+import com.example.entrenapp.R;
 import com.example.entrenapp.apiClasses.Cycle;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.FragmentRoutineDescriptionBinding;
@@ -52,7 +53,7 @@ public class FragmentRoutineDescription extends Fragment {
 
         app = (App) getActivity().getApplication();
         binding.routineTitle.setText(this.routine.getName());
-        binding.duration.setText("Duración: " + this.routine.getDuration() + " minutos");
+        binding.duration.setText(getString(R.string.duraci_n)+ ": " + this.routine.getDuration() +" "+getString(R.string.minute));
 
         if (this.isFavouritable) {
             if (this.favourite) {

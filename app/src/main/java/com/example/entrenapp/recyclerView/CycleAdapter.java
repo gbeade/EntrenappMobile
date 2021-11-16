@@ -1,8 +1,7 @@
 package com.example.entrenapp.recyclerView;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.entrenapp.DescriptionFragments.ExerciseDescriptionActivity;
-import com.example.entrenapp.DescriptionFragments.FragmentRoutineDescription;
 import com.example.entrenapp.DescriptionFragments.FragmentRoutineDescriptionDirections;
 import com.example.entrenapp.R;
 import com.example.entrenapp.apiClasses.Cycle;

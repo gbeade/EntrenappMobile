@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?><!DOCTYPE resources [<!ENTITY appname "ENTRENAPP"><!ENTITY author "MrGreen">]>
 <resources>
-    <string name="app_name">ENTRENAPP</string>
+    <string name="app_name" translatable="false">ENTRENAPP</string>
     <string name="welcome_message">Hola, bienvenido a <b>ENTRENAPP</b></string>
     <string name="login_message">Inicia sesión</string>
     <string name="register_message">Regístrate</string>
-    <string name="email">Email</string>
+    <string name="email" translatable="false">Email</string>
     <string name="password">Contraseña</string>
     <string name="your_routines">Tus rutinas</string>
     <string name="action_search">Buscar</string>
@@ -16,17 +16,17 @@
     <string name="difficulty_intermediate">Intermedio</string>
     <string name="difficulty_advanced">Avanzado</string>
     <string name="time">Tiempo:</string>
-    <string name="time_interval1">15-30</string>
-    <string name="time_interval2">30-45</string>
-    <string name="time_interval3">45-60</string>
+    <string name="time_interval1" translatable="false">15-30</string>
+    <string name="time_interval2" translatable="false">30-45</string>
+    <string name="time_interval3" translatable="false">45-60</string>
     <string name="save">Guardar</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="favourite">Favoritas</string>
     <string name="home">Principal</string>
     <string name="favourite_routines">Rutinas favoritas</string>
     <string name="myRoutines">Mis rutinas</string>
     <string name="train">Entrenar</string>
-    <string name="action_back">back</string>
+    <string name="action_back" translatable="false">back</string>
     <string name="recommended_routines">Rutinas recomendadas</string>
     <string name="contrasenia">Contraseña</string>
     <string name="login_user">Usuario</string>
@@ -36,7 +36,11 @@
     <string name="repeticiones">Repeticiones</string>
     <string name="duraci_n">Duración</string>
     <string name="ninguna">Ninguna</string>
-    <string name="baseUrl">http://entrenapp.com</string>
-
+    <string name="baseUrl" translatable="false">http://entrenapp.com</string>
+    <string name="RepetitionsTimes">veces</string>
+    <string name="RepetitionTime">vez</string>
+    <string name="second">segundo</string>
+    <string name="seconds">segundos</string>
+    <string name="minute">minutos</string>
 
 </resources>
