@@ -34,6 +34,7 @@ public class FragmentExerciseDescription extends Fragment {
 
         binding.exerciseName.setText(this.exercise.getName());
         binding.exerciseDescription.setText(this.exercise.getType());
+        binding.exerciseReps.setText(this.exercise.getRepetitions());
 
     }
 
