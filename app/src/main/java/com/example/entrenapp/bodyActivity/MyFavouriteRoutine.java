@@ -66,7 +66,7 @@ public class MyFavouriteRoutine extends FragmentRoutine {
 
     @Override
     public void updateRecyclerView() {
-        binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         RecyclerView.Adapter adapter1;
         adapter1 = new CardAdapter(datasetFiltered, R.layout.extense_square_card, getActivity(),onNoteListener);
         if(datasetFiltered.size() == 0 ){
