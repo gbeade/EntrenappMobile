@@ -21,13 +21,14 @@ public class Exercise implements Cardable, Parcelable {
     private int duration;
     private int repetitions = 1;
 
+
     protected Exercise(Parcel in) {
         id = in.readInt();
         name = in.readString();
         type = in.readString();
         duration = in.readInt();
+        repetitions = in.readInt();
     }
-
 
     public static final Creator<Exercise> CREATOR = new Creator<Exercise>() {
         @Override
@@ -94,6 +95,7 @@ public class Exercise implements Cardable, Parcelable {
     public String toString() {
         return this.id+" "+this.name+" "+this.duration+" "+this.repetitions;
     }
+
 
     @Override
     public int describeContents() {

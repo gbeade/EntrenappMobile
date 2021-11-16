@@ -32,6 +32,7 @@ import com.example.entrenapp.recyclerView.CycleAdapter;
 import com.example.entrenapp.repository.Resource;
 
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -94,6 +95,7 @@ public class FragmentRoutineDescription extends Fragment {
     private void train(){
         Intent intent = new Intent(getActivity(), ExecuteRoutineActivity.class);
         intent.putExtra("Routine", this.routine);
+        Log.d("Cycles en desc", Arrays.toString(routine.getCycles().toArray()));
         startActivity(intent);
     }
 
@@ -101,16 +103,18 @@ public class FragmentRoutineDescription extends Fragment {
         FragmentRoutineViewModel viewModel = new ViewModelProvider(getActivity()).get(FragmentRoutineViewModel.class);
         viewModel.setRoutineId(this.routine);
 
-        viewModel.getCycle().observe(getViewLifecycleOwner(), cycle -> {
-
-            if(cycle.size() > 0 && routine.getCycles().size() == cycle.size()-1)
-              routine.addCycle( cycle.get(cycle.size()-1));
-
-
-            RecyclerView.Adapter adapter = new CycleAdapter(routine.getCycles(),getActivity());
-            binding.routineDescriptionCyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
-            binding.routineDescriptionCyclerView.setAdapter(adapter);
-        });
+        viewModel.getCycle().observe(getViewLifecycleOwner(), this::onChanged);
     }
 
+    private void onChanged(List<Cycle> cycle) {
+
+        for(Cycle c : cycle )
+            if(!routine.getCycles().contains(c))
+                routine.addCycle(c);
+
+        RecyclerView.Adapter adapter = new CycleAdapter(routine.getCycles(), getActivity());
+        binding.routineDescriptionCyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        binding.routineDescriptionCyclerView.setAdapter(adapter);
+        Log.d("Cycles en desc", Arrays.toString(routine.getCycles().toArray()));
+    }
 }

@@ -207,6 +207,8 @@ public class Routine implements Cardable,Parcelable {
     ArrayList<Cycle> cycles = new ArrayList<>();
 
     public void addCycle(Cycle cycle) {
+        if(cycle==null)
+            return;
         cycles.add(cycle);
     }
 

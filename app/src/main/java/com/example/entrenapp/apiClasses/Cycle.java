@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -18,8 +19,7 @@ public class Cycle implements Parcelable {
     private String type;
     private int order;
     private int repetitions;
-    private int metadata;
-    private ArrayList<Exercise> exercises;
+    private List<Exercise> exercises;
 
 
     protected Cycle(Parcel in) {
@@ -29,7 +29,6 @@ public class Cycle implements Parcelable {
         type = in.readString();
         order = in.readInt();
         repetitions = in.readInt();
-        metadata = in.readInt();
         exercises = in.createTypedArrayList(Exercise.CREATOR);
     }
 
@@ -57,14 +56,13 @@ public class Cycle implements Parcelable {
         return repetitions;
     }
 
-    public Cycle(int id, String name, String detail, String type, int order, int repetitions, int metadata) {
+    public Cycle(int id, String name, String detail, String type, int order, int repetitions) {
         this.id = id;
         this.name = name;
         this.detail = detail;
         this.type = type;
         this.order = order;
         this.repetitions = repetitions;
-        this.metadata = metadata;
         this.exercises = new ArrayList<>();
     }
 
@@ -76,6 +74,24 @@ public class Cycle implements Parcelable {
         return exercises;
     }
 
+
+
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.id+" " + this.name+" "+this.detail+" "+this.type+" "+this.order+" "+this.repetitions+" "+ Arrays.toString(this.exercises.toArray());
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        if(obj == this)
+            return true;
+        if(! (obj instanceof  Cycle))
+            return false;
+        Cycle other = (Cycle) obj;
+        return this.id == other.id;
+    }
 
     @Override
     public int describeContents() {
@@ -90,13 +106,6 @@ public class Cycle implements Parcelable {
         dest.writeString(type);
         dest.writeInt(order);
         dest.writeInt(repetitions);
-        dest.writeInt(metadata);
         dest.writeTypedList(exercises);
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
-        return this.id+" " + this.name+" "+this.detail+" "+this.type+" "+this.order+" "+this.repetitions+" "+this.metadata+" "+ Arrays.toString(this.exercises.toArray());
     }
 }
