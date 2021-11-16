@@ -38,6 +38,10 @@
     <style name="MyTheme" parent="android:style/Widget.Holo.ActionButton.Overflow">
         <item name="android:src">@drawable/ic_baseline_more_vert_24</item>
     </style>
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <item name="colorControlNormal">@color/accent</item>
+    </style>
 
 
 

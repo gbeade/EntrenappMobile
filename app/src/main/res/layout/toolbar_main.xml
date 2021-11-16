@@ -12,7 +12,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:title="@string/app_name"
-        app:titleTextColor="@color/accent">
+        app:titleTextColor="@color/accent"
+        app:theme="@style/ToolbarTheme">
 
         <ImageView
             android:id="@+id/imageView"
