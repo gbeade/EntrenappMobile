@@ -67,6 +67,7 @@
     <string name="leave_popup_with_rating">Puntuar y finalizar</string>
     <string name="rate_routine">Puntúa tu rutina</string>
 
+    <string name="new_cycle_alert">💬 Has terminado un ciclo. Se ha pausado la ejecución.</string>
 
 
     <!--ERRORS-->

@@ -60,6 +60,10 @@
     <string name="leave_popup_with_rating">Rate and return</string>
 
 
+    <string name="new_cycle_alert">💬 You have finished a cycle. Execution has been paused.</string>
+
+
+
 
     <!--ERRORS-->
     <string name="error_login">Incorrect username or password.</string>

@@ -102,6 +102,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 //        rv.setVerticalScrollBarEnabled(simplifiedExecution);
         rv.setHorizontalScrollBarEnabled(!simplifiedExecution);
 
+        findViewById(R.id.commentBox).setVisibility(View.INVISIBLE);
 
         startIterations();
     }
@@ -116,6 +117,8 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
         TextView textView;
         currentCycleIdx ++;
+
+        if (currentCycleIdx > 0 ) findViewById(R.id.commentBox).setVisibility(View.VISIBLE);
 
         if ( currentCycleIdx > 0 && !simplifiedExecution ) togglePlayPauseExercise();
 
@@ -136,7 +139,6 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
                 //Se termino la rutina, cambiar por el intent a la pagina de favoritos
                 adapter.pauseCurrentExercise();
                 showPopup();
-
                 return;
             }
         }
@@ -233,6 +235,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
     boolean init = false;
     public void togglePlayPauseExercise(){
+        findViewById(R.id.commentBox).setVisibility(View.INVISIBLE);
         if ( simplifiedExecution && !init) {
             adapter.startCounterOnPosition(0);
             init = true;
