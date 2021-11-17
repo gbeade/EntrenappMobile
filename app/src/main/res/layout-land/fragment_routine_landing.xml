@@ -15,13 +15,13 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recommendedRoutinesRecyclerView"
-            android:layout_width="337dp"
-            android:layout_height="558dp"
+            android:layout_width="730dp"
+            android:layout_height="567dp"
             android:clipToPadding="false"
             android:paddingStart="12dp"
 
             android:paddingEnd="12dp"
-            android:scrollbars="vertical"
+            android:scrollbars="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/header1" />
@@ -30,12 +30,12 @@
             android:id="@+id/header1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="16dp"
             android:text="@string/recommended_routines"
             android:textColor="@color/accent"
             android:textSize="26dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

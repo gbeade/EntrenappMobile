@@ -14,11 +14,13 @@ import androidx.navigation.ui.NavigationUI;
 
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 
 import com.example.entrenapp.App;
@@ -29,6 +31,7 @@ import com.example.entrenapp.databinding.ActivityBodyBinding;
 import com.example.entrenapp.databinding.ToolbarMainBinding;
 import com.example.entrenapp.repository.Resource;
 import com.example.entrenapp.repository.Status;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class BodyActivity extends AppCompatActivity {
@@ -45,7 +48,6 @@ public class BodyActivity extends AppCompatActivity {
         View root = binding.getRoot();
 
         ToolbarMainBinding binding2 = ToolbarMainBinding.bind(root);
-        setContentView(root);
 
         binding2.toolbar.inflateMenu(R.menu.menu_main);
         setSupportActionBar(binding2.toolbar);
@@ -53,6 +55,7 @@ public class BodyActivity extends AppCompatActivity {
 
         filter = new ViewModelProvider(this).get(FilterViewModel.class);
 
+        setContentView(root);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
@@ -137,5 +140,6 @@ public class BodyActivity extends AppCompatActivity {
 
 
     }
+
 
 }
