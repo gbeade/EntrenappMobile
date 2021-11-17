@@ -177,8 +177,6 @@ public class FilterRoutineFragment extends Fragment {
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         MenuItem search = menu.findItem(R.id.action_search);
         search.setVisible(false);
-        MenuItem back = menu.findItem(R.id.action_back);
-        back.setVisible(true);
     }
 
 

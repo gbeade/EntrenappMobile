@@ -106,8 +106,6 @@ public class BodyActivity extends AppCompatActivity {
         shareItem.setVisible(false);
         MenuItem settingsItem = menu.findItem(R.id.action_settings);
         settingsItem.setVisible(false);
-        MenuItem back = menu.findItem(R.id.action_back);
-        back.setVisible(false);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -121,11 +119,10 @@ public class BodyActivity extends AppCompatActivity {
             return true;
         }else if(item.getItemId() == R.id.action_search) {
             return true;
-        }else if(item.getItemId() == R.id.action_back)   {
-            navController.navigateUp();
-            return true;
-        }else
+        }else{
             return super.onOptionsItemSelected(item);
+        }
+
 
     }
 
