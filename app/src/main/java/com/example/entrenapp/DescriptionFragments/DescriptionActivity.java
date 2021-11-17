@@ -132,7 +132,7 @@ public class DescriptionActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_back){
+        if(item.getItemId() == 16908332){ //PERDON  ;/ ACCION DE BACK
             if(getIntent().getData() != null){
                 Intent intent = new Intent(this,BodyActivity.class);
                 startActivity(intent);
