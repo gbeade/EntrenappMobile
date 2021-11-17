@@ -72,6 +72,7 @@ public class FilterRoutineFragment extends Fragment {
         show(this.difficultyButton);
         hide(this.difficultyButtonWhite);
         this.difficulty = difficulty;
+        filter.setDifficulty(difficulty);
     }
 
     private void durationWhiteHandler(Button buttonWhite , Button button , Range duration){
@@ -84,6 +85,7 @@ public class FilterRoutineFragment extends Fragment {
         show(this.durationButton);
         hide(this.durationButtonWhite);
         this.duration = duration;
+        filter.setDuration(duration);
     }
 
     private void durationYellowHandler(){
@@ -92,7 +94,7 @@ public class FilterRoutineFragment extends Fragment {
         if(this.durationButtonWhite != null)
             show(this.durationButtonWhite);
         this.duration = null;
-
+        filter.setDuration(null);
     }
 
     private void difficultyYellowHandler(){
@@ -101,18 +103,19 @@ public class FilterRoutineFragment extends Fragment {
         if(this.difficultyButtonWhite != null)
             show(this.difficultyButtonWhite);
         this.difficulty = null;
+        filter.setDifficulty(null);
     }
 
 
 
     private FilterViewModel filter;
+    private FilterViewModel filterContext;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         app = (App) getActivity().getApplication();
         getActivity().invalidateOptionsMenu();
         binding = FragmentFilterRoutineBinding.inflate(inflater,container,false);
-        filter = new ViewModelProvider(getActivity()).get(FilterViewModel.class);
 
         binding.btnDifficultyAdvanced.setOnClickListener(v -> difficultyWhiteHandler(binding.btnDifficultyAdvanced,binding.btnDifficultyAdvancedYellow, Routine.Difficulty.expert));
         binding.btnDifficultyIntermediate.setOnClickListener(v -> difficultyWhiteHandler(binding.btnDifficultyIntermediate,binding.btnDifficultyIntermediateYellow, Routine.Difficulty.intermediate));
@@ -221,8 +224,79 @@ public class FilterRoutineFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        filter = new ViewModelProvider(getActivity()).get(FilterViewModel.class);
+        //filterContext = new ViewModelProvider(this).get(FilterViewModel.class);
         setHasOptionsMenu(true);
     }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        getState();
+    }
+
+    private void getState(){
+        new ViewModelProvider(getActivity()).get(SportViewModel.class).getSports().observe(getViewLifecycleOwner(), new Observer<List<Sport>>() {
+            @Override
+            public void onChanged(List<Sport> sportsList) {
+                if(sportsList.size() == 0)
+                    return;
+                if(filter.getSport().getValue() != null)
+                    sports.remove(app.getString(R.string.ninguno));
+
+                for(Sport sport : sportsList)
+                    if(!sports.contains(sport.getName()))
+                        sports.add(sport.getName());
+
+                if(filter.getSport().getValue() != null)
+                    sports.add(app.getString(R.string.ninguno));
+
+                initSelect();
+            }
+        });
+
+        if(filter.getDuration().getValue() !=null){
+            if(filter.getDuration().getValue().equals(new Range(15,30))){
+                this.durationButtonWhite=binding.btnInterval1;
+                this.durationButton=binding.btnInterval1Yellow;
+                this.duration = new Range(15,30);
+            }else if(filter.getDuration().getValue().equals(new Range(30,45))){
+                this.durationButtonWhite=binding.btnInterval2;
+                this.durationButton=binding.btnInterval2Yellow;
+                this.duration = new Range(30,45);
+            }else {
+                this.durationButtonWhite=binding.btnInterval3;
+                this.durationButton=binding.btnInterval3Yellow;
+                this.duration = new Range(45,60);
+            }
+            show(this.durationButton);
+            hide(this.durationButtonWhite);
+
+        }
+
+        if(filter.getDifficulty().getValue() != null){
+            if(filter.getDifficulty().getValue().equals(Routine.Difficulty.expert)){
+                this.difficultyButtonWhite = binding.btnDifficultyAdvanced;
+                this.difficultyButton = binding.btnDifficultyAdvancedYellow;
+                this.difficulty = Routine.Difficulty.expert;
+            }else if(filter.getDifficulty().getValue().equals(Routine.Difficulty.intermediate)){
+                this.difficultyButtonWhite = binding.btnDifficultyIntermediate;
+                this.difficultyButton = binding.btnDifficultyIntermediateYellow;
+                this.difficulty = Routine.Difficulty.intermediate;
+            }else{
+                this.difficultyButtonWhite= binding.btnDifficultyBeginner;
+                this.difficultyButton = binding.btnDifficultyBeginnerYellow;
+                this.difficulty = Routine.Difficulty.rookie;
+            }
+            show(this.difficultyButton);
+            hide(this.difficultyButtonWhite);
+        }
+
+        if(filter.getEquipment()!=null && filter.getEquipment().getValue()!= null&& filter.getEquipment().getValue().booleanValue()){
+            binding.checkBox.setChecked(true);
+        }
+    }
+
 
 
 
@@ -245,9 +319,11 @@ public class FilterRoutineFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (parent.getItemAtPosition(position).toString().equals(getString(R.string.ninguno))){
                     sportSelected = null;
+                    filter.setSport(null);
                     return;
                 }
                 sportSelected=parent.getItemAtPosition(position).toString();
+                filter.setSport(sportSelected);
             }
 
             @Override

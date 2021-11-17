@@ -62,4 +62,11 @@ public class FilterViewModel extends ViewModel {
         return this.name;
     }
 
+    public void clear(){
+        this.difficulty.setValue(null);
+        this.duration.setValue(null);
+        this.Equipment.setValue(null);
+        this.Sport.setValue(null);
+    }
+
 }

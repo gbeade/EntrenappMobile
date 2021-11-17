@@ -3,6 +3,7 @@ package com.example.entrenapp.DescriptionFragments;
 
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -116,7 +117,9 @@ public class FragmentRoutineDescription extends Fragment {
                 routine.addCycle(c);
 
         RecyclerView.Adapter adapter = new CycleAdapter(routine.getCycles(), getActivity());
-        binding.routineDescriptionCyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
+            binding.routineDescriptionCyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
+        else binding.routineDescriptionCyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         binding.routineDescriptionCyclerView.setAdapter(adapter);
     }
 }

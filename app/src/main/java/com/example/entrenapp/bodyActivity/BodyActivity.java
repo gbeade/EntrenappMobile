@@ -122,6 +122,7 @@ public class BodyActivity extends AppCompatActivity {
         }else if(item.getItemId() == R.id.action_search) {
             return true;
         }else if (item.getItemId() == 16908332) {
+            //filter.clear();
             ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(false);
             if(getIntent().getData() != null){
