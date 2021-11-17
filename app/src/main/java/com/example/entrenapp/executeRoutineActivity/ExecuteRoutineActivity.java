@@ -54,7 +54,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     PopupWindow popupWindow;
     boolean isRoutineRateable;
     App app;
-    boolean simplifiedExecution = true;
+    boolean simplifiedExecution = false;
     LifecycleOwner activity = this;
     RoutineAPI routineAPI;
 

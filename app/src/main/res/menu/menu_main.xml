@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!-- For other icons see: https://design.google.com/icons -->
     <item
-        android:id="@+id/action_back"
-        android:title="@string/action_back"
-        android:icon="@drawable/ic_arrow_back"
-        app:showAsAction="always"
-        />
-
-    <item
         android:id="@+id/action_search"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="@string/action_search"

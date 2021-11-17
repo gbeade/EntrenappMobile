@@ -76,7 +76,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.112"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cycleRecyclerView" />
+            app:layout_constraintTop_toBottomOf="@+id/cycleRecyclerView"
+            />
 
         <TextView
             android:id="@+id/play"
@@ -93,7 +94,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cycleRecyclerView"
-            app:layout_constraintVertical_bias="0.496" />
+            app:layout_constraintVertical_bias="0.496"
+            />
 
         <TextView
             android:id="@+id/pause"
@@ -110,7 +112,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cycleRecyclerView"
-            app:layout_constraintVertical_bias="0.597" />
+            app:layout_constraintVertical_bias="0.597"
+            />
 
         <TextView
             android:id="@+id/cancel"
@@ -128,7 +131,8 @@
             app:layout_constraintHorizontal_bias="0.854"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cycleRecyclerView"
-            app:layout_constraintVertical_bias="0.044" />
+            app:layout_constraintVertical_bias="0.044"
+            />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

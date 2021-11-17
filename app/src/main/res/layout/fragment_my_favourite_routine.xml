@@ -10,15 +10,16 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/routineRecyclerView"
-        android:layout_width="350dp"
-        android:layout_height="418dp"
+        android:layout_width="329dp"
+        android:layout_height="543dp"
         android:isScrollContainer="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.934"
+        app:layout_constraintHorizontal_bias="0.652"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.527" />
+        app:layout_constraintVertical_bias="0.617"
+        android:scrollbars="vertical"/>
 
     <TextView
         android:id="@+id/textView2"

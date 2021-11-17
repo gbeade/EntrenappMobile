@@ -65,14 +65,14 @@ public class DescriptionActivity extends AppCompatActivity {
             stackBuilder.addParentStack(BodyActivity.class);
             favourite = false;
             isFavouritable = false;
-
-            app.getRoutineRepository().getMyFavouriteRoutines().observe(this, new Observer<Resource<PagedList<RoutineAPI>>>() {
-                @Override
-                public void onChanged(Resource<PagedList<RoutineAPI>> pagedListResource) {
-
-                }
-            });
-            app.getUserRepository().getCurrentUser();
+//
+//            app.getRoutineRepository().getMyFavouriteRoutines().observe(this, new Observer<Resource<PagedList<RoutineAPI>>>() {
+//                @Override
+//                public void onChanged(Resource<PagedList<RoutineAPI>> pagedListResource) {
+//
+//                }
+//            });
+//            app.getUserRepository().getCurrentUser();
 
             StringTokenizer tokenizer = new StringTokenizer(getIntent().getData().toString(), "=");
             String auxId;
@@ -109,6 +109,10 @@ public class DescriptionActivity extends AppCompatActivity {
         binding2.toolbar.inflateMenu(R.menu.menu_main);
         setSupportActionBar(binding2.toolbar);
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
     }
 
@@ -128,7 +132,7 @@ public class DescriptionActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.action_back){
+        if(item.getItemId() == 16908332){ //PERDON  ;/ ACCION DE BACK
             if(getIntent().getData() != null){
                 Intent intent = new Intent(this,BodyActivity.class);
                 startActivity(intent);

@@ -1,6 +1,7 @@
 package com.example.entrenapp.bodyActivity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
@@ -124,8 +125,6 @@ public class BodyActivity extends AppCompatActivity {
         shareItem.setVisible(false);
         MenuItem settingsItem = menu.findItem(R.id.action_settings);
         settingsItem.setVisible(false);
-        MenuItem back = menu.findItem(R.id.action_back);
-        back.setVisible(false);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -139,11 +138,23 @@ public class BodyActivity extends AppCompatActivity {
             return true;
         }else if(item.getItemId() == R.id.action_search) {
             return true;
-        }else if(item.getItemId() == R.id.action_back)   {
-            navController.navigateUp();
+        }else if (item.getItemId() == 16908332) {
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(false);
+            if(getIntent().getData() != null){
+                Intent intent = new Intent(this,BodyActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            boolean empty = !navController.popBackStack();
+            if(empty){
+                finish();
+            }
             return true;
-        }else
+        }else{
             return super.onOptionsItemSelected(item);
+        }
+
 
     }
 

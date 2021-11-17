@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
@@ -30,6 +32,7 @@ import com.example.entrenapp.api.model.PagedList;
 import com.example.entrenapp.api.model.Sport;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.FragmentFilterRoutineBinding;
+import com.example.entrenapp.databinding.ToolbarMainBinding;
 import com.example.entrenapp.repository.Resource;
 
 import java.util.ArrayList;
@@ -125,6 +128,13 @@ public class FilterRoutineFragment extends Fragment {
         binding.btnInterval2Yellow.setOnClickListener(v -> durationYellowHandler());
         binding.btnInterval3Yellow.setOnClickListener(v -> durationYellowHandler());
 
+
+
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         binding.btnSave.setOnClickListener(v -> {
             filter.setDuration(duration);
             filter.setDifficulty(difficulty);
@@ -216,12 +226,12 @@ public class FilterRoutineFragment extends Fragment {
 
 
 
+
+
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         MenuItem search = menu.findItem(R.id.action_search);
         search.setVisible(false);
-        MenuItem back = menu.findItem(R.id.action_back);
-        back.setVisible(true);
     }
 
 
