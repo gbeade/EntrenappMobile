@@ -41,18 +41,6 @@ public class BodyActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         app = (App) getApplication();
 
-        app.getUserRepository().getCurrentUser().observe(this, new Observer<Resource<User>>() {
-            @Override
-            public void onChanged(Resource<User> userResource) {
-                if (userResource == null || userResource.getData() == null)
-                    return;
-                app.getPreferences().setUserId(userResource.getData().getId());
-
-            }
-        });
-
-
-
         ActivityBodyBinding binding = ActivityBodyBinding.inflate(getLayoutInflater());
         View root = binding.getRoot();
 
@@ -75,14 +63,6 @@ public class BodyActivity extends AppCompatActivity {
 
     }
 
-    private void getUser(){
-        app.getUserRepository().getCurrentUser().observe(this, userResource -> {
-            if(userResource.getStatus()== Status.SUCCESS){
-                app.getPreferences().setUserId(userResource.getData().getId());
-            }
-        });
-
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

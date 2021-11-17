@@ -74,16 +74,14 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         binding.rewind.setOnClickListener(view -> startIterations());
 
         app = (App) getApplication();
-        app.getUserRepository().getCurrentUser().observe(this, userResource -> {
-            if(userResource == null || userResource.getData() == null)
+
+        app.getRoutineRepository().getRoutineById(routine.getId()).observe(activity, routineAPIResource -> {
+            if(routineAPIResource == null || routineAPIResource.getData() == null)
                 return;
-            app.getRoutineRepository().getRoutineById(routine.getId()).observe(activity, routineAPIResource -> {
-                if(routineAPIResource == null || routineAPIResource.getData() == null)
-                    return;
-                routineAPI = routineAPIResource.getData();
-                isRoutineRateable = routineAPIResource.getData().getUser().getId().equals(userResource.getData().getId());
+            routineAPI = routineAPIResource.getData();
+            isRoutineRateable = routineAPI.getUser().getId().equals(app.getPreferences().getUserId());
             });
-        });
+
 
 
         TextView textView;
@@ -171,15 +169,18 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
     public void onClick() {
         if ( isRoutineRateable() ) {
-            app.getRoutineRepository().modifyRoutineScore(routineAPI,(int)(rb.getRating()*2));
+            app.getRoutineRepository().modifyRoutineScore(routineAPI,(int)(rb.getRating()*2)).observe(this, routineAPIResource -> {
+                if(routineAPIResource == null || routineAPIResource.getData() == null)
+                    return;
+                popupWindow.dismiss();
+                finish();
+            });
         }
-        popupWindow.dismiss();
-        finish();
+
     }
 
     private boolean isRoutineRateable() {
-        return true;
-        //return isRoutineRateable;
+        return isRoutineRateable;
     }
 
     private void resetAdapter() {

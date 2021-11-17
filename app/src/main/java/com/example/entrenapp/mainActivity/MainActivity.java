@@ -42,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         app = ((App)getApplication());
+        if(app.getPreferences().getAuthToken() != null ){
+            Intent intent = new Intent(this, BodyActivity.class);
+            startActivity(intent);
+        }
+
+
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -54,26 +61,28 @@ public class MainActivity extends AppCompatActivity {
         password = binding.editTextTextPassword;
 
 
-
-
     }
 
     public void login() {
 
         Credentials userData = new Credentials(username.getText().toString(),password.getText().toString());
 
+        app.getUserRepository().logout().observe(this, voidResource -> {
+            Log.e("Logout","Hola");
+            return;
+        });
+
+
         app.getUserRepository().login(userData).observe(this,r->{
 
             if (r.getStatus() == Status.SUCCESS) {
 
                 app.getPreferences().setAuthToken(r.getData().getToken());
-                //app.getPreferences().setUserId(2);
                 Intent intent = new Intent(this, BodyActivity.class);
                 startActivity(intent);
             } else {
                 ((TextView) this.findViewById(R.id.errorLogin)).setVisibility(View.VISIBLE);
-//=======
-//                Snackbar.make(binding.btnLogin, R.string.errorLogin, BaseTransientBottomBar.LENGTH_SHORT).show();
+
             }
 
 

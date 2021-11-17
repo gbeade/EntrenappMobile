@@ -35,7 +35,7 @@ public interface ApiRoutineService {
     @DELETE("favourites/{routineId}")
     LiveData<ApiResponse<Void>> deleteFavourite(@Path("routineId") int routineId);
 
-    @PUT("routine/{routineId}")
+    @PUT("routines/{routineId}")
     LiveData<ApiResponse<RoutineAPI>> modifyRoutine(@Path("routineId") int routineId, @Body RoutineAPI routine);
 
 

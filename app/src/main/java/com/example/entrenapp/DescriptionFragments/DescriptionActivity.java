@@ -65,40 +65,28 @@ public class DescriptionActivity extends AppCompatActivity {
             stackBuilder.addParentStack(BodyActivity.class);
             favourite = false;
             isFavouritable = false;
-//
-//            app.getRoutineRepository().getMyFavouriteRoutines().observe(this, new Observer<Resource<PagedList<RoutineAPI>>>() {
-//                @Override
-//                public void onChanged(Resource<PagedList<RoutineAPI>> pagedListResource) {
-//
-//                }
-//            });
-//            app.getUserRepository().getCurrentUser();
 
             StringTokenizer tokenizer = new StringTokenizer(getIntent().getData().toString(), "=");
-            String auxId;
+            String auxId =tokenizer.nextToken();
             auxId = tokenizer.nextToken();
             id = Integer.parseInt(auxId);
             app.getRoutineRepository().getRoutineById(id).observe(this, routineAPIResource -> {
-                if(routineAPIResource.getData() == null)
+                if(routineAPIResource == null || routineAPIResource.getData() == null)
                     return ;
 
                 RoutineAPI dataStorage = routineAPIResource.getData();
                 routineUserId = dataStorage.getUser().getId();
                 routine = new Routine(dataStorage.getId(), dataStorage.getName(), dataStorage.getMetadata().getSport(), Routine.Difficulty.valueOf(dataStorage.getDifficulty()), dataStorage.getMetadata().getEquipacion(), new Date(dataStorage.getDate()), dataStorage.getScore(), dataStorage.getMetadata().getDuracion(),dataStorage.getMetadata());
-                app.getUserRepository().getCurrentUser().observe(this, userResource -> {
-                    if(userResource.getData() == null)
-                        return ;
 
-                    isFavouritable = !routineUserId.equals(userResource.getData().getId());
-                    app.getRoutineRepository().getMyFavouriteRoutines().observe(activity, pagedListResource -> {
-                        if(pagedListResource.getData() == null)
-                            return;
-                        favourite = pagedListResource.getData().getContent().contains(routine);
-                        fillArguments();
+                isFavouritable = !routineUserId.equals(app.getPreferences().getUserId());
+                app.getRoutineRepository().getMyFavouriteRoutines().observe(activity, pagedListResource -> {
+                    if(pagedListResource.getData() == null)
+                        return;
+                    favourite = pagedListResource.getData().getContent().contains(routine);
+                    fillArguments();
                     });
                 });
 
-            });
         }
 
         View root = binding.getRoot();

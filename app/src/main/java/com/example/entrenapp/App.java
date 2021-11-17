@@ -1,7 +1,12 @@
 package com.example.entrenapp;
 
 import android.app.Application;
+import android.util.Log;
 
+import androidx.lifecycle.Observer;
+
+import com.example.entrenapp.api.model.User;
+import com.example.entrenapp.repository.Resource;
 import com.example.entrenapp.repository.RoutineCycleRepository;
 import com.example.entrenapp.repository.RoutineRepository;
 import com.example.entrenapp.repository.SportRepository;
@@ -33,8 +38,11 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.e("Application ","here");
 
         preferences = new AppPreferences(this);
+        preferences.setUserId(2);
+        preferences.setAuthToken(null);
 
         userRepository = new UserRepository(this);
 
@@ -43,6 +51,13 @@ public class App extends Application {
         routineCycleRepository = new RoutineCycleRepository(this);
 
         routineRepository = new RoutineRepository(this);
+
+        userRepository.getCurrentUser().observeForever(userResource -> {
+            if(userResource == null || userResource.getData()==null)
+                return;
+            preferences.setUserId(userResource.getData().getId());
+        });
+
 
         ContextSingleton.getInstance(getApplicationContext());
 
