@@ -1,9 +1,13 @@
 package com.example.entrenapp.executeRoutineActivity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,6 +22,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -32,7 +37,9 @@ import com.example.entrenapp.api.model.User;
 import com.example.entrenapp.apiClasses.Cycle;
 import com.example.entrenapp.apiClasses.Exercise;
 import com.example.entrenapp.apiClasses.Routine;
+import com.example.entrenapp.bodyActivity.BodyActivity;
 import com.example.entrenapp.databinding.ActivityExecuteRoutineBinding;
+import com.example.entrenapp.databinding.ToolbarMainBinding;
 import com.example.entrenapp.mainActivity.MainActivity;
 import com.example.entrenapp.recyclerView.TimeTickCardAdapter;
 import com.example.entrenapp.repository.Resource;
@@ -106,9 +113,28 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
         findViewById(R.id.commentBox).setVisibility(View.INVISIBLE);
 
+        ToolbarMainBinding binding2 = ToolbarMainBinding.bind(root);
+        setContentView(root);
+
+        binding2.toolbar.inflateMenu(R.menu.menu_main);
+        setSupportActionBar(binding2.toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
         startIterations();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == 16908332) {
+          finish();
+          return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
     public void startIterations() {
         cycleIterator = routine.getCycles().iterator();
         currentCycleIdx = -1;
