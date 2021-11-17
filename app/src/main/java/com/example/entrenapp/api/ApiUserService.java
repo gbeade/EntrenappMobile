@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 
 
 import com.example.entrenapp.api.model.Credentials;
+import com.example.entrenapp.api.model.PagedList;
 import com.example.entrenapp.api.model.Token;
 import com.example.entrenapp.api.model.User;
 
@@ -20,4 +21,7 @@ public interface ApiUserService {
 
     @GET("users/current")
     LiveData<ApiResponse<User>> getCurrentUser();
+
+    @GET("users")
+    LiveData<ApiResponse<PagedList<User>>> getUsers();
 }

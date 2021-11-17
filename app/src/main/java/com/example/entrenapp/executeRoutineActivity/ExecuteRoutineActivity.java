@@ -176,6 +176,10 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
                 finish();
             });
         }
+        else{
+            popupWindow.dismiss();
+            finish();
+        }
 
     }
 

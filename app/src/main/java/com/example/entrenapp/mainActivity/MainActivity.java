@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer;
 import com.example.entrenapp.App;
 import com.example.entrenapp.R;
 import com.example.entrenapp.api.model.Credentials;
+import com.example.entrenapp.api.model.PagedList;
 import com.example.entrenapp.api.model.User;
 import com.example.entrenapp.bodyActivity.BodyActivity;
 import com.example.entrenapp.databinding.ActivityMainBinding;
@@ -53,9 +54,11 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         binding.btnLogin.setOnClickListener(view -> {
             login();
         });
+
 
         username = binding.editTextTextPersonName;
         password = binding.editTextTextPassword;
@@ -63,14 +66,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart(){
+        super.onStart();
+//        app.getUserRepository().logout().observe(this, r->{
+//        });
+    }
+
     public void login() {
+        String auxUsername = binding.editTextTextPersonName.getText().toString();
 
         Credentials userData = new Credentials(username.getText().toString(),password.getText().toString());
-
-        app.getUserRepository().logout().observe(this, voidResource -> {
-            Log.e("Logout","Hola");
-            return;
-        });
 
 
         app.getUserRepository().login(userData).observe(this,r->{
@@ -78,12 +84,25 @@ public class MainActivity extends AppCompatActivity {
             if (r.getStatus() == Status.SUCCESS) {
 
                 app.getPreferences().setAuthToken(r.getData().getToken());
+
+                app.getUserRepository().getUsers().observe(this, result -> {
+                    if(result != null && result.getData() != null) {
+                        for (User user : result.getData().getContent()) {
+                            if (user.getUsername().compareTo(auxUsername) == 0) {
+                                app.getPreferences().setUserId(user.getId());
+                            }
+                        }
+                    }
+                });
+
+
                 Intent intent = new Intent(this, BodyActivity.class);
                 startActivity(intent);
             } else {
                 ((TextView) this.findViewById(R.id.errorLogin)).setVisibility(View.VISIBLE);
 
             }
+
 
 
         });

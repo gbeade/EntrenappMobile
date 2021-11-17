@@ -1,5 +1,7 @@
 package com.example.entrenapp.repository;
 
+import android.graphics.pdf.PdfDocument;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 
@@ -8,6 +10,7 @@ import com.example.entrenapp.api.ApiClient;
 import com.example.entrenapp.api.ApiResponse;
 import com.example.entrenapp.api.ApiUserService;
 import com.example.entrenapp.api.model.Credentials;
+import com.example.entrenapp.api.model.PagedList;
 import com.example.entrenapp.api.model.Token;
 import com.example.entrenapp.api.model.User;
 
@@ -49,6 +52,17 @@ public class UserRepository {
             @Override
             protected LiveData<ApiResponse<User>> createCall() {
                 return apiService.getCurrentUser();
+            }
+        }.asLiveData();
+    }
+
+    public LiveData<Resource<PagedList<User>>> getUsers(){
+        return new NetworkBoundResource<PagedList<User>, PagedList<User>>()
+        {
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<PagedList<User>>> createCall() {
+                return apiService.getUsers();
             }
         }.asLiveData();
     }

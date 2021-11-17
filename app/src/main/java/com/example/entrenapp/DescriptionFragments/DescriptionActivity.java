@@ -67,6 +67,7 @@ public class DescriptionActivity extends AppCompatActivity {
             isFavouritable = false;
 
             StringTokenizer tokenizer = new StringTokenizer(getIntent().getData().toString(), "=");
+
             String auxId =tokenizer.nextToken();
             auxId = tokenizer.nextToken();
             id = Integer.parseInt(auxId);
