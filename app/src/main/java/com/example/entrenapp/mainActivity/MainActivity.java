@@ -52,10 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
         username = binding.editTextTextPersonName;
         password = binding.editTextTextPassword;
-
-
-
-
     }
 
     public void login() {

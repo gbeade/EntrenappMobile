@@ -1,6 +1,7 @@
 package com.example.entrenapp.executeRoutineActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -71,7 +72,6 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         setContentView(root);
         this.routine= getIntent().getParcelableExtra("Routine");
 
-        binding.cancel.setOnClickListener(view -> onCancel());
         binding.play.setOnClickListener(view -> togglePlayPauseExercise());
         binding.pause.setOnClickListener(view -> togglePlayPauseExercise());
         binding.rewind.setOnClickListener(view -> startIterations());
@@ -89,9 +89,11 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         });
 
 
+        Toolbar tb = ((Toolbar)binding.getRoot().findViewById(R.id.toolbar).findViewById(R.id.toolbar));
+        tb.setTitle(routine.getName());
+        binding.getRoot().findViewById(R.id.toolbar).findViewById(R.id.imageView).setVisibility(View.GONE);
+
         TextView textView;
-        textView = root.findViewById(R.id.routine_name);
-        textView.setText(routine.getName());
         rv = binding.cycleRecyclerView;
 
         if (! simplifiedExecution) {
