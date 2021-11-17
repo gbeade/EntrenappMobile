@@ -9,8 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.media.Rating;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -54,7 +57,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     PopupWindow popupWindow;
     boolean isRoutineRateable;
     App app;
-    boolean simplifiedExecution = true;
+    boolean simplifiedExecution = false;
     LifecycleOwner activity = this;
     RoutineAPI routineAPI;
 
@@ -89,16 +92,21 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         TextView textView;
         textView = root.findViewById(R.id.routine_name);
         textView.setText(routine.getName());
+        rv = binding.cycleRecyclerView;
 
         if (! simplifiedExecution) {
             SnapHelper snapHelper = new LinearSnapHelper();
-            snapHelper.attachToRecyclerView(binding.cycleRecyclerView);
+            snapHelper.attachToRecyclerView(rv);
         }
+
+//        rv.setVerticalScrollBarEnabled(simplifiedExecution);
+        rv.setHorizontalScrollBarEnabled(!simplifiedExecution);
+
+
         startIterations();
     }
 
     public void startIterations() {
-        rv = binding.cycleRecyclerView;
         cycleIterator = routine.getCycles().iterator();
         currentCycleIdx = -1;
         nextCycle();
@@ -141,9 +149,8 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     }
 
     RatingBar rb;
-
+    Button popupButton;
     private void showPopup() {
-
 
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
@@ -155,22 +162,33 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         else
             popupView = inflater.inflate(R.layout.popup_finish_routine_norate, null);
 
-        Button btn = popupView.findViewById(R.id.btn_return);
-        btn.setOnClickListener(view->onClick());
+        popupButton = popupView.findViewById(R.id.btn_return);
+        popupButton.setOnClickListener(view->onClick());
 
         // create the popup window
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-         popupWindow = new PopupWindow(popupView, width, height, true);
+        int width = (int)getResources().getDisplayMetrics().density * 450;
+        int height = (int)getResources().getDisplayMetrics().density * 300;
+        popupWindow = new PopupWindow(popupView, width, height, true);
 
         rb = popupView.findViewById(R.id.simpleRatingBar);
+        rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if ( rating > 0) {
+                    popupButton.setText(getString(R.string.leave_popup_with_rating));
+                } else {
+                    popupButton.setText(getString(R.string.leave_popup_without_rating));
+                }
+            }
+        });
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window tolken
         popupWindow.showAtLocation(findViewById(R.id.execRoutineContainer), Gravity.CENTER, 0, 0);
     }
 
+
     public void onClick() {
-        if ( isRoutineRateable() ) {
+        if ( isRoutineRateable() && rb.getRating() > 0 ) {
             app.getRoutineRepository().modifyRoutineScore(routineAPI,(int)(rb.getRating()*2));
         }
         popupWindow.dismiss();

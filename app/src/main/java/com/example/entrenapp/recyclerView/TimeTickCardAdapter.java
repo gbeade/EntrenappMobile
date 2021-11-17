@@ -46,6 +46,13 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
         // Create a new view, which defines the UI of the list item
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(layoutID, viewGroup, false);
+//        if (dataset.size() == 1 && !isSimplified )  {
+//            view.findViewById(r.getIdentifier("arrowright", "id", packageName)).setVisibility(View.INVISIBLE);
+//            view.findViewById(r.getIdentifier("arrowleft", "id", packageName)).setVisibility(View.INVISIBLE);
+//        } else if (!isSimplified) {
+//            view.findViewById(r.getIdentifier("arrowright", "id", packageName)).setVisibility(View.VISIBLE);
+//            view.findViewById(r.getIdentifier("arrowleft", "id", packageName)).setVisibility(View.VISIBLE);
+//        }
         TimeTickViewHolder ttvh = new TimeTickViewHolder(view);
         map.put(ttvh, ttvh);
         return ttvh;
@@ -71,6 +78,11 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
         map.get(viewHolder).setRepetitionsOfTimer(dataset.get(position).getRepetitions());
         map.get(viewHolder).setExerciseName(dataset.get(position).getName());
         super.onBindViewHolder(viewHolder, position);
+        if (position == 0 && !isSimplified) map.get(viewHolder).itemView.findViewById(r.getIdentifier("arrowleft", "id", packageName)).setVisibility(View.INVISIBLE);
+        else if (!isSimplified) map.get(viewHolder).itemView.findViewById(r.getIdentifier("arrowleft", "id", packageName)).setVisibility(View.VISIBLE);
+
+        if (position == dataset.size()-1 && !isSimplified) map.get(viewHolder).itemView.findViewById(r.getIdentifier("arrowright", "id", packageName)).setVisibility(View.INVISIBLE);
+        else if (!isSimplified) map.get(viewHolder).itemView.findViewById(r.getIdentifier("arrowright", "id", packageName)).setVisibility(View.VISIBLE);
         map.get(viewHolder).bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "-");
         positionToVHMap.put(position, map.get(viewHolder));
     }

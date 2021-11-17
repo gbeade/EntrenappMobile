@@ -70,12 +70,12 @@ public class MainActivity extends AppCompatActivity {
                 //app.getPreferences().setUserId(2);
                 Intent intent = new Intent(this, BodyActivity.class);
                 startActivity(intent);
-            } else {
+                return;
+            } else if (r.getStatus() == Status.ERROR) {
                 ((TextView) this.findViewById(R.id.errorLogin)).setVisibility(View.VISIBLE);
-//=======
-//                Snackbar.make(binding.btnLogin, R.string.errorLogin, BaseTransientBottomBar.LENGTH_SHORT).show();
+            } else {
+        //          Snackbar.make(binding.btnLogin, R.string.errorLogin, BaseTransientBottomBar.LENGTH_SHORT).show();
             }
-
 
         });
 

@@ -61,6 +61,13 @@
     <string name="rsg_go">Ya</string>
 
     <string name="current_exec_cycle">Repetición actual del ciclo</string>
+    <string name="filter_success">Filtrado con éxito</string>
+    <string name="leave_popup">Finalizar</string>
+    <string name="leave_popup_without_rating">Finalizar sin puntuar</string>
+    <string name="leave_popup_with_rating">Puntuar y finalizar</string>
+    <string name="rate_routine">Puntúa tu rutina</string>
+
+
 
     <!--ERRORS-->
     <string name="error_login">El nombre de usuario o contraseña es incorrecto.</string>
