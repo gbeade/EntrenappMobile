@@ -75,7 +75,7 @@ public class DescriptionActivity extends AppCompatActivity {
 //            app.getUserRepository().getCurrentUser();
 
             StringTokenizer tokenizer = new StringTokenizer(getIntent().getData().toString(), "=");
-            String auxId;
+            String auxId = tokenizer.nextToken();
             auxId = tokenizer.nextToken();
             id = Integer.parseInt(auxId);
             app.getRoutineRepository().getRoutineById(id).observe(this, routineAPIResource -> {

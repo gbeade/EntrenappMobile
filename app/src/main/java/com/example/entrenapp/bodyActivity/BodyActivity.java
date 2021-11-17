@@ -71,7 +71,7 @@ public class BodyActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.getNavController());
 
 
-//        getUser();
+        //getUser();
 
     }
 

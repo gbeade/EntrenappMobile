@@ -1,6 +1,7 @@
 package com.example.entrenapp;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.example.entrenapp.repository.RoutineCycleRepository;
 import com.example.entrenapp.repository.RoutineRepository;
