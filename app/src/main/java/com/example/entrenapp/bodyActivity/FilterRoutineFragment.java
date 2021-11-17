@@ -220,6 +220,7 @@ public class FilterRoutineFragment extends Fragment {
             }
             show(this.durationButton);
             hide(this.durationButtonWhite);
+            filterContext.setDuration(this.duration);
 
         }
 
@@ -239,6 +240,7 @@ public class FilterRoutineFragment extends Fragment {
             }
             show(this.difficultyButton);
             hide(this.difficultyButtonWhite);
+            filterContext.setDifficulty(this.difficulty);
         }
 
         if(filter.getEquipment()!=null && filter.getEquipment().getValue()!= null&& filter.getEquipment().getValue().booleanValue()){

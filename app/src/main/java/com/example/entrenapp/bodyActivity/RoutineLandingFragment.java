@@ -64,11 +64,14 @@ public class RoutineLandingFragment extends FragmentRoutine {
     @Override
     public void onDetach() {
         super.onDetach();
-        filterViewModel.setDifficulty(null);
-        filterViewModel.setDuration(null);
-        filterViewModel.setEquipment(false);
-        filterViewModel.setSport(null);
+        if(filterViewModel != null) {
+            filterViewModel.setDifficulty(null);
+            filterViewModel.setDuration(null);
+            filterViewModel.setEquipment(false);
+            filterViewModel.setSport(null);
+        }
     }
+
 
 
     @Override
