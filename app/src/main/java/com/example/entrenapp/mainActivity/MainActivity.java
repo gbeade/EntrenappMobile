@@ -1,12 +1,16 @@
 package com.example.entrenapp.mainActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 
 import com.example.entrenapp.App;
 import com.example.entrenapp.api.model.Credentials;
+import com.example.entrenapp.api.model.User;
 import com.example.entrenapp.bodyActivity.BodyActivity;
 import com.example.entrenapp.databinding.ActivityMainBinding;
 import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
+import com.example.entrenapp.repository.Resource;
 import com.example.entrenapp.repository.Status;
 
 
@@ -30,10 +34,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         app = ((App)getApplication());
-        if(app.getPreferences().getAuthToken() != null){
-            Intent intent = new Intent(this, BodyActivity.class);
-            startActivity(intent);
-        }
+//        if(app.getPreferences().getAuthToken() != null){
+//            Intent intent = new Intent(this, BodyActivity.class);
+//            startActivity(intent);
+//        }
 
 
 
@@ -58,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
         app.getUserRepository().login(userData).observe(this,r->{
 
             if (r.getStatus() == Status.SUCCESS) {
+
                 app.getPreferences().setAuthToken(r.getData().getToken());
+                //app.getPreferences().setUserId(2);
                 Intent intent = new Intent(this, BodyActivity.class);
                 startActivity(intent);
 

@@ -1,6 +1,7 @@
 package com.example.entrenapp.bodyActivity;
 
 import android.app.Application;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -52,6 +53,7 @@ public class RoutineLandingViewModel extends AndroidViewModel {
                 if(pagedListResource.getData() != null && pagedListResource.getData().getContent().size() > 0){
                     for(RoutineAPI routine : pagedListResource.getData().getContent()){
                         if(! UserId.equals(routine.getUser().getId()) ){
+                            Log.d("Id",String.valueOf(UserId));
                             List<Routine> routineList = new ArrayList<>(OtherRoutines.getValue());
                             Routine routine1 = new Routine(routine.getId(), routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion(),routine.getMetadata());
                             routineList.add(routine1);

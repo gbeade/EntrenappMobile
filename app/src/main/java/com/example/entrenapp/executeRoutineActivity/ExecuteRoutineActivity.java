@@ -1,11 +1,14 @@
 package com.example.entrenapp.executeRoutineActivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,14 +21,17 @@ import android.widget.PopupWindow;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.entrenapp.App;
 import com.example.entrenapp.R;
 import com.example.entrenapp.api.model.RoutineAPI;
+import com.example.entrenapp.api.model.User;
 import com.example.entrenapp.apiClasses.Cycle;
 import com.example.entrenapp.apiClasses.Exercise;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.ActivityExecuteRoutineBinding;
 import com.example.entrenapp.mainActivity.MainActivity;
 import com.example.entrenapp.recyclerView.TimeTickCardAdapter;
+import com.example.entrenapp.repository.Resource;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -46,8 +52,11 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     int currentExerciseOfCycleIdx = 0;
     int currentRepetitionOfExercise = 0;
     PopupWindow popupWindow;
-
+    boolean isRoutineRateable;
+    App app;
     boolean simplifiedExecution = true;
+    LifecycleOwner activity = this;
+    RoutineAPI routineAPI;
 
 
     @Override
@@ -58,22 +67,23 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         root = binding.getRoot();
         setContentView(root);
         this.routine= getIntent().getParcelableExtra("Routine");
-        Log.d("Routine",this.routine.toString());
-        Log.d("cycle", Arrays.toString(this.routine.getCycles().toArray()));
-
-//        for( Cycle c :this.routine.getCycles()){
-//            Log.d("Exercise ", Arrays.toString(c.getExercises().toArray()));
-//        }
-
-
-
-
-//        fillRoutine();
 
         binding.cancel.setOnClickListener(view -> onCancel());
         binding.play.setOnClickListener(view -> togglePlayPauseExercise());
         binding.pause.setOnClickListener(view -> togglePlayPauseExercise());
         binding.rewind.setOnClickListener(view -> startIterations());
+
+        app = (App) getApplication();
+        app.getUserRepository().getCurrentUser().observe(this, userResource -> {
+            if(userResource == null || userResource.getData() == null)
+                return;
+            app.getRoutineRepository().getRoutineById(routine.getId()).observe(activity, routineAPIResource -> {
+                if(routineAPIResource == null || routineAPIResource.getData() == null)
+                    return;
+                routineAPI = routineAPIResource.getData();
+                isRoutineRateable = routineAPIResource.getData().getUser().getId().equals(userResource.getData().getId());
+            });
+        });
 
 
         TextView textView;
@@ -118,6 +128,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
                 //Se termino la rutina, cambiar por el intent a la pagina de favoritos
                 adapter.pauseCurrentExercise();
                 showPopup();
+
                 return;
             }
         }
@@ -126,7 +137,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         textView.setText("Repeticiones de este ciclo completas: "+currentCycleIdx+" de "+currentCycle.getRepetitions());
         adapter.cleanTicks();
         binding.cycleRecyclerView.smoothScrollToPosition(0);
-        //adapter.startCounterOnPosition(0); // TODO po
+        //adapter.startCounterOnPosition(0);
     }
 
     RatingBar rb;
@@ -160,15 +171,14 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
     public void onClick() {
         if ( isRoutineRateable() ) {
-            Log.i("NUMSTARS", ""+rb.getRating());
-            // rateRoutine(rb.getRating()); Llamado a la API
+            app.getRoutineRepository().modifyRoutineScore(routineAPI,(int)(rb.getRating()*2));
         }
         popupWindow.dismiss();
         finish();
     }
 
     private boolean isRoutineRateable() {
-        return true;
+        return isRoutineRateable;
     }
 
     private void resetAdapter() {
@@ -200,20 +210,6 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
             adapter.startCounterOnPosition(currentExerciseOfCycleIdx);
         }
     }
-
-//    private void fillRoutine(){
-//        Cycle c = new Cycle(0, "Ciclo de entrada en calor", "Para entrar en calor", "warmup", 0, 2, 0);
-//        c.addExercise(new Exercise(0, "Abdominales ligeros", "Tipo", 1, 3));
-//        c.addExercise(new Exercise(1, "Superman", "Tipo", 0, 10));
-//        c.addExercise(new Exercise(1, "Respiros profundos", "Tipo", 1, 1));
-//        routine.addCycle(c);
-//
-//        c = new Cycle(0, "Ciclo atletico intenso", "Para entrenar fuerte", "warmup", 0, 1, 0);
-//        c.addExercise(new Exercise(0, "Pique veloz", "Tipo", 3, 2));
-//        c.addExercise(new Exercise(1, "Salto en soga", "Tipo", 0, 10));
-//        c.addExercise(new Exercise(2, "Burpees", "Tipo", 2));
-//        routine.addCycle(c);
-//    }
 
 
     boolean init = false;

@@ -95,7 +95,6 @@ public class FragmentRoutineDescription extends Fragment {
     private void train(){
         Intent intent = new Intent(getActivity(), ExecuteRoutineActivity.class);
         intent.putExtra("Routine", this.routine);
-        Log.d("Cycles en desc", Arrays.toString(routine.getCycles().toArray()));
         startActivity(intent);
     }
 
@@ -115,6 +114,5 @@ public class FragmentRoutineDescription extends Fragment {
         RecyclerView.Adapter adapter = new CycleAdapter(routine.getCycles(), getActivity());
         binding.routineDescriptionCyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         binding.routineDescriptionCyclerView.setAdapter(adapter);
-        Log.d("Cycles en desc", Arrays.toString(routine.getCycles().toArray()));
     }
 }

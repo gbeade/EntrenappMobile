@@ -3,6 +3,7 @@ package com.example.entrenapp.bodyActivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,8 +23,10 @@ import android.view.View;
 import com.example.entrenapp.App;
 import com.example.entrenapp.BaseMenuActivity;
 import com.example.entrenapp.R;
+import com.example.entrenapp.api.model.User;
 import com.example.entrenapp.databinding.ActivityBodyBinding;
 import com.example.entrenapp.databinding.ToolbarMainBinding;
+import com.example.entrenapp.repository.Resource;
 import com.example.entrenapp.repository.Status;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -34,6 +38,20 @@ public class BodyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        app = (App) getApplication();
+
+        app.getUserRepository().getCurrentUser().observe(this, new Observer<Resource<User>>() {
+            @Override
+            public void onChanged(Resource<User> userResource) {
+                if (userResource == null || userResource.getData() == null)
+                    return;
+                app.getPreferences().setUserId(userResource.getData().getId());
+
+            }
+        });
+
+
+
         ActivityBodyBinding binding = ActivityBodyBinding.inflate(getLayoutInflater());
         View root = binding.getRoot();
 
@@ -51,8 +69,8 @@ public class BodyActivity extends AppCompatActivity {
         NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.getNavController());
 
-        app = (App) getApplication();
-        getUser();
+
+//        getUser();
 
     }
 
