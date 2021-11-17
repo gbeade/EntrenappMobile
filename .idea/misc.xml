@@ -76,6 +76,8 @@
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/menu/menu_main.xml" value="0.1" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.13055555555555556" />
+        <entry key="app/src/main/res/layout-sw600dp/activity_main.xml" value="0.266796875" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.35572916666666665" />
       </map>
     </option>
   </component>

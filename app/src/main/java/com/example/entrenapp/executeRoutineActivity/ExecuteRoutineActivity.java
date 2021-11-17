@@ -54,7 +54,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     PopupWindow popupWindow;
     boolean isRoutineRateable;
     App app;
-    boolean simplifiedExecution = false;
+    boolean simplifiedExecution = true;
     LifecycleOwner activity = this;
     RoutineAPI routineAPI;
 
@@ -178,7 +178,8 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     }
 
     private boolean isRoutineRateable() {
-        return isRoutineRateable;
+        return true;
+        //return isRoutineRateable;
     }
 
     private void resetAdapter() {

@@ -13,6 +13,8 @@ import com.example.entrenapp.databinding.ActivityMainBinding;
 import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
 import com.example.entrenapp.repository.Resource;
 import com.example.entrenapp.repository.Status;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 
 import android.content.Context;
@@ -40,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         app = ((App)getApplication());
-
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -71,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             } else {
                 ((TextView) this.findViewById(R.id.errorLogin)).setVisibility(View.VISIBLE);
+//=======
+//                Snackbar.make(binding.btnLogin, R.string.errorLogin, BaseTransientBottomBar.LENGTH_SHORT).show();
             }
 
 
