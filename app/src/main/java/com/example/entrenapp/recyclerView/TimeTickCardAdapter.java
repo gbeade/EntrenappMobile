@@ -171,12 +171,12 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
             this.duration = duration;
         }
         public void setRepetitionsOfTimer(int repetitions) {
-            this.repetitions = repetitions;
+            this.repetitions = ( repetitions < 1 ? 1 : repetitions );
         }
         public void setExerciseName(String name) {this.name = name;}
         public String getExerciseName() {return this.name;}
         public void bindName() {
-            if (repetitions == 1 || duration == 0) return;
+            if (repetitions <= 1 || duration == 0) return;
             bindTextViewWithData(r.getIdentifier("title", "id", packageName), name+" ("+(currentRepetition+1)+"/"+repetitions+")");
         }
 

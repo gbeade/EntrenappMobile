@@ -134,7 +134,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         }
 
         textView = root.findViewById(R.id.cycle_remaining);
-        textView.setText("Repeticiones de este ciclo completas: "+currentCycleIdx+" de "+currentCycle.getRepetitions());
+        textView.setText(getString(R.string.current_exec_cycle)+": "+currentCycleIdx+" / "+currentCycle.getRepetitions());
         adapter.cleanTicks();
         binding.cycleRecyclerView.smoothScrollToPosition(0);
         //adapter.startCounterOnPosition(0);

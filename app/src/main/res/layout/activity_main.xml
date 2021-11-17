@@ -31,8 +31,8 @@
         style="@style/roundedYellowButton"
         android:layout_width="317dp"
         android:layout_height="65dp"
-        android:text="@string/login_message"
         android:drawableLeft="@drawable/ic_baseline_login_24"
+        android:text="@string/login_message"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +71,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/errorLogin"
+        android:layout_width="331dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/error_login"
+        android:textAlignment="center"
+        android:textColor="@color/red"
+        android:textSize="18dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"></TextView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

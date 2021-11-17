@@ -45,4 +45,14 @@
     <string name="ninguno">None</string>
     <string name="filter">Filter</string>
     <string name="select_sport">Select an associated sport:</string>
+
+    <string name="rsg_ready">Ready</string>
+    <string name="rsg_set">Set</string>
+    <string name="rsg_go">Go</string>
+
+    <string name="current_exec_cycle">Current repetition of cycle</string>
+
+    <!--ERRORS-->
+    <string name="error_login">Incorrect username or password.</string>
+
 </resources>

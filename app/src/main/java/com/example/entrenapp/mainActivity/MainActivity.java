@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 
 import com.example.entrenapp.App;
+import com.example.entrenapp.R;
 import com.example.entrenapp.api.model.Credentials;
 import com.example.entrenapp.api.model.User;
 import com.example.entrenapp.bodyActivity.BodyActivity;
@@ -14,10 +15,15 @@ import com.example.entrenapp.repository.Resource;
 import com.example.entrenapp.repository.Status;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,11 +40,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         app = ((App)getApplication());
-//        if(app.getPreferences().getAuthToken() != null){
-//            Intent intent = new Intent(this, BodyActivity.class);
-//            startActivity(intent);
-//        }
-
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -52,10 +53,11 @@ public class MainActivity extends AppCompatActivity {
         password = binding.editTextTextPassword;
 
 
+
+
     }
 
     public void login() {
-
 
         Credentials userData = new Credentials(username.getText().toString(),password.getText().toString());
 
@@ -67,10 +69,8 @@ public class MainActivity extends AppCompatActivity {
                 //app.getPreferences().setUserId(2);
                 Intent intent = new Intent(this, BodyActivity.class);
                 startActivity(intent);
-
             } else {
-                Log.d("Error","Usuario incorrect");
-
+                ((TextView) this.findViewById(R.id.errorLogin)).setVisibility(View.VISIBLE);
             }
 
 
@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
 
 
