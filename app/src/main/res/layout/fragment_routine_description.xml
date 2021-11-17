@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/routineDescriptionCyclerView" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/removeFavourite"
         android:layout_width="57dp"
         android:layout_height="45dp"
@@ -69,9 +69,9 @@
         app:layout_constraintStart_toEndOf="@+id/routineTitle"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.115"
-        app:srcCompat="@drawable/ic_baseline_bookmark_24" />
+        android:src="@drawable/ic_baseline_bookmark_24" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/addFavourite"
         android:layout_width="57dp"
         android:layout_height="46dp"
