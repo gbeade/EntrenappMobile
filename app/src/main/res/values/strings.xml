@@ -119,6 +119,12 @@
 
 
 
+    <string name="sure_proceed">¿Estás seguro de que deseas proceder?</string>
+    <string name="action_will">Esta acción</string>
+    <string name="restart_routine">reiniciará la rutina.</string>
+    <string name="exit_routine">abandonará la rutina.</string>
+
+
 
 
 
