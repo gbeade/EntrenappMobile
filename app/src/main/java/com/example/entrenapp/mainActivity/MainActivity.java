@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         app.getUserRepository().login(userData).observe(this,r->{
 
             if (r.getStatus() == Status.SUCCESS) {
-
                 app.getPreferences().setAuthToken(r.getData().getToken());
                 //app.getPreferences().setUserId(2);
                 Intent intent = new Intent(this, BodyActivity.class);
@@ -88,10 +87,12 @@ public class MainActivity extends AppCompatActivity {
                 View snackBarView = snackbar.getView();
                 snackBarView.setBackgroundColor(Color.RED);
                 snackbar.show();
+                return;
             }else if (r.getStatus() != Status.LOADING){
                 Snackbar snackbar = Snackbar.make(binding.btnLogin, R.string.unknown, BaseTransientBottomBar.LENGTH_SHORT);
                 View snackBarView = snackbar.getView();
                 snackbar.show();
+                return;
             }
 
         });
