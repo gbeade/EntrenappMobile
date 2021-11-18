@@ -78,5 +78,11 @@
     <string name="noRoutineAvailable">No hay rutinas para mostrar.</string>
     <string name="unknown">Error desconocido</string>
 
+    <string name="rookieDifficulty">Principiante</string>
+    <string name="intermediateDifficulty">Intermedio</string>
+    <string name="advancedDifficulty">Avanzado</string>
+
+
+
 
 </resources>

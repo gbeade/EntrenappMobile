@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.entrenapp.ContextSingleton;
@@ -85,16 +86,22 @@ public class Routine implements Cardable,Parcelable {
     }
 
     public enum Difficulty {
-        rookie("rookie"),
-        beginner("beginner"),
-        intermediate("intermediate"),
-        advanced("advanced"),
-        expert("expert");
+        rookie("rookie", ContextSingleton.getContext().getString(R.string.rookieDifficulty)),
+        intermediate("intermediate", ContextSingleton.getContext().getString(R.string.intermediateDifficulty)),
+        expert("expert", ContextSingleton.getContext().getString(R.string.advancedDifficulty));
 
         public final String label;
-
-        Difficulty(String label) {
+        private final String name;
+        Difficulty(String label, String name) {
             this.label = label;
+            this.name = name;
+        }
+
+
+        @NonNull
+        @Override
+        public String toString() {
+            return name;
         }
     }
 

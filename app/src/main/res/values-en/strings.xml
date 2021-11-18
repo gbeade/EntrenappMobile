@@ -74,4 +74,8 @@
     <string name="errorLogin">The username or the password is incorrect</string>
     <string name="noRoutineAvailable">There are no routines to show.</string>
     <string name="unknown">Unknown error</string>
+
+    <string name="rookieDifficulty">Rookie</string>
+    <string name="intermediateDifficulty">Intermediate</string>
+    <string name="advancedDifficulty">Advanced</string>
 </resources>
