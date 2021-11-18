@@ -1,5 +1,6 @@
 package com.example.entrenapp.bodyActivity;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -55,6 +56,7 @@ public class MyFavouriteRoutine extends FragmentRoutine {
         filterViewModel.getDifficulty().observe(getViewLifecycleOwner(), difficulty -> initializeFilteredRoutine());
         filterViewModel.getEquipment().observe(getViewLifecycleOwner(), aBoolean -> initializeFilteredRoutine());
         filterViewModel.getSport().observe(getViewLifecycleOwner(), s -> initializeFilteredRoutine());
+
         return binding.getRoot();
     }
 
@@ -68,13 +70,14 @@ public class MyFavouriteRoutine extends FragmentRoutine {
 
     @Override
     public void updateRecyclerView() {
+        if( dataset.size() == 0 || datasetFiltered.size() == 0 ){
+            getActivity().findViewById(R.id.noRoutine1).setVisibility(View.VISIBLE);
+            return;
+        }
+        getActivity().findViewById(R.id.noRoutine1).setVisibility(View.GONE);
         binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         RecyclerView.Adapter adapter1;
         adapter1 = new CardAdapter(datasetFiltered, R.layout.extense_square_card, getActivity(),onNoteListener);
-        if(datasetFiltered.size() == 0 ){
-            Log.e("No hay","Resultados");
-        }
-
         binding.routineRecyclerView.setAdapter(adapter1);
     }
 

@@ -44,7 +44,6 @@ public class MyRoutinesFragment extends FragmentRoutine {
         updateRecyclerView();
     }
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -54,6 +53,8 @@ public class MyRoutinesFragment extends FragmentRoutine {
         filterViewModel = new ViewModelProvider(getActivity()).get(FilterViewModel.class);
         filterViewModel.getName().observe(getViewLifecycleOwner(), s -> initializeFilteredRoutine());
         binding = FragmentMyRoutinesBinding.inflate(inflater, container, false);
+
+
         return binding.getRoot();
     }
 
@@ -69,12 +70,15 @@ public class MyRoutinesFragment extends FragmentRoutine {
 
     @Override
     public void updateRecyclerView() {
+        // super.updateRecyclerView();
+        if( dataset.size() == 0 || datasetFiltered.size() == 0 ){
+            getActivity().findViewById(R.id.noRoutine2).setVisibility(View.VISIBLE);
+            return;
+        }
+        getActivity().findViewById(R.id.noRoutine2).setVisibility(View.GONE);
         binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         RecyclerView.Adapter adapter1;
         adapter1 = new CardAdapter(datasetFiltered, R.layout.extense_square_card, getActivity(),onNoteListener);
-        if(datasetFiltered.size() == 0 ){
-            Log.e("No hay","Resultados");
-        }
         binding.routineRecyclerView.setAdapter(adapter1);
     }
 

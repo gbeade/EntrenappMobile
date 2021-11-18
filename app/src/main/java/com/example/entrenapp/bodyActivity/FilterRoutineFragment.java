@@ -234,6 +234,8 @@ public class FilterRoutineFragment extends Fragment {
         popupWindow.showAtLocation(getActivity().findViewById(R.id.bodyContainer), Gravity.CENTER, 0, 0);
     }
     private void checkoutFilter() {
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
         popupWindow.dismiss();
         filter.setDuration(duration);
         filter.setDifficulty(difficulty);

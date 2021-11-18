@@ -226,8 +226,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     }
 
     private boolean isRoutineRateable() {
-        return true;
-        //return isRoutineRateable;
+        return isRoutineRateable;
     }
 
     private void resetAdapter() {

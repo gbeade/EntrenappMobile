@@ -154,8 +154,6 @@ public class BodyActivity extends AppCompatActivity {
         }else{
             return super.onOptionsItemSelected(item);
         }
-
-
     }
 
 }
