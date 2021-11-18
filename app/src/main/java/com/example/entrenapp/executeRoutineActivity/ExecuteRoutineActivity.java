@@ -44,6 +44,7 @@ import com.example.entrenapp.databinding.ToolbarMainBinding;
 import com.example.entrenapp.mainActivity.MainActivity;
 import com.example.entrenapp.recyclerView.TimeTickCardAdapter;
 import com.example.entrenapp.repository.Resource;
+import com.example.entrenapp.repository.UserSession;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -222,11 +223,13 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
             app.getRoutineRepository().modifyRoutineScore(routineAPI,(int)(rb.getRating()*2)).observe(this, routineAPIResource -> {
                 if(routineAPIResource == null || routineAPIResource.getData() == null)
                     return;
+                UserSession.setLastExecutedRoutine(routine);
                 popupWindow.dismiss();
                 finish();
             });
         }
         else{
+            UserSession.setLastExecutedRoutine(routine);
             popupWindow.dismiss();
             finish();
         }

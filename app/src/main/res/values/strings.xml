@@ -113,6 +113,11 @@
 
     <string name="congrats">¡Has completado la rutina! ¡Bravo!</string>
 
+    <string name="if_liked_msg">Si te gustó</string>
+    <string name="youll_love_msg">entonces te encantará</string>
+    <string name="no_thanks">No gracias</string>
+
+
 
 
 
