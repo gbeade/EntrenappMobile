@@ -1,6 +1,7 @@
 package com.example.entrenapp.bodyActivity;
 
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -24,6 +26,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 
+import com.example.entrenapp.DescriptionFragments.DescriptionActivity;
 import com.example.entrenapp.R;
 import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.recyclerView.Cardable;
@@ -43,12 +46,12 @@ public class RoutineLandingFragment extends FragmentRoutine {
     private List<Routine> favouriteRoutines = new ArrayList<>();
 
     private Routine getNextBestRoutine(Routine routine) {
-        for (Routine r: favouriteRoutines) {
+        for (Routine r: dataset) {
             if ( r.getCategory().equals(routine.getCategory())) {
                 return r;
             }
         }
-        for (Routine r: favouriteRoutines) {
+        for (Routine r: dataset) {
             if ( r.getDifficulty().equals(routine.getDifficulty())) {
                 return r;
             }
@@ -91,13 +94,26 @@ public class RoutineLandingFragment extends FragmentRoutine {
         ((TextView)(card.findViewById(R.id.subtitle2_header))).setText(getString(R.string.category));
         ((TextView)(card.findViewById(R.id.subtitle2))).setText(nextBest.getCategory());
 
-        card.setOnClickListener( v->Log.i("MESSG", "TAKE ME TO THE ROUTINE"));
+        card.setOnClickListener( v-> runRoutine(UserSession.getLastExecutedRoutine()));
 
-        popupView.findViewById(R.id.btn_return).setOnClickListener((v)->popupWindow.dismiss());
+        popupView.findViewById(R.id.btn_return).setOnClickListener((v)-> {
+            popupWindow.dismiss();
+            UserSession.setLastExecutedRoutine(null);
+            });
 
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window tolken
         popupWindow.showAtLocation(getActivity().findViewById(R.id.bodyContainer), Gravity.CENTER, 0, 0);
+    }
+
+    private void runRoutine(Routine r) {
+        if ( r == null ) return;
+        Intent intent = new Intent(getActivity(), DescriptionActivity.class);
+        intent.putExtra("Routine",  (Parcelable) r);
+        intent.putExtra("Favourite", false);
+        intent.putExtra("IsFavouritable", true);
+        UserSession.setLastExecutedRoutine(null);
+        startActivity(intent);
     }
 
     @Nullable
@@ -153,10 +169,6 @@ public class RoutineLandingFragment extends FragmentRoutine {
                responseViewModel(routine.stream().filter(routine1 -> !favouriteRoutines.contains(routine1)).collect(Collectors.toList()));
         });
 
-        if (UserSession.getLastExecutedRoutine() != null) {
-            showPopup();
-            UserSession.setLastExecutedRoutine(null);
-        }
     }
 
 
@@ -177,4 +189,11 @@ public class RoutineLandingFragment extends FragmentRoutine {
         binding.recommendedRoutinesRecyclerView.setAdapter(adapter1);
     }
 
+    @Override
+    protected void responseViewModel(List<Routine> routine) {
+        super.responseViewModel(routine);
+        if (UserSession.getLastExecutedRoutine() != null) {
+            showPopup();
+        }
+    }
 }

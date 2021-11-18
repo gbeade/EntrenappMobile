@@ -123,12 +123,7 @@
     <string name="action_will">Esta acción</string>
     <string name="restart_routine">reiniciará la rutina.</string>
     <string name="exit_routine">abandonará la rutina.</string>
-
-
-
-
-
-
+    <string name="cancel">Cancelar</string>
 
 
 </resources>

@@ -117,9 +117,9 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
                             act.nextExercise(getAdapterPosition());
                         }
                         return;
-                    } else if (time > duration + 1) {
+                    } else if (time > duration ) {
                            bindTextViewWithData(r.getIdentifier("timer", "id", packageName), "✓");
-                            if ( time > duration ) {
+                            if ( time > duration + 1) {
                                 if (currentRepetition >= repetitions-1) {
                                     cancel();
                                     act.nextExercise(getAdapterPosition());
