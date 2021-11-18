@@ -10,8 +10,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/routineDescriptionCyclerView"
-        android:layout_width="698dp"
-        android:layout_height="238dp"
+        android:layout_width="708dp"
+        android:layout_height="197dp"
         android:scrollbars="vertical"
 
 
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="Texto2"
         android:textColor="@color/white"
         android:textSize="30sp"
@@ -47,9 +47,7 @@
         style="@style/roundedYellowButton"
         android:layout_width="317dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="25dp"
         android:text="@string/train"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/routineDescriptionCyclerView" />

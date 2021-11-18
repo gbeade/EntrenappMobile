@@ -10,7 +10,6 @@
         android:id="@+id/cycle_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="TextView"
         android:textColor="@color/accent"
         android:textSize="30sp"
