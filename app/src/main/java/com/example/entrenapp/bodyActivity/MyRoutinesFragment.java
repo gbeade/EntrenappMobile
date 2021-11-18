@@ -94,6 +94,7 @@ public class MyRoutinesFragment extends FragmentRoutine {
         filter.setVisible(false);
         MenuItem search = menu.findItem(R.id.action_search);
         search.setVisible(true);
+
     }
 
 

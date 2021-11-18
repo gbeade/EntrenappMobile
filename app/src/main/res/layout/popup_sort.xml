@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="400dp"
+    android:layout_height="400dp"
+    android:background="@drawable/rounded_border_rectangle"
+    >
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:text="@string/sort_by"
+        android:textAlignment="center"
+        android:textColor="@color/accent"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_name"
+        style="@style/roundedWhiteButton"
+        android:layout_width="150dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/btn_duration"
+        style="@style/roundedWhiteButton"
+        android:layout_width="150dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/duraci_n"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_name" />
+
+    <Button
+        android:id="@+id/btn_difficulty"
+        style="@style/roundedWhiteButton"
+        android:layout_width="150dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/difficulty"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_duration" />
+
+    <Button
+        android:id="@+id/btn_none"
+        style="@style/roundedWhiteButton"
+        android:layout_width="150dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="13dp"
+        android:text="@string/no_sort"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_difficulty" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

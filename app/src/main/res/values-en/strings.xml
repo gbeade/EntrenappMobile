@@ -101,6 +101,14 @@
 
 
 
+    <string name="action_sort">Sort</string>
+    <string name="sort_by">Sort by:</string>
+    <string name="no_sort">None</string>
+
+    <string name="sort_ok">Sorted successfully</string>
+
+
+
 
 
 

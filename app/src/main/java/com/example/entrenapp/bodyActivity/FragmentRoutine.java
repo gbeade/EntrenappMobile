@@ -23,12 +23,13 @@ import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.recyclerView.Cardable;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public abstract class FragmentRoutine extends Fragment implements CardAdapter.ViewHolder.OnNoteListener{
-    protected ArrayList<Cardable> dataset = new ArrayList<>();
+    protected ArrayList<Routine> dataset = new ArrayList<>();
     protected App app ;
     protected CardAdapter.ViewHolder.OnNoteListener onNoteListener;
     protected boolean favourite = false;
@@ -40,7 +41,6 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.dataset = new ArrayList<>();
-
         setHasOptionsMenu(true);
     }
 
@@ -77,6 +77,7 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         onNoteListener = this;
+        // ((BodyActivity) getActivity()).clearComparator();
         this.datasetFiltered = new ArrayList<>();
         requireActivity().invalidateOptionsMenu();
         // initializeFilteredRoutine();
@@ -92,6 +93,7 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
                 dataset.add(r);
         }
 
+        dataset.sort(((BodyActivity) getActivity()).getComparator());
         initializeFilteredRoutine();
         updateRecyclerView();
     }
@@ -122,6 +124,7 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
             datasetFiltered = datasetFiltered.stream().filter(routine -> routine.getMetadata().getSport().equals(filterViewModel.getSport().getValue())).collect(Collectors.toList());
         }
 
+        datasetFiltered.sort(((BodyActivity)getActivity()).getComparator());
         updateRecyclerView();
     }
 
@@ -131,6 +134,8 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
         MenuItem search = menu.findItem(R.id.action_search);
         search.setVisible(false);
+        MenuItem sort = menu.findItem(R.id.action_sort);
+        sort.setVisible(true);
     }
 
 

@@ -103,6 +103,17 @@
 
     <string name="cycle_completed">Ciclo completado</string>
 
+    <string name="action_sort">Ordenar</string>
+
+    <string name="sort_by">Ordenar por:</string>
+    <string name="no_sort">No ordenar</string>
+
+    <string name="sort_ok">Ordenado con éxito</string>
+
+
+
+
+
 
 
 </resources>

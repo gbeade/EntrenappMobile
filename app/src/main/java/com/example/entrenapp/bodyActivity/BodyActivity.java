@@ -17,9 +17,15 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.PopupWindow;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 
@@ -27,6 +33,7 @@ import com.example.entrenapp.App;
 import com.example.entrenapp.BaseMenuActivity;
 import com.example.entrenapp.R;
 import com.example.entrenapp.api.model.User;
+import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.ActivityBodyBinding;
 import com.example.entrenapp.databinding.ToolbarMainBinding;
 import com.example.entrenapp.repository.Resource;
@@ -34,10 +41,22 @@ import com.example.entrenapp.repository.Status;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Comparator;
+
 public class BodyActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private App app;
     private FilterViewModel filter;
+
+    private Comparator<Routine> comparator;
+
+    private static MenuItem id;
+    public Comparator<Routine> getComparator() {
+        return ( comparator == null ? Comparator.comparing(Routine::getName): comparator);
+    }
+    public void clearComparator() {
+        comparator = Comparator.comparing(Routine::getName).reversed();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +127,7 @@ public class BodyActivity extends AppCompatActivity {
         shareItem.setVisible(false);
         MenuItem settingsItem = menu.findItem(R.id.action_settings);
         settingsItem.setVisible(false);
+
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -135,10 +155,43 @@ public class BodyActivity extends AppCompatActivity {
                 finish();
             }
             return true;
-        }else{
+        }else if (item.getItemId() == R.id.action_sort) {
+            sortPopup();
+            return true;
+        } else {
             return super.onOptionsItemSelected(item);
         }
     }
 
+    PopupWindow popupWindow;
+    public void sortPopup() {
+
+        View popupView;
+        LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        popupView = inflater.inflate(R.layout.popup_sort, null);
+        int width = (int)getResources().getDisplayMetrics().density * 300;
+        int height = (int)getResources().getDisplayMetrics().density * 550;
+        popupWindow = new PopupWindow(popupView, width, height, true);
+        popupWindow.showAtLocation(findViewById(R.id.bodyContainer), Gravity.CENTER, 0, 0);
+
+        Button btn_difficulty = popupView.findViewById(R.id.btn_difficulty);
+        btn_difficulty.setOnClickListener( v->setComparatorAndClosePopup(Comparator.comparing(Routine::getDifficulty)));
+
+        Button btn_name = popupView.findViewById(R.id.btn_name);
+        btn_name.setOnClickListener( v->setComparatorAndClosePopup(Comparator.comparing(Routine::getName)));
+
+        Button btn_duration = popupView.findViewById(R.id.btn_duration);
+        btn_duration.setOnClickListener( v->setComparatorAndClosePopup(Comparator.comparing(Routine::getDuration)));
+
+        Button btn_none = popupView.findViewById(R.id.btn_none);
+        btn_none.setOnClickListener( v->setComparatorAndClosePopup(Comparator.comparing(Routine::getName).reversed()));
+    }
+
+    private void setComparatorAndClosePopup(Comparator<Routine> c) {
+        comparator = c;
+        bottomNavigationView.setSelectedItemId(bottomNavigationView.getMenu().findItem(bottomNavigationView.getSelectedItemId()).getItemId());
+        popupWindow.dismiss();
+        Toast.makeText(this, getString(R.string.sort_ok), Toast.LENGTH_SHORT).show();
+    }
 
 }
