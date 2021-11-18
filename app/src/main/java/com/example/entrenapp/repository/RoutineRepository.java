@@ -8,6 +8,8 @@ import com.example.entrenapp.api.ApiResponse;
 import com.example.entrenapp.api.ApiRoutineService;
 import com.example.entrenapp.api.ApiClient;
 import com.example.entrenapp.api.model.PagedList;
+import com.example.entrenapp.api.model.Review;
+import com.example.entrenapp.api.model.ReviewAnswer;
 import com.example.entrenapp.api.model.RoutineAPI;
 import com.example.entrenapp.api.model.RoutineCycle;
 
@@ -73,13 +75,12 @@ public class RoutineRepository {
         }.asLiveData();
     }
 
-    public LiveData<Resource<RoutineAPI>> modifyRoutineScore(RoutineAPI routine, int newScore) {
-        return new NetworkBoundResource<RoutineAPI, RoutineAPI>() {
+    public LiveData<Resource<Void>> addReview(RoutineAPI routine, int newScore) {
+        return new NetworkBoundResource<Void, Void>() {
             @NonNull
             @Override
-            protected LiveData<ApiResponse<RoutineAPI>> createCall() {
-                RoutineAPI auxRoutine = new RoutineAPI(routine.getId(), routine.getName(), routine.getDetail(), routine.getDate(), newScore, routine.getIsPublic(), routine.getDifficulty(), routine.getMetadata(), routine.getUser());
-                return apiService.modifyRoutine(auxRoutine.getId(), auxRoutine);
+            protected LiveData<ApiResponse<Void>> createCall() {
+                return apiService.addReview(routine.getId(), new Review(newScore,""));
             }
         }.asLiveData();
     }
@@ -93,6 +94,18 @@ public class RoutineRepository {
             }
         }.asLiveData();
     }
+
+    public LiveData<Resource<PagedList<ReviewAnswer>>> getReviews() {
+        return new NetworkBoundResource<PagedList<ReviewAnswer>, PagedList<ReviewAnswer>>() {
+            @NonNull
+            @Override
+            protected LiveData<ApiResponse<PagedList<ReviewAnswer>>> createCall() {
+                return apiService.getReviews();
+            }
+        }.asLiveData();
+    }
+
+
 
 
 

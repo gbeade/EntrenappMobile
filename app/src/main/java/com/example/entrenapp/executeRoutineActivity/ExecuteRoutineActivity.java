@@ -33,6 +33,8 @@ import android.widget.Toast;
 
 import com.example.entrenapp.App;
 import com.example.entrenapp.R;
+import com.example.entrenapp.api.model.PagedList;
+import com.example.entrenapp.api.model.ReviewAnswer;
 import com.example.entrenapp.api.model.RoutineAPI;
 import com.example.entrenapp.api.model.User;
 import com.example.entrenapp.apiClasses.Cycle;
@@ -56,7 +58,6 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     RecyclerView rv;
     TimeTickCardAdapter adapter;
     private Routine routine;
-    //new Routine(1, "Pecho","Pecho", Routine.Difficulty.rookie, false, new Date(), 4, 25, null);
     private Iterator<Cycle> cycleIterator;
     Cycle currentCycle;
     Exercise currentExercise;
@@ -69,6 +70,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     boolean simplifiedExecution = true;
     LifecycleOwner activity = this;
     RoutineAPI routineAPI;
+    private boolean hasRated = false;
 
 
     @Override
@@ -91,6 +93,20 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
                 return;
             routineAPI = routineAPIResource.getData();
             isRoutineRateable = routineAPI.getUser().getId().equals(app.getPreferences().getUserId());
+            if(isRoutineRateable)
+            {
+                app.getRoutineRepository().getReviews().observe(activity, reviewAnswerResource -> {
+                    if(reviewAnswerResource == null || reviewAnswerResource.getData() == null)
+                        return ;
+                    for(ReviewAnswer reviewAnswer : reviewAnswerResource.getData().getContent()){
+                        if(reviewAnswer.getRoutine().getId().equals(routineAPI.getId())){
+                            isRoutineRateable = false;
+                            return;
+                        }
+                    }
+                });
+            }
+
             });
 
 
@@ -201,16 +217,22 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         popupWindow = new PopupWindow(popupView, width, height, true);
 
         rb = popupView.findViewById(R.id.simpleRatingBar);
-        rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 
-            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
-                if ( rating > 0) {
-                    popupButton.setText(getString(R.string.leave_popup_with_rating));
-                } else {
-                    popupButton.setText(getString(R.string.leave_popup_without_rating));
+        if(rb != null){
+            rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                    if ( rating > 0) {
+                        popupButton.setText(getString(R.string.leave_popup_with_rating));
+                        hasRated = true;
+                    } else {
+                        hasRated = false;
+                        popupButton.setText(getString(R.string.leave_popup_without_rating));
+                    }
                 }
-            }
-        });
+            });
+        }
+
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window tolken
         popupWindow.showAtLocation(findViewById(R.id.execRoutineContainer), Gravity.CENTER, 0, 0);
@@ -218,23 +240,20 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
 
     public void onClick() {
-        if ( isRoutineRateable() ) {
-            app.getRoutineRepository().modifyRoutineScore(routineAPI,(int)(rb.getRating()*2)).observe(this, routineAPIResource -> {
-                if(routineAPIResource == null || routineAPIResource.getData() == null)
-                    return;
+        if ( isRoutineRateable() && hasRated ) {
+            app.getRoutineRepository().addReview(routineAPI,(int)(rb.getRating()*2)).observe(this, voidResource -> {
                 popupWindow.dismiss();
                 finish();
             });
         }
-        else{
             popupWindow.dismiss();
             finish();
-        }
+
 
     }
 
     private boolean isRoutineRateable() {
-        return isRoutineRateable;
+        return isRoutineRateable ;
     }
 
     private void resetAdapter() {
