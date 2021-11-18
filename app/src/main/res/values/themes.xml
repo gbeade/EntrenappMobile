@@ -43,6 +43,10 @@
         <item name="colorControlNormal">@color/accent</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlActivated">@color/accent</item>
+    </style>
+
 
 
 
