@@ -43,10 +43,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         app = ((App)getApplication());
+        /*
         if(app.getPreferences().getAuthToken() != null ){
             Intent intent = new Intent(this, BodyActivity.class);
             startActivity(intent);
         }
+        
+         */
 
 
 
