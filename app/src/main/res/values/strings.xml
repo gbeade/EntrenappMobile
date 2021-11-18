@@ -76,6 +76,7 @@
     <string name="eliminadaFavoritos">Rutina eliminada de favoritos</string>
     <string name="errorLogin">El usuario o la contraseña es incorrecta</string>
     <string name="noRoutineAvailable">No hay rutinas para mostrar.</string>
+    <string name="unknown">Error desconocido</string>
 
 
 </resources>

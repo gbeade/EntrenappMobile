@@ -73,4 +73,5 @@
     <string name="eliminadaFavoritos">Routine deleted from favourites</string>
     <string name="errorLogin">The username or the password is incorrect</string>
     <string name="noRoutineAvailable">There are no routines to show.</string>
+    <string name="unknown">Unknown error</string>
 </resources>
