@@ -83,10 +83,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, BodyActivity.class);
                 startActivity(intent);
                 return;
-            } else{
+            } else if(r.getStatus() == Status.ERROR){
                 Snackbar snackbar = Snackbar.make(binding.btnLogin, R.string.errorLogin, BaseTransientBottomBar.LENGTH_SHORT);
                 View snackBarView = snackbar.getView();
                 snackBarView.setBackgroundColor(Color.RED);
+                snackbar.show();
+            }else if (r.getStatus() != Status.LOADING){
+                Snackbar snackbar = Snackbar.make(binding.btnLogin, R.string.unknown, BaseTransientBottomBar.LENGTH_SHORT);
+                View snackBarView = snackbar.getView();
                 snackbar.show();
             }
 
