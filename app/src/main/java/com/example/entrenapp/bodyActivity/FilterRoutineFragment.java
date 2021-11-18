@@ -29,8 +29,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.entrenapp.App;
+import com.example.entrenapp.ContextSingleton;
 import com.example.entrenapp.R;
 import com.example.entrenapp.api.model.PagedList;
 import com.example.entrenapp.api.model.Sport;
@@ -147,7 +149,7 @@ public class FilterRoutineFragment extends Fragment {
         }
 
 
-        binding.btnSave.setOnClickListener(v -> popup());
+        binding.btnSave.setOnClickListener(v -> checkoutFilter());
 
             if(filterActivity.getSport().getValue() != null){
                 sports.add(filterActivity.getSport().getValue());
@@ -241,26 +243,11 @@ public class FilterRoutineFragment extends Fragment {
         }
     }
 
-
-
-    PopupWindow popupWindow;
-    private void popup() {
-        View popupView;
-        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
-        popupView = inflater.inflate(R.layout.popup_filtrado_exito, null);
-        int width = (int)getContext().getResources().getDisplayMetrics().density * 400;
-        int height = (int)getContext().getResources().getDisplayMetrics().density * 300;
-        popupWindow = new PopupWindow(popupView, width, height, true);
-        Button btn = popupView.findViewById(R.id.btn_return);
-        btn.setOnClickListener(view->checkoutFilter());
-        popupWindow.showAtLocation(getActivity().findViewById(R.id.bodyContainer), Gravity.CENTER, 0, 0);
-    }
     private void checkoutFilter() {
 
 
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
-        popupWindow.dismiss();
         filterActivity.setDuration(duration);
         filterActivity.setDifficulty(difficulty);
         filterActivity.setEquipment(binding.checkBox.isChecked());
@@ -269,6 +256,7 @@ public class FilterRoutineFragment extends Fragment {
         filterContext.setDifficulty(difficulty);
         filterContext.setEquipment(binding.checkBox.isChecked());
         filterContext.setSport(sportSelected);
+        Toast.makeText(getActivity(), getString(R.string.filter_ok), Toast.LENGTH_SHORT).show();
         NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavController navController = navHostFragment.getNavController();
         navController.navigateUp();
