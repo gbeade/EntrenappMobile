@@ -62,6 +62,7 @@
 
     <string name="new_cycle_alert">💬 You have finished a cycle. Execution has been paused.</string>
 
+    <string name="loading">Loading...Please wait</string>
 
 
 
