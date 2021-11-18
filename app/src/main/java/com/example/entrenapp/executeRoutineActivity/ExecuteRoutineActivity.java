@@ -241,6 +241,10 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
             adapter = new TimeTickCardAdapter(currentCycle.getExercises(), R.layout.exec_exercise_card, this);
         }
         this.adapter = adapter;
+        if (!simplifiedExecution) {
+            adapter.togglePlay();
+            findViewById(R.id.commentBox).setVisibility(View.VISIBLE);
+        }
         binding.cycleRecyclerView.setAdapter(adapter);
     }
 
@@ -278,17 +282,10 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     private void swapPlayPauseIcon() {
         if ( adapter.isPaused() ) {
             ((TextView) findViewById(R.id.play)).setVisibility(View.VISIBLE);
-            ((TextView) findViewById(R.id.pause)).setVisibility(View.GONE);
+            ((TextView) findViewById(R.id.pause)).setVisibility(View.INVISIBLE);
         } else {
             ((TextView) findViewById(R.id.pause)).setVisibility(View.VISIBLE);
-            ((TextView) findViewById(R.id.play)).setVisibility(View.GONE);}
+            ((TextView) findViewById(R.id.play)).setVisibility(View.INVISIBLE);}
     }
-
-    public void onCancel() {
-        Intent intent = new Intent(this, MainActivity.class); // YourRoutinesActivity.class); //YourRoutinesActivity.class);
-        startActivity(intent);
-    }
-
-
 
 }
