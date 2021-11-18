@@ -29,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.entrenapp.App;
 import com.example.entrenapp.R;
@@ -109,7 +110,6 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 //        rv.setVerticalScrollBarEnabled(simplifiedExecution);
         rv.setHorizontalScrollBarEnabled(!simplifiedExecution);
 
-        findViewById(R.id.commentBox).setVisibility(View.INVISIBLE);
 
         ToolbarMainBinding binding2 = ToolbarMainBinding.bind(root);
         setContentView(root);
@@ -144,7 +144,9 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         TextView textView;
         currentCycleIdx ++;
 
-        if (currentCycleIdx > 0 ) findViewById(R.id.commentBox).setVisibility(View.VISIBLE);
+        if (currentCycleIdx > 0 )
+            Toast.makeText(this, getString(R.string.cycle_completed), Toast.LENGTH_SHORT).show();
+
 
         if ( currentCycleIdx > 0 && !simplifiedExecution ) togglePlayPauseExercise();
 
@@ -248,7 +250,6 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         this.adapter = adapter;
         if (!simplifiedExecution) {
             adapter.togglePlay();
-            findViewById(R.id.commentBox).setVisibility(View.VISIBLE);
         }
         binding.cycleRecyclerView.setAdapter(adapter);
     }
@@ -272,12 +273,11 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
     boolean init = false;
     public void togglePlayPauseExercise(){
-        findViewById(R.id.commentBox).setVisibility(View.INVISIBLE);
         if ( simplifiedExecution && !init) {
             adapter.startCounterOnPosition(0);
             init = true;
             ((TextView) findViewById(R.id.pause)).setVisibility(View.VISIBLE);
-            ((TextView) findViewById(R.id.play)).setVisibility(View.GONE);
+            ((TextView) findViewById(R.id.play)).setVisibility(View.INVISIBLE);
             return;
         }
         swapPlayPauseIcon();

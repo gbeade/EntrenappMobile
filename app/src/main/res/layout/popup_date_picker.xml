@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:background = "@drawable/rounded_border_rectangle"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="33dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="4dp"
+        android:text="@string/reminder_routine"
+        android:textAlignment="center"
+        android:textColor="@color/accent"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TimePicker
+        android:id="@+id/time_picker"
+        android:layout_width="254dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="7dp"
+        android:layout_weight="4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Switch
+        android:id="@+id/monday_switch"
+        android:layout_width="120dp"
+        android:layout_height="41dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/monday"
+        android:textColor="@color/accent"
+        android:textColorLink="#3F51B5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time_picker" />
+
+    <Switch
+        android:id="@+id/sunday_switch"
+        android:layout_width="120dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/accent"
+
+        android:text="@string/sunday"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/saturday_switch" />
+
+    <Switch
+        android:id="@+id/saturday_switch"
+        android:layout_width="120dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/accent"
+
+        android:text="@string/saturday"
+        app:layout_constraintStart_toStartOf="@+id/friday_switch"
+        app:layout_constraintTop_toBottomOf="@+id/friday_switch" />
+
+    <Switch
+        android:id="@+id/friday_switch"
+        android:layout_width="120dp"
+        android:layout_height="41dp"
+        android:textColor="@color/accent"
+
+        android:layout_marginTop="15dp"
+        android:text="@string/friday"
+        app:layout_constraintStart_toStartOf="@+id/thursday_switch"
+        app:layout_constraintTop_toBottomOf="@+id/thursday_switch" />
+
+    <Switch
+        android:id="@+id/thursday_switch"
+        android:layout_width="120dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="10dp"
+
+        android:text="@string/thursday"
+        android:textColor="@color/accent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/monday_switch"
+        app:layout_constraintTop_toBottomOf="@+id/time_picker" />
+
+    <Switch
+        android:id="@+id/wednesday_switch"
+        android:layout_width="120dp"
+        android:layout_height="41dp"
+        android:textColor="@color/accent"
+
+        android:layout_marginTop="15dp"
+        android:text="@string/wednesday"
+        app:layout_constraintStart_toStartOf="@+id/tuesday_switch"
+        app:layout_constraintTop_toBottomOf="@+id/tuesday_switch" />
+
+    <Switch
+        android:id="@+id/tuesday_switch"
+        android:layout_width="120dp"
+        android:textColor="@color/accent"
+
+        android:layout_height="41dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/tuesday"
+        app:layout_constraintStart_toStartOf="@+id/monday_switch"
+        app:layout_constraintTop_toBottomOf="@+id/monday_switch" />
+
+    <Button
+        android:id="@+id/btn_return"
+        style="@style/roundedWhiteButton"
+        android:layout_width="150dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/leave_popup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sunday_switch" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -63,7 +63,8 @@
     <string name="new_cycle_alert">💬 You have finished a cycle. Execution has been paused.</string>
 
 
-
+    <string name="train_now">Train now</string>
+    <string name="train_later"><u>Or better schedule this routine for later</u></string>
 
     <!--ERRORS-->
     <string name="error_login">Incorrect username or password.</string>
@@ -78,4 +79,29 @@
     <string name="rookieDifficulty">Rookie</string>
     <string name="intermediateDifficulty">Intermediate</string>
     <string name="advancedDifficulty">Advanced</string>
+
+    <string name="channel_name">Reminder of routines</string>
+    <string name="channel_description">To remind you of scheduled routines</string>
+    <string name="reminder_routine">Choose days and time</string>
+
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+
+    <string name="time_to_train">¡It\'s time to train!</string>
+    <string name="routine_waiting_for_you">You\'ve programmed the routine </string>
+    <string name="reminder_set">Reminder set</string>
+
+    <string name="cycle_completed">Cycle completed</string>
+
+
+
+
+
+
+
 </resources>

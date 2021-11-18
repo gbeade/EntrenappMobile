@@ -25,7 +25,6 @@
     <string name="home">Principal</string>
     <string name="favourite_routines">Rutinas favoritas</string>
     <string name="myRoutines">Mis rutinas</string>
-    <string name="train">Entrenar</string>
     <string name="action_back" translatable="false">back</string>
     <string name="recommended_routines">Rutinas recomendadas</string>
     <string name="contrasenia">Contraseña</string>
@@ -82,6 +81,27 @@
     <string name="intermediateDifficulty">Intermedio</string>
     <string name="advancedDifficulty">Avanzado</string>
 
+    <string name="train_now">Entrenar ahora</string>
+    <string name="train_later"><u>O mejor programa un entrenamiento a futuro</u></string>
+
+
+    <string name="channel_name">Recordatorios de rutinas</string>
+    <string name="channel_description">Recordar rutinas establecidas</string>
+    <string name="reminder_routine">Elija días y hora</string>
+
+
+    <string name="monday">Lunes</string>
+    <string name="tuesday">Martes</string>
+    <string name="wednesday">Miercoles</string>
+    <string name="thursday">Jueves</string>
+    <string name="friday">Viernes</string>
+    <string name="saturday">Sabado</string>
+    <string name="sunday">Domingo</string>
+    <string name="time_to_train">¡Es hora de entrenar!</string>
+    <string name="routine_waiting_for_you">Programaste la rutina </string>
+    <string name="reminder_set">Recordatorio programado</string>
+
+    <string name="cycle_completed">Ciclo completado</string>
 
 
 

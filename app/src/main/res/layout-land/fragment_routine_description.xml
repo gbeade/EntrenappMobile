@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary"
+    android:id="@+id/bodyContainer"
     android:backgroundTint="@color/primary">
 
 
@@ -34,8 +35,8 @@
         android:id="@+id/duration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Texto2"
         android:textColor="@color/white"
         android:textSize="30sp"
@@ -47,10 +48,22 @@
         style="@style/roundedYellowButton"
         android:layout_width="317dp"
         android:layout_height="65dp"
-        android:text="@string/train"
+        android:text="@string/train_now"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/routineDescriptionCyclerView" />
+
+    <TextView
+        android:id="@+id/train_later"
+        android:layout_width="395dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/train_later"
+        android:textAlignment="center"
+        android:textColor="@color/accent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_train" />
 
     <ImageButton
         android:id="@+id/removeFavourite"
