@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/primary"
-    android:backgroundTint="@color/primary">
+    android:layout_height="match_parent">
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/routineDescriptionCyclerView"
@@ -13,10 +12,7 @@
         android:layout_height="358dp"
         android:layout_marginTop="16dp"
         android:scrollbars="vertical"
-
-
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.61"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/duration" />
 
@@ -24,22 +20,22 @@
         android:id="@+id/routineTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Routine name"
         android:textColor="@color/accent"
-        android:textSize="50sp"
+        android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.437"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="40dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="200dp"
+        android:layout_width="243dp"
+        android:layout_height="39dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="200dp"
+        android:text="5 minutes"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/routineTitle" />
@@ -50,40 +46,36 @@
         style="@style/roundedYellowButton"
         android:layout_width="317dp"
         android:layout_height="65dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="40dp"
         android:text="@string/train"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/routineDescriptionCyclerView" />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/removeFavourite"
-        android:layout_width="57dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="100dp"
         android:background="@color/primary"
-        app:layout_constraintBottom_toTopOf="@+id/routineDescriptionCyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_width="82dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="9dp"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        app:layout_constraintBottom_toBottomOf="@+id/routineTitle"
         app:layout_constraintStart_toEndOf="@+id/routineTitle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115"
-        app:srcCompat="@drawable/ic_baseline_bookmark_24" />
+        app:layout_constraintTop_toTopOf="@+id/routineTitle"
+        android:src="@drawable/ic_baseline_bookmark_24"
+        />
 
-    <ImageButton
+    <ImageView
         android:id="@+id/addFavourite"
-        android:layout_width="57dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="100dp"
-        android:background="@color/primary"
-        app:layout_constraintBottom_toTopOf="@+id/routineDescriptionCyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:layout_width="82dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="9dp"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        app:layout_constraintBottom_toBottomOf="@+id/routineTitle"
         app:layout_constraintStart_toEndOf="@+id/routineTitle"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.115"
+        app:layout_constraintTop_toTopOf="@+id/routineTitle"
         app:srcCompat="@drawable/ic_baseline_bookmark_border_24" />
 
 

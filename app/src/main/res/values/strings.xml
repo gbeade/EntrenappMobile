@@ -61,12 +61,22 @@
     <string name="rsg_go">Ya</string>
 
     <string name="current_exec_cycle">Repetición actual del ciclo</string>
+    <string name="filter_success">Filtrado con éxito</string>
+    <string name="leave_popup">Finalizar</string>
+    <string name="leave_popup_without_rating">Finalizar sin puntuar</string>
+    <string name="leave_popup_with_rating">Puntuar y finalizar</string>
+    <string name="rate_routine">Puntúa tu rutina</string>
+
+    <string name="new_cycle_alert">💬 Has terminado un ciclo. Se ha pausado la ejecución.</string>
+
 
     <!--ERRORS-->
     <string name="error_login">El nombre de usuario o contraseña es incorrecto.</string>
     <string name="agregadoFavoritos">Rutina agregada a favoritos</string>
     <string name="eliminadaFavoritos">Rutina eliminada de favoritos</string>
     <string name="errorLogin">El usuario o la contraseña es incorrecta</string>
+    <string name="noRoutineAvailable">No hay rutinas para mostrar.</string>
+    <string name="unknown">Error desconocido</string>
 
 
 </resources>

@@ -191,11 +191,10 @@ public class Routine implements Cardable,Parcelable {
         ArrayList<CardCaption> al = new ArrayList<>();
         Context context = ContextSingleton.getContext();
         al.add(new CardCaption("title", context.getString(R.string.name), name));
-        al.add(new CardCaption("subtitle1", context.getString(R.string.date), creationDate.toString()));
-        al.add(new CardCaption("subtitle2", context.getString(R.string.category), category));
-        al.add(new CardCaption("subtitle3",context.getString(R.string.equipacion), isEquipmentRequired?context.getString(R.string.yes):context.getString(R.string.no)));
-        al.add(new CardCaption("subtitle4", context.getString(R.string.difficulty), difficulty.toString()));
-        al.add(new CardCaption("subtitle5", context.getString(R.string.duraci_n), duration +"'"));
+        al.add(new CardCaption("subtitle1", context.getString(R.string.category), category));
+        al.add(new CardCaption("subtitle2",context.getString(R.string.equipacion), isEquipmentRequired?context.getString(R.string.yes):context.getString(R.string.no)));
+        al.add(new CardCaption("subtitle3", context.getString(R.string.difficulty), difficulty.toString()));
+        al.add(new CardCaption("subtitle4", context.getString(R.string.duraci_n), duration +"'"));
         return al;
     }
 

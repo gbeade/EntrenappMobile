@@ -16,14 +16,17 @@ import com.example.entrenapp.repository.Resource;
 import com.example.entrenapp.repository.Status;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.snackbar.SnackbarContentLayout;
 
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -66,14 +69,18 @@ public class MainActivity extends AppCompatActivity {
         username = binding.editTextTextPersonName;
         password = binding.editTextTextPassword;
 
+        // your text box
+        EditText edit_txt = (EditText) findViewById(R.id.editTextTextPassword);
 
-    }
-
-    @Override
-    protected void onStart(){
-        super.onStart();
-//        app.getUserRepository().logout().observe(this, r->{
-//        });
+        edit_txt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                   closeKeyboard();
+                }
+                return false;
+            }
+        });
     }
 
     public void login() {
@@ -85,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         app.getUserRepository().login(userData).observe(this,r->{
 
             if (r.getStatus() == Status.SUCCESS) {
-
                 app.getPreferences().setAuthToken(r.getData().getToken());
 
                 app.getUserRepository().getUsers().observe(this, result -> {
@@ -101,17 +107,47 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(this, BodyActivity.class);
                 startActivity(intent);
-            } else {
-                ((TextView) this.findViewById(R.id.errorLogin)).setVisibility(View.VISIBLE);
-
+                return;
+            } else if(r.getStatus() == Status.ERROR){
+                Snackbar snackbar = Snackbar.make(binding.btnLogin, R.string.errorLogin, BaseTransientBottomBar.LENGTH_SHORT);
+                View snackBarView = snackbar.getView();
+                snackBarView.setBackgroundColor(Color.RED);
+                snackbar.show();
+                return;
+            }else if (r.getStatus() != Status.LOADING){
+                Snackbar snackbar = Snackbar.make(binding.btnLogin, R.string.unknown, BaseTransientBottomBar.LENGTH_SHORT);
+                View snackBarView = snackbar.getView();
+                snackbar.show();
+                return;
             }
-
-
-
         });
 
 
     }
+    private void closeKeyboard()
+    {
+        // this will give us the view
+        // which is currently focus
+        // in this layout
+        View view = this.getCurrentFocus();
+
+        // if nothing is currently
+        // focus then this will protect
+        // the app from crash
+        if (view != null) {
+
+            // now assign the system
+            // service to InputMethodManager
+            InputMethodManager manager
+                    = (InputMethodManager)
+                    getSystemService(
+                            Context.INPUT_METHOD_SERVICE);
+            manager
+                    .hideSoftInputFromWindow(
+                            view.getWindowToken(), 0);
+        }
+    }
+
 
 
 

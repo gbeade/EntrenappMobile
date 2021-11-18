@@ -13,7 +13,7 @@
     <string name="difficult_beginner">Beginner</string>
     <string name="difficulty_intermediate">Intermediate</string>
     <string name="difficulty_advanced">Advanced</string>
-    <string name="time">Time:</string>
+    <string name="time">Time</string>
     <string name="save">Save</string>
     <string name="favourite">Favourite routines</string>
     <string name="home">Main</string>
@@ -33,7 +33,7 @@
     <string name="seconds">seconds</string>
     <string name="ninguna">None</string>
     <string name="registrate"><u>Register</u></string>
-    <string name="minute">minute</string>
+    <string name="minute">minutes</string>
     <string name="name">Name</string>
     <string name="type">Type</string>
     <string name="date">Date</string>
@@ -51,6 +51,19 @@
     <string name="rsg_go">Go</string>
 
     <string name="current_exec_cycle">Current repetition of cycle</string>
+    <string name="filter_success">Success on filtering</string>
+    <string name="leave_popup">Back</string>
+
+    <string name="rate_routine">Rate your routine</string>
+
+    <string name="leave_popup_without_rating">Return without rating</string>
+    <string name="leave_popup_with_rating">Rate and return</string>
+
+
+    <string name="new_cycle_alert">💬 You have finished a cycle. Execution has been paused.</string>
+
+
+
 
     <!--ERRORS-->
     <string name="error_login">Incorrect username or password.</string>
@@ -59,4 +72,6 @@
     <string name="agregadoFavoritos">Routine added to favourites</string>
     <string name="eliminadaFavoritos">Routine deleted from favourites</string>
     <string name="errorLogin">The username or the password is incorrect</string>
+    <string name="noRoutineAvailable">There are no routines to show.</string>
+    <string name="unknown">Unknown error</string>
 </resources>

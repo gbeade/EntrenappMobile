@@ -1,19 +1,28 @@
 package com.example.entrenapp.executeRoutineActivity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.media.Rating;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -28,7 +37,9 @@ import com.example.entrenapp.api.model.User;
 import com.example.entrenapp.apiClasses.Cycle;
 import com.example.entrenapp.apiClasses.Exercise;
 import com.example.entrenapp.apiClasses.Routine;
+import com.example.entrenapp.bodyActivity.BodyActivity;
 import com.example.entrenapp.databinding.ActivityExecuteRoutineBinding;
+import com.example.entrenapp.databinding.ToolbarMainBinding;
 import com.example.entrenapp.mainActivity.MainActivity;
 import com.example.entrenapp.recyclerView.TimeTickCardAdapter;
 import com.example.entrenapp.repository.Resource;
@@ -68,7 +79,6 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         setContentView(root);
         this.routine= getIntent().getParcelableExtra("Routine");
 
-        binding.cancel.setOnClickListener(view -> onCancel());
         binding.play.setOnClickListener(view -> togglePlayPauseExercise());
         binding.pause.setOnClickListener(view -> togglePlayPauseExercise());
         binding.rewind.setOnClickListener(view -> startIterations());
@@ -84,19 +94,46 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
 
 
+        Toolbar tb = ((Toolbar)binding.getRoot().findViewById(R.id.toolbar).findViewById(R.id.toolbar));
+        tb.setTitle(routine.getName());
+        binding.getRoot().findViewById(R.id.toolbar).findViewById(R.id.imageView).setVisibility(View.GONE);
+
         TextView textView;
-        textView = root.findViewById(R.id.routine_name);
-        textView.setText(routine.getName());
+        rv = binding.cycleRecyclerView;
 
         if (! simplifiedExecution) {
             SnapHelper snapHelper = new LinearSnapHelper();
-            snapHelper.attachToRecyclerView(binding.cycleRecyclerView);
+            snapHelper.attachToRecyclerView(rv);
+        }
+
+//        rv.setVerticalScrollBarEnabled(simplifiedExecution);
+        rv.setHorizontalScrollBarEnabled(!simplifiedExecution);
+
+        findViewById(R.id.commentBox).setVisibility(View.INVISIBLE);
+
+        ToolbarMainBinding binding2 = ToolbarMainBinding.bind(root);
+        setContentView(root);
+
+        binding2.toolbar.inflateMenu(R.menu.menu_main);
+        setSupportActionBar(binding2.toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
         startIterations();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == 16908332) {
+          finish();
+          return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
     public void startIterations() {
-        rv = binding.cycleRecyclerView;
         cycleIterator = routine.getCycles().iterator();
         currentCycleIdx = -1;
         nextCycle();
@@ -106,6 +143,8 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
         TextView textView;
         currentCycleIdx ++;
+
+        if (currentCycleIdx > 0 ) findViewById(R.id.commentBox).setVisibility(View.VISIBLE);
 
         if ( currentCycleIdx > 0 && !simplifiedExecution ) togglePlayPauseExercise();
 
@@ -126,7 +165,6 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
                 //Se termino la rutina, cambiar por el intent a la pagina de favoritos
                 adapter.pauseCurrentExercise();
                 showPopup();
-
                 return;
             }
         }
@@ -139,9 +177,8 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     }
 
     RatingBar rb;
-
+    Button popupButton;
     private void showPopup() {
-
 
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
@@ -153,19 +190,30 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
         else
             popupView = inflater.inflate(R.layout.popup_finish_routine_norate, null);
 
-        Button btn = popupView.findViewById(R.id.btn_return);
-        btn.setOnClickListener(view->onClick());
+        popupButton = popupView.findViewById(R.id.btn_return);
+        popupButton.setOnClickListener(view->onClick());
 
         // create the popup window
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
-        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
-         popupWindow = new PopupWindow(popupView, width, height, true);
+        int width = (int)getResources().getDisplayMetrics().density * 450;
+        int height = (int)getResources().getDisplayMetrics().density * 300;
+        popupWindow = new PopupWindow(popupView, width, height, true);
 
         rb = popupView.findViewById(R.id.simpleRatingBar);
+        rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                if ( rating > 0) {
+                    popupButton.setText(getString(R.string.leave_popup_with_rating));
+                } else {
+                    popupButton.setText(getString(R.string.leave_popup_without_rating));
+                }
+            }
+        });
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window tolken
         popupWindow.showAtLocation(findViewById(R.id.execRoutineContainer), Gravity.CENTER, 0, 0);
     }
+
 
     public void onClick() {
         if ( isRoutineRateable() ) {
@@ -198,6 +246,10 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
             adapter = new TimeTickCardAdapter(currentCycle.getExercises(), R.layout.exec_exercise_card, this);
         }
         this.adapter = adapter;
+        if (!simplifiedExecution) {
+            adapter.togglePlay();
+            findViewById(R.id.commentBox).setVisibility(View.VISIBLE);
+        }
         binding.cycleRecyclerView.setAdapter(adapter);
     }
 
@@ -220,6 +272,7 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
 
     boolean init = false;
     public void togglePlayPauseExercise(){
+        findViewById(R.id.commentBox).setVisibility(View.INVISIBLE);
         if ( simplifiedExecution && !init) {
             adapter.startCounterOnPosition(0);
             init = true;
@@ -234,17 +287,10 @@ public class ExecuteRoutineActivity extends AppCompatActivity {
     private void swapPlayPauseIcon() {
         if ( adapter.isPaused() ) {
             ((TextView) findViewById(R.id.play)).setVisibility(View.VISIBLE);
-            ((TextView) findViewById(R.id.pause)).setVisibility(View.GONE);
+            ((TextView) findViewById(R.id.pause)).setVisibility(View.INVISIBLE);
         } else {
             ((TextView) findViewById(R.id.pause)).setVisibility(View.VISIBLE);
-            ((TextView) findViewById(R.id.play)).setVisibility(View.GONE);}
+            ((TextView) findViewById(R.id.play)).setVisibility(View.INVISIBLE);}
     }
-
-    public void onCancel() {
-        Intent intent = new Intent(this, MainActivity.class); // YourRoutinesActivity.class); //YourRoutinesActivity.class);
-        startActivity(intent);
-    }
-
-
 
 }

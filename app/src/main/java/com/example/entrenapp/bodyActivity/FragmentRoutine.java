@@ -1,5 +1,6 @@
 package com.example.entrenapp.bodyActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -39,11 +40,11 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.dataset = new ArrayList<>();
+
         setHasOptionsMenu(true);
     }
 
     abstract public void fillRoutines();
-
     abstract public void updateRecyclerView();
 
     @Override
@@ -60,7 +61,7 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
         new ViewModelProvider(getActivity()).get(MyRoutineViewModel.class).clear();
         new ViewModelProvider(getActivity()).get(MyFavouriteRoutineViewModel.class).clear();
         this.dataset= new ArrayList<>();
-   //     getActivity().getViewModelStore().clear();
+//        getActivity().getViewModelStore().clear();
         startActivity(intent);
     }
 
@@ -76,8 +77,9 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         onNoteListener = this;
+        this.datasetFiltered = new ArrayList<>();
         requireActivity().invalidateOptionsMenu();
-        initializeFilteredRoutine();
+        // initializeFilteredRoutine();
         updateRecyclerView();
     }
 
@@ -130,9 +132,6 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
         MenuItem search = menu.findItem(R.id.action_search);
         search.setVisible(false);
     }
-
-
-
 
 
 }

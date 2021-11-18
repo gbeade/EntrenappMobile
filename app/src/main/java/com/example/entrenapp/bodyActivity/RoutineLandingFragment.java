@@ -58,6 +58,7 @@ public class RoutineLandingFragment extends FragmentRoutine {
                 if(!favouriteRoutines.contains(r))
                     favouriteRoutines.add(r);
         });
+
         return binding.getRoot();
     }
 
@@ -93,13 +94,18 @@ public class RoutineLandingFragment extends FragmentRoutine {
 
     @Override
     public void updateRecyclerView() {
+        if( dataset.size() == 0 || datasetFiltered.size() == 0 ){
+            getActivity().findViewById(R.id.noRoutine3).setVisibility(View.VISIBLE);
+            return;
+        }
         if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
             binding.recommendedRoutinesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        else binding.recommendedRoutinesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));        RecyclerView.Adapter adapter1;
+        else binding.recommendedRoutinesRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+
+        getActivity().findViewById(R.id.noRoutine3).setVisibility(View.GONE);
+
+        RecyclerView.Adapter adapter1;
         adapter1 = new CardAdapter(datasetFiltered, R.layout.extense_square_card, getActivity(),onNoteListener);
-        if(datasetFiltered.size() == 0 ){
-            Log.e("No hay","Resultados");
-        }
         binding.recommendedRoutinesRecyclerView.setAdapter(adapter1);
     }
 

@@ -1,5 +1,6 @@
 package com.example.entrenapp.bodyActivity;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -16,6 +17,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.util.Range;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +26,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 
 import com.example.entrenapp.App;
@@ -142,19 +146,8 @@ public class FilterRoutineFragment extends Fragment {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        binding.btnSave.setOnClickListener(v -> {
-            filterActivity.setDuration(duration);
-            filterActivity.setDifficulty(difficulty);
-            filterActivity.setEquipment(binding.checkBox.isChecked());
-            filterActivity.setSport(sportSelected);
-            filterContext.setDuration(duration);
-            filterContext.setDifficulty(difficulty);
-            filterContext.setEquipment(binding.checkBox.isChecked());
-            filterContext.setSport(sportSelected);
-            NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
-            NavController navController = navHostFragment.getNavController();
-            navController.navigateUp();
-        });
+
+        binding.btnSave.setOnClickListener(v -> popup());
 
             if(filterActivity.getSport().getValue() != null){
                 sports.add(filterActivity.getSport().getValue());
@@ -250,7 +243,36 @@ public class FilterRoutineFragment extends Fragment {
 
 
 
+    PopupWindow popupWindow;
+    private void popup() {
+        View popupView;
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
+        popupView = inflater.inflate(R.layout.popup_filtrado_exito, null);
+        int width = (int)getContext().getResources().getDisplayMetrics().density * 400;
+        int height = (int)getContext().getResources().getDisplayMetrics().density * 300;
+        popupWindow = new PopupWindow(popupView, width, height, true);
+        Button btn = popupView.findViewById(R.id.btn_return);
+        btn.setOnClickListener(view->checkoutFilter());
+        popupWindow.showAtLocation(getActivity().findViewById(R.id.bodyContainer), Gravity.CENTER, 0, 0);
+    }
+    private void checkoutFilter() {
 
+
+        ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        popupWindow.dismiss();
+        filterActivity.setDuration(duration);
+        filterActivity.setDifficulty(difficulty);
+        filterActivity.setEquipment(binding.checkBox.isChecked());
+        filterActivity.setSport(sportSelected);
+        filterContext.setDuration(duration);
+        filterContext.setDifficulty(difficulty);
+        filterContext.setEquipment(binding.checkBox.isChecked());
+        filterContext.setSport(sportSelected);
+        NavHostFragment navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
+        navController.navigateUp();
+    }
 
 
     @Override
