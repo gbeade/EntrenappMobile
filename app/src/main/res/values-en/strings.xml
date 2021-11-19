@@ -110,6 +110,29 @@
     <string name="congrats">You\'ve finished the routine! Bravo!</string>
 
 
+    <string name="if_liked_msg">If you liked</string>
+    <string name="youll_love_msg">then you\'ll love</string>
+    <string name="no_thanks">No thanks</string>
+
+    <string name="sure_proceed">Are you sure you wish to proceed?</string>
+    <string name="action_will">This action will</string>
+    <string name="restart_routine">reset the routine.</string>
+    <string name="exit_routine">exit the routine.</string>
+
+    <string name="cancel">Cancel</string>
+
+    <string name="configuration">Settings</string>
+
+
+
+    <string name="personal_data">Personal data</string>
+    <string name="appearence">Appearence</string>
+    <string name="timeFormat">Time format</string>
+    <string name="notifications">Notifications</string>
+    <string name="notifications_modify"><u>Modify notifications settings</u></string>
+
+
+
 
 
 

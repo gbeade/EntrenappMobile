@@ -15,6 +15,7 @@ import com.example.entrenapp.databinding.ActivityMainBinding;
 import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
 import com.example.entrenapp.repository.Resource;
 import com.example.entrenapp.repository.Status;
+import com.example.entrenapp.repository.UserSession;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.snackbar.SnackbarContentLayout;
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
         app.getUserRepository().login(userData).observe(this,r->{
 
             if (r.getStatus() == Status.SUCCESS) {
+                UserSession.setUsername(auxUsername);
                 app.getPreferences().setAuthToken(r.getData().getToken());
 
                 while(app.getPreferences().getAuthToken() == null) ;

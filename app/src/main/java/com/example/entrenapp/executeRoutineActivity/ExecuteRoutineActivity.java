@@ -14,7 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Rating;
 import android.os.Bundle;
@@ -47,6 +49,7 @@ import com.example.entrenapp.databinding.ToolbarMainBinding;
 import com.example.entrenapp.mainActivity.MainActivity;
 import com.example.entrenapp.recyclerView.TimeTickCardAdapter;
 import com.example.entrenapp.repository.Resource;
+import com.example.entrenapp.repository.UserSession;
 
 import java.util.Arrays;
 import java.util.Date;
@@ -68,7 +71,7 @@ public class ExecuteRoutineActivity extends PrivateActivity {
     PopupWindow popupWindow;
     boolean isRoutineRateable;
     App app;
-    boolean simplifiedExecution = true;
+    boolean simplifiedExecution = false;
     LifecycleOwner activity = this;
     RoutineAPI routineAPI;
     private boolean hasRated = false;
@@ -85,7 +88,7 @@ public class ExecuteRoutineActivity extends PrivateActivity {
 
         binding.play.setOnClickListener(view -> togglePlayPauseExercise());
         binding.pause.setOnClickListener(view -> togglePlayPauseExercise());
-        binding.rewind.setOnClickListener(view -> startIterations());
+        binding.rewind.setOnClickListener(view -> createSystemDialog( ()->startIterations(), getString(R.string.restart_routine)));
 
         app = (App) getApplication();
 
@@ -144,12 +147,32 @@ public class ExecuteRoutineActivity extends PrivateActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == 16908332) {
-          finish();
-          return true;
+            createSystemDialog( ()->finish(), getString(R.string.exit_routine));
+            return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
     }
+
+    public void createSystemDialog(Runnable reaction, String actionDescription) {
+        DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+            switch (which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    reaction.run();
+                    break;
+
+                case DialogInterface.BUTTON_NEGATIVE:
+                    dialog.dismiss();
+                    break;
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.action_will)+" "+actionDescription+" "+getString(R.string.sure_proceed)).setPositiveButton(getString(R.string.yes), dialogClickListener)
+                .setNegativeButton(getString(R.string.no), dialogClickListener).show();
+
+    }
+
     public void startIterations() {
         cycleIterator = routine.getCycles().iterator();
         currentCycleIdx = -1;
@@ -243,10 +266,12 @@ public class ExecuteRoutineActivity extends PrivateActivity {
     public void onClick() {
         if ( isRoutineRateable() && hasRated ) {
             app.getRoutineRepository().addReview(routineAPI,(int)(rb.getRating()*2)).observe(this, voidResource -> {
+                UserSession.setLastExecutedRoutine(routine);
                 popupWindow.dismiss();
                 finish();
             });
         }
+            UserSession.setLastExecutedRoutine(routine);
             popupWindow.dismiss();
             finish();
 

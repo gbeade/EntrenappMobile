@@ -113,8 +113,23 @@
 
     <string name="congrats">¡Has completado la rutina! ¡Bravo!</string>
 
+    <string name="if_liked_msg">Si te gustó</string>
+    <string name="youll_love_msg">entonces te encantará</string>
+    <string name="no_thanks">No gracias</string>
 
 
+    <string name="sure_proceed">¿Estás seguro de que deseas proceder?</string>
+    <string name="action_will">Esta acción</string>
+    <string name="restart_routine">reiniciará la rutina.</string>
+    <string name="exit_routine">abandonará la rutina.</string>
+    <string name="cancel">Cancelar</string>
+
+    <string name="configuration">Ajustes</string>
+    <string name="personal_data">Datos personales</string>
+    <string name="appearence">Apariencia</string>
+    <string name="timeFormat">Formato de tiempo</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="notifications_modify"><u>Modificar configuración de notificaciones</u></string>
 
 
 

@@ -152,7 +152,8 @@ public class DescriptionActivity extends PrivateActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
+        MenuItem settItem = menu.findItem(R.id.action_settings);
+        settItem.setVisible(false);
         MenuItem sort = menu.findItem(R.id.action_sort);
         sort.setVisible(false);
 

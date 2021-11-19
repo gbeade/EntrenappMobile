@@ -35,4 +35,10 @@
         android:label="FilterRoutineFragment"
         tools:layout="@layout/fragment_filter_routine"
         />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.entrenapp.SettingsActivity.SettingsFragment"
+        android:label="SettingsActivity"
+        tools:layout="@layout/fragment_settings"
+        />
 </navigation>

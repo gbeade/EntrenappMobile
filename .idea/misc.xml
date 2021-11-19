@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/drawable/ic_settings.xml" value="0.1649122807017544" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/drawable/rounded_border_rectangle.xml" value="0.1649122807017544" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/drawable/rounded_white_rectangle.xml" value="0.1649122807017544" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout-land/fragment_routine_description.xml" value="0.22" />
@@ -12,6 +13,7 @@
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/activity_execute_routine.xml" value="0.5" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/activity_exercise_description.xml" value="0.1513157894736842" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/activity_settings.xml" value="0.1513157894736842" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/activity_your_routines.xml" value="0.1513157894736842" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/cycle_view_holder.xml" value="0.3333333333333333" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/exec_exercise_card.xml" value="0.1513157894736842" />
@@ -23,12 +25,15 @@
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/fragment_my_routines.xml" value="0.22" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/fragment_routine_description.xml" value="0.22" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/fragment_routine_landing.xml" value="0.1513157894736842" />
+        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/fragment_settings.xml" value="0.3333333333333333" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_date_picker.xml" value="0.4466666666666667" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_filtrado_exito.xml" value="0.1513157894736842" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_finish_routine_norate.xml" value="0.1513157894736842" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_finish_routine_rate.xml" value="0.3333333333333333" />
+        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_routine_recommendation.xml" value="0.3333333333333333" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_scheduler_routine.xml" value="0.1513157894736842" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_sort.xml" value="0.3333333333333333" />
+        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_warning.xml" value="0.3333333333333333" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/summary_square_card.xml" value="0.3333333333333333" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/toolbar_main.xml" value="0.3333333333333333" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/menu/menu_main.xml" value="0.4466666666666667" />

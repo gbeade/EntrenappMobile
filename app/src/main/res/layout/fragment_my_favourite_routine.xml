@@ -10,8 +10,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/routineRecyclerView"
-        android:layout_width="329dp"
-        android:layout_height="543dp"
+        android:layout_width="331dp"
+        android:layout_height="447dp"
         android:layout_marginTop="25dp"
         android:isScrollContainer="true"
         android:scrollbars="vertical"

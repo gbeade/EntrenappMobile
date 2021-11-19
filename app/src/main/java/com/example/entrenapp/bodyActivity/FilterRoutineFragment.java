@@ -265,6 +265,8 @@ public class FilterRoutineFragment extends Fragment {
 
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        MenuItem settItem = menu.findItem(R.id.action_settings);
+        settItem.setVisible(false);
         MenuItem search = menu.findItem(R.id.action_search);
         search.setVisible(false);
         MenuItem sort = menu.findItem(R.id.action_sort);
