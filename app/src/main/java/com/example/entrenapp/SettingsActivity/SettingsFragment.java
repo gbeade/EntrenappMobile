@@ -56,6 +56,7 @@ public class SettingsFragment extends Fragment {
 
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
 
+        binding.username.setText(UserSession.getUsername());
         binding.gotonots.setOnClickListener(v-> {
             Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
             intent.putExtra(Settings.EXTRA_APP_PACKAGE, getActivity().getPackageName());

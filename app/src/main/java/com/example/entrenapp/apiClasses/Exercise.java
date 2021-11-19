@@ -111,4 +111,5 @@ public class Exercise implements Cardable, Parcelable {
         dest.writeInt(duration);
         dest.writeInt(repetitions);
     }
+
 }
