@@ -59,7 +59,7 @@ public class FragmentRoutineViewModel extends AndroidViewModel {
                     for (RoutineCycle cycle : pagedListResource.getData().getContent()) {
                         Cycle auxCycle = new Cycle(cycle.getId(), cycle.getName(), cycle.getDetail(), cycle.getType(), cycle.getOrder(), cycle.getRepetitions());
                         for (ApiExercise exercise : cycle.getMetadata().getEjercicios()) {
-                            Exercise auxExercise = new Exercise(exercise.getId(), exercise.getName(), "Hola", Integer.valueOf(exercise.getTime()),exercise.getReps());
+                            Exercise auxExercise = new Exercise(exercise.getId(), exercise.getName(), "Descanso", Integer.valueOf(exercise.getTime()),exercise.getReps());
                             auxCycle.addExercise(auxExercise);
                         }
                         List<Cycle> list = new ArrayList<>(cycleList.getValue());

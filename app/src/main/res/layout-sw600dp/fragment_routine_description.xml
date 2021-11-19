@@ -3,26 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/bodyContainer"
+    >
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/routineDescriptionCyclerView"
-        android:layout_width="771dp"
-        android:layout_height="593dp"
-        android:layout_marginTop="68dp"
+        android:layout_width="615dp"
+        android:layout_height="525dp"
+        android:layout_marginTop="16dp"
         android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.62"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/duration" />
-
 
     <TextView
         android:id="@+id/routineTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="148dp"
         android:text="Routine name"
         android:textColor="@color/accent"
         android:textSize="40dp"
@@ -34,27 +34,39 @@
         android:id="@+id/duration"
         android:layout_width="243dp"
         android:layout_height="39dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="20dp"
         android:text="5 minutes"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/routineTitle" />
+
 
     <Button
         android:id="@+id/btn_train"
         style="@style/roundedYellowButton"
         android:layout_width="317dp"
         android:layout_height="65dp"
-        android:layout_marginTop="36dp"
-        android:text="@string/train"
+        android:layout_marginTop="25dp"
+        android:text="@string/train_now"
+        android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/routineDescriptionCyclerView" />
+
+    <TextView
+        android:id="@+id/train_later"
+        android:layout_width="450dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/train_later"
+        android:textAlignment="center"
+        android:textColor="@color/accent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_train" />
 
     <ImageView
         android:id="@+id/removeFavourite"

@@ -64,15 +64,14 @@
 
             <TextView
                 android:id="@+id/timer"
-                android:layout_width="177dp"
-                android:layout_height="148dp"
+                android:layout_width="367dp"
+                android:layout_height="95dp"
                 android:layout_marginTop="52dp"
                 android:text="69''"
                 android:textAlignment="center"
                 android:textColor="@color/accent"
-                android:textSize="100dp"
+                android:textSize="70dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.519"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/video1" />
 
