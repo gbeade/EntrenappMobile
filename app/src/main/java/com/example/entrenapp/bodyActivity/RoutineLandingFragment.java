@@ -59,8 +59,7 @@ public class RoutineLandingFragment extends FragmentRoutine {
                 return r;
             }
         }
-        // Todo: change to null
-        return new Routine(1000, "NO ROUTINE", "Pecho", Routine.Difficulty.rookie, false, new Date(), 1, 2, null);
+        return null; //  new Routine(1000, "NO ROUTINE", "Pecho", Routine.Difficulty.rookie, false, new Date(), 1, 2, null);
     }
 
     PopupWindow popupWindow;
@@ -68,8 +67,8 @@ public class RoutineLandingFragment extends FragmentRoutine {
 
         Routine last = UserSession.getLastExecutedRoutine();
         Routine nextBest = getNextBestRoutine(last);
-        Log.i("NEXTBEST", ( nextBest == null ? "-" : nextBest.getName()));
-        Log.i("LASTRUN", ( last == null ? "-" : last.getName()));
+//        Log.i("NEXTBEST", ( nextBest == null ? "-" : nextBest.getName()));
+//        Log.i("LASTRUN", ( last == null ? "-" : last.getName()));
 
         if ( nextBest == null) return;
 
