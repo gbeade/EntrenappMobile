@@ -123,6 +123,8 @@ public class BodyActivity extends AppCompatActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem settItem = menu.findItem(R.id.action_settings);
+        settItem.setVisible(true);
         MenuItem shareItem = menu.findItem(R.id.action_share);
         shareItem.setVisible(false);
         MenuItem settingsItem = menu.findItem(R.id.action_settings);
@@ -158,7 +160,12 @@ public class BodyActivity extends AppCompatActivity {
         }else if (item.getItemId() == R.id.action_sort) {
             sortPopup();
             return true;
-        } else {
+        } else if (item.getItemId() == R.id.action_settings) {
+            ActionBar actionBar = getSupportActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            navController.navigate(R.id.settingsFragment);
+            return true;
+        } else  {
             return super.onOptionsItemSelected(item);
         }
     }

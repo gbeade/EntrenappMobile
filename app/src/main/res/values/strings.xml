@@ -118,12 +118,22 @@
     <string name="no_thanks">No gracias</string>
 
 
-
     <string name="sure_proceed">¿Estás seguro de que deseas proceder?</string>
     <string name="action_will">Esta acción</string>
     <string name="restart_routine">reiniciará la rutina.</string>
     <string name="exit_routine">abandonará la rutina.</string>
     <string name="cancel">Cancelar</string>
+
+    <string name="configuration">Ajustes</string>
+    <string name="personal_data">Datos personales</string>
+    <string name="appearence">Apariencia</string>
+    <string name="darkMode">Modo oscuro</string>
+    <string name="lightMode">Modo claro</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="notifications_modify"><u>Modificar configuración de notificaciones</u></string>
+
+
+
 
 
 </resources>

@@ -121,6 +121,16 @@
 
     <string name="cancel">Cancel</string>
 
+    <string name="configuration">Settings</string>
+
+
+
+    <string name="personal_data">Personal data</string>
+    <string name="appearence">Appearence</string>
+    <string name="darkMode">Dark mode</string>
+    <string name="lightMode">Light mode</string>
+    <string name="notifications">Notifications</string>
+    <string name="notifications_modify"><u>Modify notifications settings</u></string>
 
 
 

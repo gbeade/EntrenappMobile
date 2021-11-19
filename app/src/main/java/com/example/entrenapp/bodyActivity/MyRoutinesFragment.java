@@ -54,8 +54,6 @@ public class MyRoutinesFragment extends FragmentRoutine {
         filterViewModel = new ViewModelProvider(getActivity()).get(FilterViewModel.class);
         filterViewModel.getName().observe(getViewLifecycleOwner(), s -> initializeFilteredRoutine());
         binding = FragmentMyRoutinesBinding.inflate(inflater, container, false);
-
-
         return binding.getRoot();
     }
 
