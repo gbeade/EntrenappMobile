@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -28,6 +29,7 @@ import com.example.entrenapp.databinding.FragmentSettingsBinding;
 import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.recyclerView.Cardable;
 import com.example.entrenapp.repository.NotificationHandler;
+import com.example.entrenapp.repository.TimeParser;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -60,8 +62,9 @@ public class SettingsFragment extends Fragment {
             startActivity(intent);
         });
 
-        binding.lightMode.setOnClickListener( v -> {
-            Resources.
+
+        binding.timeFormat.setOnClickListener( v -> {
+            TimeParser.setOnlySeconds(binding.timeFormat.isChecked());
         });
 
 

@@ -127,8 +127,7 @@
     <string name="configuration">Ajustes</string>
     <string name="personal_data">Datos personales</string>
     <string name="appearence">Apariencia</string>
-    <string name="darkMode">Modo oscuro</string>
-    <string name="lightMode">Modo claro</string>
+    <string name="timeFormat">Formato de tiempo</string>
     <string name="notifications">Notificaciones</string>
     <string name="notifications_modify"><u>Modificar configuración de notificaciones</u></string>
 
