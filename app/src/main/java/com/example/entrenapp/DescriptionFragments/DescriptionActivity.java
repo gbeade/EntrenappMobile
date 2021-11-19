@@ -22,6 +22,7 @@ import android.view.View;
 
 import com.example.entrenapp.App;
 import com.example.entrenapp.BaseMenuActivity;
+import com.example.entrenapp.PrivateActivity;
 import com.example.entrenapp.R;
 import com.example.entrenapp.api.model.PagedList;
 import com.example.entrenapp.api.model.RoutineAPI;
@@ -35,7 +36,7 @@ import com.example.entrenapp.repository.Resource;
 import java.util.Date;
 import java.util.StringTokenizer;
 
-public class DescriptionActivity extends AppCompatActivity {
+public class DescriptionActivity extends PrivateActivity {
     private Routine routine;
     NavController navController;
     private boolean favourite;
@@ -151,7 +152,8 @@ public class DescriptionActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
+        MenuItem settItem = menu.findItem(R.id.action_settings);
+        settItem.setVisible(false);
         MenuItem sort = menu.findItem(R.id.action_sort);
         sort.setVisible(false);
 

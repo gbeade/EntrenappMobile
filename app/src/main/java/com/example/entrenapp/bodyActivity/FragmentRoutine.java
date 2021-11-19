@@ -23,13 +23,14 @@ import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.recyclerView.Cardable;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public abstract class FragmentRoutine extends Fragment implements CardAdapter.ViewHolder.OnNoteListener{
-    protected ArrayList<Routine> dataset = new ArrayList<>();
+    protected List<Routine> dataset;
     protected App app ;
     protected CardAdapter.ViewHolder.OnNoteListener onNoteListener;
     protected boolean favourite = false;
@@ -40,67 +41,52 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.dataset = new ArrayList<>();
         setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fillRoutines();
     }
 
     abstract public void fillRoutines();
     abstract public void updateRecyclerView();
 
-    @Override
-    public void onNoteClick(int position) {
-        Intent intent = new Intent(getActivity(), DescriptionActivity.class);
-        if(datasetFiltered == null)
-            intent.putExtra("Routine",  (Parcelable) this.dataset.get(position));
-        else
-            intent.putExtra("Routine", this.datasetFiltered.get(position));
-
-        intent.putExtra("Favourite",this.favourite);
-        intent.putExtra("IsFavouritable",this.isfavouriteable);
-        new ViewModelProvider(getActivity()).get(RoutineLandingViewModel.class).clear();
-        new ViewModelProvider(getActivity()).get(MyRoutineViewModel.class).clear();
-        new ViewModelProvider(getActivity()).get(MyFavouriteRoutineViewModel.class).clear();
-        this.dataset= new ArrayList<>();
-//        getActivity().getViewModelStore().clear();
-        startActivity(intent);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        initializeFilteredRoutine();
-        updateRecyclerView();
-        fillRoutines();
-    }
 
     @Override
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
         onNoteListener = this;
-        // ((BodyActivity) getActivity()).clearComparator();
-        this.datasetFiltered = new ArrayList<>();
         requireActivity().invalidateOptionsMenu();
-        // initializeFilteredRoutine();
-        updateRecyclerView();
+        fillRoutines();
     }
 
     protected void responseViewModel(List<Routine> routine){
-        if(routine== null)
+        if(routine == null)
             return;
+
+        if(dataset == null || routine.size() < dataset.size()){
+            dataset = new ArrayList<>();
+        }
+
 
         for(Routine r : routine){
             if(!dataset.contains(r))
                 dataset.add(r);
         }
 
-        dataset.sort(((BodyActivity) getActivity()).getComparator());
+
+//        dataset.sort(((BodyActivity) getActivity()).getComparator());
         initializeFilteredRoutine();
-        updateRecyclerView();
     }
 
 
     protected void initializeFilteredRoutine(){
         datasetFiltered = new ArrayList<>();
+        if(dataset == null)
+            return;
+
         for(Cardable c : dataset){
             datasetFiltered.add((Routine) c);
         }
@@ -120,7 +106,6 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
         }
 
         if(filterViewModel.getSport().getValue() != null){
-            Log.e("deporte",filterViewModel.getSport().getValue());
             datasetFiltered = datasetFiltered.stream().filter(routine -> routine.getMetadata().getSport().equals(filterViewModel.getSport().getValue())).collect(Collectors.toList());
         }
 
@@ -132,11 +117,32 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
 
     @Override
     public void onPrepareOptionsMenu(@NonNull Menu menu) {
+        MenuItem settItem = menu.findItem(R.id.action_settings);
+        settItem.setVisible(true);
         MenuItem search = menu.findItem(R.id.action_search);
         search.setVisible(false);
         MenuItem sort = menu.findItem(R.id.action_sort);
         sort.setVisible(true);
     }
 
+    @Override
+    public void onNoteClick(int position) {
+        Intent intent = new Intent(getActivity(), DescriptionActivity.class);
+        if(datasetFiltered == null)
+            intent.putExtra("Routine", this.dataset.get(position));
+        else
+            intent.putExtra("Routine", this.datasetFiltered.get(position));
+
+        intent.putExtra("Favourite",this.favourite);
+        intent.putExtra("IsFavouritable",this.isfavouriteable);
+        new ViewModelProvider(getActivity()).get(RoutineLandingViewModel.class).clear();
+        new ViewModelProvider(getActivity()).get(MyRoutineViewModel.class).clear();
+        new ViewModelProvider(getActivity()).get(MyFavouriteRoutineViewModel.class).clear();
+        new ViewModelProvider(getActivity()).get(RoutineLandingViewModel.class).clear();
+        new ViewModelProvider(getActivity()).get(MyFavouriteRoutineViewModel.class).clear();
+
+
+        startActivity(intent);
+    }
 
 }

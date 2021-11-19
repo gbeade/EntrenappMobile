@@ -5,6 +5,8 @@ import androidx.lifecycle.LiveData;
 
 
 import com.example.entrenapp.api.model.PagedList;
+import com.example.entrenapp.api.model.Review;
+import com.example.entrenapp.api.model.ReviewAnswer;
 import com.example.entrenapp.api.model.RoutineAPI;
 
 
@@ -35,8 +37,13 @@ public interface ApiRoutineService {
     @DELETE("favourites/{routineId}")
     LiveData<ApiResponse<Void>> deleteFavourite(@Path("routineId") int routineId);
 
-    @PUT("routines/{routineId}")
-    LiveData<ApiResponse<RoutineAPI>> modifyRoutine(@Path("routineId") int routineId, @Body RoutineAPI routine);
+    @POST("reviews/{routineId}")
+    LiveData<ApiResponse<Void>> addReview(@Path("routineId") int routineId, @Body Review review);
+
+
+    @GET("users/current/reviews")
+    LiveData<ApiResponse<PagedList<ReviewAnswer>>> getReviews();
+
 
 
     @GET("routines/{routineId}")

@@ -29,6 +29,7 @@ import java.util.stream.Collectors;
 public class MyFavouriteRoutine extends FragmentRoutine {
 
     private FragmentMyFavouriteRoutineBinding binding;
+    private MyFavouriteRoutineViewModel viewModel;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -64,27 +65,29 @@ public class MyFavouriteRoutine extends FragmentRoutine {
 
     @Override
     public void fillRoutines(){
-        MyFavouriteRoutineViewModel viewModel = new ViewModelProvider(getActivity()).get(MyFavouriteRoutineViewModel.class);
+        viewModel = new ViewModelProvider(getActivity()).get(MyFavouriteRoutineViewModel.class);
         viewModel.getMyFavouriteRoutines().observe(getViewLifecycleOwner(), routine -> responseViewModel(routine));
     }
 
 
 
+
+
     @Override
     public void updateRecyclerView() {
-        if( dataset.size() == 0 || datasetFiltered.size() == 0 ){
-            getActivity().findViewById(R.id.noRoutine1).setVisibility(View.VISIBLE);
-            return;
-        }
         if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
             binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        else binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        else
+            binding.routineRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
 
         getActivity().findViewById(R.id.noRoutine1).setVisibility(View.GONE);
-
         RecyclerView.Adapter adapter1;
         adapter1 = new CardAdapter(datasetFiltered, R.layout.extense_square_card, getActivity(),onNoteListener);
         binding.routineRecyclerView.setAdapter(adapter1);
+
+        if(datasetFiltered.size() == 0 ){
+            getActivity().findViewById(R.id.noRoutine1).setVisibility(View.VISIBLE);
+        }
     }
 
 }

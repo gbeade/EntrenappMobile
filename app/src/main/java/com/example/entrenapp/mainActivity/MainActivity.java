@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 
 import com.example.entrenapp.App;
+import com.example.entrenapp.DescriptionFragments.DescriptionActivity;
 import com.example.entrenapp.R;
 import com.example.entrenapp.api.model.Credentials;
 import com.example.entrenapp.api.model.PagedList;
@@ -14,6 +15,7 @@ import com.example.entrenapp.databinding.ActivityMainBinding;
 import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
 import com.example.entrenapp.repository.Resource;
 import com.example.entrenapp.repository.Status;
+import com.example.entrenapp.repository.UserSession;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.snackbar.SnackbarContentLayout;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText username;
     private EditText password;
     private App app;
+    private boolean first = true;
 
 
     @Override
@@ -46,15 +49,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         app = ((App)getApplication());
-        /*
+
+        first = getIntent().getBooleanExtra("first",true);
+
+
         if(app.getPreferences().getAuthToken() != null ){
             Intent intent = new Intent(this, BodyActivity.class);
             startActivity(intent);
         }
-        
-         */
-
-
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -70,16 +72,13 @@ public class MainActivity extends AppCompatActivity {
         password = binding.editTextTextPassword;
 
         // your text box
-        EditText edit_txt = (EditText) findViewById(R.id.editTextTextPassword);
+        EditText edit_txt = findViewById(R.id.editTextTextPassword);
 
-        edit_txt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                   closeKeyboard();
-                }
-                return false;
+        edit_txt.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+               closeKeyboard();
             }
+            return false;
         });
     }
 
@@ -92,29 +91,43 @@ public class MainActivity extends AppCompatActivity {
         app.getUserRepository().login(userData).observe(this,r->{
 
             if (r.getStatus() == Status.SUCCESS) {
+                UserSession.setUsername(auxUsername);
                 app.getPreferences().setAuthToken(r.getData().getToken());
+
+                while(app.getPreferences().getAuthToken() == null) ;
 
                 app.getUserRepository().getUsers().observe(this, result -> {
                     if(result != null && result.getData() != null) {
                         for (User user : result.getData().getContent()) {
                             if (user.getUsername().compareTo(auxUsername) == 0) {
+                                app.getPreferences().setUsername(user.getUsername());
                                 app.getPreferences().setUserId(user.getId());
+                                break;
                             }
                         }
                     }
                 });
 
+                Intent intent;
+                //if(first)//{
+                    intent = new Intent(this, BodyActivity.class);
+//                }else{
+//                    intent = new Intent(this, DescriptionActivity.class);
+//                }
+                    startActivity(intent);
 
-                Intent intent = new Intent(this, BodyActivity.class);
-                startActivity(intent);
                 return;
             } else if(r.getStatus() == Status.ERROR){
-                Snackbar snackbar = Snackbar.make(binding.btnLogin, R.string.errorLogin, BaseTransientBottomBar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(binding.btnLogin, R.string.errorLogin, BaseTransientBottomBar.LENGTH_LONG);
                 View snackBarView = snackbar.getView();
                 snackBarView.setBackgroundColor(Color.RED);
                 snackbar.show();
                 return;
-            }else if (r.getStatus() != Status.LOADING){
+            }else if (r.getStatus() == Status.LOADING){
+                Snackbar snackbar = Snackbar.make(binding.btnLogin, R.string.loading, BaseTransientBottomBar.LENGTH_SHORT);
+                snackbar.show();
+                return;
+            }else{
                 Snackbar snackbar = Snackbar.make(binding.btnLogin, R.string.unknown, BaseTransientBottomBar.LENGTH_SHORT);
                 View snackBarView = snackbar.getView();
                 snackbar.show();

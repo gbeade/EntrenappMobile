@@ -32,6 +32,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.PopupWindow;
+import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -113,8 +114,19 @@ public class FragmentRoutineDescription extends Fragment {
 
     PopupWindow popupWindow;
     TimePicker timePicker;
+    int daySwitch[] = {
+            R.id.sunday_switch,
+            R.id.monday_switch,
+            R.id.tuesday_switch,
+            R.id.wednesday_switch,
+            R.id.thursday_switch,
+            R.id.friday_switch,
+            R.id.saturday_switch
+    };
+
+    View popupView;
+    boolean isSomeoneOn = false;
     private void schedulerPopup() {
-        View popupView;
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
         popupView = inflater.inflate(R.layout.popup_date_picker, null);
         int width = ViewGroup.LayoutParams.WRAP_CONTENT; // (int)getContext().getResources().getDisplayMetrics().density * 400;
@@ -125,21 +137,39 @@ public class FragmentRoutineDescription extends Fragment {
         timePicker = (TimePicker)popupWindow.getContentView().findViewById(R.id.time_picker);
         timePicker.setIs24HourView(true);
         popupWindow.showAtLocation(getActivity().findViewById(R.id.bodyContainer), Gravity.CENTER, 0, 0);
+
+        for (int i=1; i<=7; i++)
+            ((Switch)popupView.findViewById(daySwitch[i-1])).setOnClickListener((v)->
+            {
+                isSomeoneOn = false;
+                for (int j=1; j<=7 && !isSomeoneOn; j++)
+                    if (((Switch)popupView.findViewById(daySwitch[j-1])).isChecked())
+                        isSomeoneOn = true;
+                if (isSomeoneOn) btn.setText(getString(R.string.save));
+                else btn.setText(getString(R.string.cancel));
+            });
     }
 
     private void createAlert() {
 
-        Toast.makeText(getActivity(), getString(R.string.reminder_set), Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(getContext(), ReminderBroadcast.class);
-        intent.putExtra("routineName", routine.getName());
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
-        AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService(getActivity().ALARM_SERVICE);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, timePicker.getHour()); // For 1 PM or 2 PM
-        calendar.set(Calendar.MINUTE, timePicker.getMinute());
-        calendar.set(Calendar.SECOND, 0);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        if (isSomeoneOn) {
+            for (int day = 1; day <= 7; day++) {
+                if (((Switch) popupView.findViewById(daySwitch[day - 1])).isChecked()) {
+                    Intent intent = new Intent(getContext(), ReminderBroadcast.class);
+                    intent.putExtra("routineName", routine.getName());
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 0, intent, 0);
+                    AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(getActivity().ALARM_SERVICE);
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTimeInMillis(System.currentTimeMillis());
+                    calendar.set(Calendar.DAY_OF_MONTH, day);
+                    calendar.set(Calendar.HOUR_OF_DAY, timePicker.getHour());
+                    calendar.set(Calendar.MINUTE, timePicker.getMinute());
+                    calendar.set(Calendar.SECOND, 0);
+                    alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+                }
+            }
+            Toast.makeText(getActivity(), getString(R.string.reminder_set), Toast.LENGTH_SHORT).show();
+        }
         popupWindow.dismiss();
     }
 

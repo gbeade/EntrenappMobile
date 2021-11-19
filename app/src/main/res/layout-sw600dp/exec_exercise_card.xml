@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="965dp"
+        android:layout_height="1703dp"
+        app:cardBackgroundColor="@color/primary"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="1dp"
+        app:cardMaxElevation="1dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="965dp"
+            android:layout_height="1659dp"
+            android:background="@color/primary">
+
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="16dp"
+                android:text="Nombre del ejercicio"
+                android:textAlignment="center"
+                android:textColor="@color/accent"
+                android:textSize="35dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="0.7dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title" />
+
+            <View
+                android:id="@+id/video1"
+                android:layout_width="440dp"
+                android:layout_height="296dp"
+                android:layout_marginTop="44dp"
+                android:background="@color/grey"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+            <TextView
+                android:id="@+id/timer"
+                android:layout_width="367dp"
+                android:layout_height="95dp"
+                android:layout_marginTop="52dp"
+                android:text="69''"
+                android:textAlignment="center"
+                android:textColor="@color/accent"
+                android:textSize="70dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/video1" />
+
+            <TextView
+                android:id="@+id/arrowright"
+                android:layout_width="69dp"
+                android:layout_height="57dp"
+                android:text=" ⃕ "
+                android:textAlignment="center"
+                android:textColor="@color/accent"
+                android:textSize="80dp"
+                app:layout_constraintBottom_toBottomOf="@+id/video1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.094"
+                app:layout_constraintStart_toEndOf="@+id/video1"
+                app:layout_constraintTop_toTopOf="@+id/video1" />
+
+            <TextView
+                android:id="@+id/arrowleft"
+                android:layout_width="69dp"
+                android:layout_height="57dp"
+                android:text=" ⃔ "
+                android:textAlignment="center"
+                android:textColor="@color/accent"
+                android:textSize="80dp"
+                app:layout_constraintBottom_toBottomOf="@+id/video1"
+                app:layout_constraintEnd_toStartOf="@+id/video1"
+                app:layout_constraintHorizontal_bias="0.765"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/video1"
+                app:layout_constraintVertical_bias="0.524" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
