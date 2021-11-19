@@ -62,6 +62,7 @@
 
     <string name="new_cycle_alert">💬 You have finished a cycle. Execution has been paused.</string>
 
+    <string name="loading">Loading...Please wait</string>
 
     <string name="train_now">Train now</string>
     <string name="train_later"><u>Or better schedule this routine for later</u></string>

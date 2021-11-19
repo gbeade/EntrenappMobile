@@ -67,6 +67,7 @@
     <string name="rate_routine">Puntúa tu rutina</string>
 
     <string name="new_cycle_alert">💬 Has terminado un ciclo. Se ha pausado la ejecución.</string>
+    <string name="loading">Cargando…Por favor espere</string>
 
 
     <!--ERRORS-->
