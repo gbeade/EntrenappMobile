@@ -1,7 +1,11 @@
 package com.example.entrenapp;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+
+import com.example.entrenapp.mainActivity.MainActivity;
 
 public class AppPreferences {
     private final String AUTH_TOKEN = "auth_token";
@@ -15,7 +19,12 @@ public class AppPreferences {
 
     public void setAuthToken(String token) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(AUTH_TOKEN, token);
+        if(token == null){
+            editor.remove(AUTH_TOKEN);
+
+        }else{
+            editor.putString(AUTH_TOKEN, token);
+        }
         editor.apply();
     }
 
@@ -32,5 +41,8 @@ public class AppPreferences {
     public Integer getUserId(){
         return sharedPreferences.getInt(USER_ID,0);
     }
+
+
+
 
 }

@@ -31,11 +31,13 @@ import android.widget.Toast;
 
 import com.example.entrenapp.App;
 import com.example.entrenapp.BaseMenuActivity;
+import com.example.entrenapp.PrivateActivity;
 import com.example.entrenapp.R;
 import com.example.entrenapp.api.model.User;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.ActivityBodyBinding;
 import com.example.entrenapp.databinding.ToolbarMainBinding;
+import com.example.entrenapp.mainActivity.MainActivity;
 import com.example.entrenapp.repository.Resource;
 import com.example.entrenapp.repository.Status;
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
@@ -43,7 +45,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.Comparator;
 
-public class BodyActivity extends AppCompatActivity {
+public class BodyActivity extends PrivateActivity {
     private BottomNavigationView bottomNavigationView;
     private App app;
     private FilterViewModel filter;
@@ -193,5 +195,6 @@ public class BodyActivity extends AppCompatActivity {
         popupWindow.dismiss();
         Toast.makeText(this, getString(R.string.sort_ok), Toast.LENGTH_SHORT).show();
     }
+
 
 }

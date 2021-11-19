@@ -47,18 +47,15 @@ public class RoutineLandingViewModel extends AndroidViewModel {
 
     private void loadMyRoutines(){
 
-        app.getRoutineRepository().getRoutines().observeForever(new Observer<Resource<PagedList<RoutineAPI>>>() {
-            @Override
-            public void onChanged(Resource<PagedList<RoutineAPI>> pagedListResource) {
-                if(pagedListResource.getData() != null && pagedListResource.getData().getContent().size() > 0){
-                    for(RoutineAPI routine : pagedListResource.getData().getContent()){
-                        if(! UserId.equals(routine.getUser().getId()) ){
-                            Log.d("Id",String.valueOf(UserId));
-                            List<Routine> routineList = new ArrayList<>(OtherRoutines.getValue());
-                            Routine routine1 = new Routine(routine.getId(), routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion(),routine.getMetadata());
-                            routineList.add(routine1);
-                            OtherRoutines.setValue(routineList);
-                        }
+        app.getRoutineRepository().getRoutines().observeForever(pagedListResource -> {
+            if(pagedListResource.getData() != null && pagedListResource.getData().getContent().size() > 0){
+                for(RoutineAPI routine : pagedListResource.getData().getContent()){
+                    if(! UserId.equals(routine.getUser().getId()) ){
+                        Log.d("Id",String.valueOf(UserId));
+                        List<Routine> routineList = new ArrayList<>(OtherRoutines.getValue());
+                        Routine routine1 = new Routine(routine.getId(), routine.getName(),routine.getMetadata().getSport(), Routine.Difficulty.valueOf(routine.getDifficulty()),routine.getMetadata().getEquipacion(),new Date(routine.getDate()),routine.getScore(),routine.getMetadata().getDuracion(),routine.getMetadata());
+                        routineList.add(routine1);
+                        OtherRoutines.setValue(routineList);
                     }
                 }
             }

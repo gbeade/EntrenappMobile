@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.entrenapp.App;
+import com.example.entrenapp.PrivateActivity;
 import com.example.entrenapp.R;
 import com.example.entrenapp.api.model.PagedList;
 import com.example.entrenapp.api.model.ReviewAnswer;
@@ -51,7 +52,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
 
-public class ExecuteRoutineActivity extends AppCompatActivity {
+public class ExecuteRoutineActivity extends PrivateActivity {
 
     private View root;
     ActivityExecuteRoutineBinding binding;

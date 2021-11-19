@@ -1,11 +1,14 @@
 package com.example.entrenapp;
 
+import android.app.Activity;
 import android.app.Application;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.lifecycle.Observer;
 
 import com.example.entrenapp.api.model.User;
+import com.example.entrenapp.mainActivity.MainActivity;
 import com.example.entrenapp.repository.Resource;
 import com.example.entrenapp.repository.RoutineCycleRepository;
 import com.example.entrenapp.repository.RoutineRepository;
@@ -50,8 +53,6 @@ public class App extends Application {
         routineRepository = new RoutineRepository(this);
 
         ContextSingleton.getInstance(getApplicationContext());
-
-
     }
 
 

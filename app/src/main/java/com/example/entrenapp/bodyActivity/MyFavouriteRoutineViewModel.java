@@ -39,7 +39,7 @@ public class MyFavouriteRoutineViewModel extends AndroidViewModel {
 
 
     private void loadMyRoutines(){
-        App app = (App) getApplication();
+        App app = getApplication();
         app.getRoutineRepository().getMyFavouriteRoutines().observeForever(pagedListResource -> {
             if(pagedListResource.getData() != null && pagedListResource.getData().getContent().size() > 0){
                 for(RoutineAPI routine : pagedListResource.getData().getContent()){
