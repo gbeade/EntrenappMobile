@@ -16,6 +16,16 @@ public class UserSession {
         UserSession.lastFavedRoutine = lastFavedRoutine;
     }
 
+    public static boolean getSimpleExecution() {
+        return simpleExecution;
+    }
+
+    public static void setSimpleExecution(boolean simpleExecution) {
+        UserSession.simpleExecution = simpleExecution;
+    }
+
+    private static boolean simpleExecution = false;
+
     public static String getUsername() {
         return username;
     }

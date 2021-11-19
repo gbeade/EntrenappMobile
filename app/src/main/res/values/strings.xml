@@ -67,6 +67,7 @@
     <string name="rate_routine">Puntúa tu rutina</string>
 
     <string name="new_cycle_alert">💬 Has terminado un ciclo. Se ha pausado la ejecución.</string>
+    <string name="loading">Cargando…Por favor espere</string>
 
 
     <!--ERRORS-->
@@ -130,9 +131,12 @@
     <string name="timeFormat">Formato de tiempo</string>
     <string name="notifications">Notificaciones</string>
     <string name="notifications_modify"><u>Modificar configuración de notificaciones</u></string>
+    <string name="routine_settings">Modo de ejecución</string>
+    <string name="routine_simple">Sencillo</string>
+    <string name="routine_detailed">Detallado</string>
+    <string name="routine_execution_settings">Ejecución de la rutina</string>
 
-
-
+    <string name="train">Entrenar</string>
 
 
 </resources>

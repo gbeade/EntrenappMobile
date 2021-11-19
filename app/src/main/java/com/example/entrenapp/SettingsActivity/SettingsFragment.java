@@ -3,6 +3,7 @@ package com.example.entrenapp.SettingsActivity;
 import android.app.NotificationChannel;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.provider.Settings;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +23,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 
 import com.example.entrenapp.App;
+import com.example.entrenapp.AppPreferences;
 import com.example.entrenapp.DescriptionFragments.DescriptionActivity;
 import com.example.entrenapp.R;
 import com.example.entrenapp.apiClasses.Routine;
@@ -30,6 +33,7 @@ import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.recyclerView.Cardable;
 import com.example.entrenapp.repository.NotificationHandler;
 import com.example.entrenapp.repository.TimeParser;
+import com.example.entrenapp.repository.UserSession;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -54,7 +58,19 @@ public class SettingsFragment extends Fragment {
                              @Nullable Bundle savedInstanceState){
 
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
+        App app = (App) getActivity().getApplication();
 
+        binding.logout.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                App app = (App) getActivity().getApplication();
+                app.getPreferences().getSharedPreferences().edit().remove("username").commit();
+                app.getPreferences().getSharedPreferences().edit().remove("auth_token").commit();
+                getActivity().finish();
+            }
+        });
+
+        binding.username.setText(app.getPreferences().getUsername());
         binding.gotonots.setOnClickListener(v-> {
             Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
             intent.putExtra(Settings.EXTRA_APP_PACKAGE, getActivity().getPackageName());
@@ -66,6 +82,12 @@ public class SettingsFragment extends Fragment {
         binding.timeFormat.setOnClickListener( v -> {
             TimeParser.setOnlySeconds(binding.timeFormat.isChecked());
         });
+
+        binding.routineMode.setChecked(!UserSession.getSimpleExecution());
+        binding.routineMode.setOnClickListener( v -> {
+            UserSession.setSimpleExecution(!binding.routineMode.isChecked());
+        });
+
 
 
         return binding.getRoot();

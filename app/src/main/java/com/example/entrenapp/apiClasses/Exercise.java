@@ -3,6 +3,7 @@ package com.example.entrenapp.apiClasses;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -83,7 +84,7 @@ public class Exercise implements Cardable, Parcelable {
         ArrayList<CardCaption> al = new ArrayList<>();
         Context context = ContextSingleton.getContext();
         al.add(new CardCaption("title", context.getString(R.string.name), name));
-        al.add(new CardCaption("subtitle1",context.getString(R.string.duraci_n), TimeParser.parseMinutes(duration)));
+        al.add(new CardCaption("subtitle1",context.getString(R.string.duraci_n), TimeParser.parseSeconds(duration)));
         al.add(new CardCaption("subtitle2", context.getString(R.string.type), type));
         return al;
     }
@@ -111,4 +112,5 @@ public class Exercise implements Cardable, Parcelable {
         dest.writeInt(duration);
         dest.writeInt(repetitions);
     }
+
 }

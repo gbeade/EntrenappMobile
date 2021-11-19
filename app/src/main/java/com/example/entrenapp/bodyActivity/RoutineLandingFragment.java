@@ -51,6 +51,10 @@ public class RoutineLandingFragment extends FragmentRoutine {
     private MyFavouriteRoutineViewModel myFavouriteRoutineViewModel;
 
     private Routine getNextBestRoutine(Routine routine) {
+        if(dataset == null){
+            return null;
+        }
+
         for (Routine r: dataset) {
             if ( r.getCategory().equals(routine.getCategory())) {
                 return r;
@@ -62,6 +66,7 @@ public class RoutineLandingFragment extends FragmentRoutine {
             }
         }
         return null;
+
     }
 
     PopupWindow popupWindow;
@@ -69,8 +74,8 @@ public class RoutineLandingFragment extends FragmentRoutine {
 
         Routine last = UserSession.getLastExecutedRoutine();
         Routine nextBest = getNextBestRoutine(last);
-        Log.i("NEXTBEST", ( nextBest == null ? "-" : nextBest.getName()));
-        Log.i("LASTRUN", ( last == null ? "-" : last.getName()));
+//        Log.i("NEXTBEST", ( nextBest == null ? "-" : nextBest.getName()));
+//        Log.i("LASTRUN", ( last == null ? "-" : last.getName()));
 
         if ( nextBest == null) return;
 

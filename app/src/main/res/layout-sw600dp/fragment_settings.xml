@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SettingsActivity.SettingsFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -16,7 +17,7 @@
             android:layout_marginTop="44dp"
             android:text="@string/configuration"
             android:textColor="@color/accent"
-            android:textSize="26dp"
+            android:textSize="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -24,23 +25,24 @@
 
         <View
             android:id="@+id/personalDataBox"
-            android:layout_width="363dp"
-            android:layout_height="91dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="803dp"
+            android:layout_height="199dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/rounded_border_rectangle"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"></View>
 
         <TextView
             android:id="@+id/personalData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="63dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:text="@string/personal_data"
             android:textColor="@color/accent"
-            android:textSize="20dp"
+            android:textSize="30dp"
             app:layout_constraintStart_toStartOf="@+id/personalDataBox"
             app:layout_constraintTop_toTopOf="@+id/personalDataBox" />
 
@@ -52,19 +54,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/login_user"
             android:textColor="@color/accent"
-            android:textSize="15dp"
-            app:layout_constraintStart_toStartOf="@+id/personalDataBox"
-            app:layout_constraintTop_toBottomOf="@+id/personalData" />
-
-        <TextView
-            android:id="@+id/username_caption2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
-            android:text="@string/login_user"
-            android:textColor="@color/accent"
-            android:textSize="15dp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@+id/personalDataBox"
             app:layout_constraintTop_toBottomOf="@+id/personalData" />
 
@@ -76,7 +66,7 @@
             android:layout_marginStart="10dp"
             android:text="Juan"
             android:textColor="@color/accent"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="@+id/username_caption"
             app:layout_constraintStart_toEndOf="@+id/username_caption"
@@ -85,8 +75,8 @@
 
         <View
             android:id="@+id/appearenceBox"
-            android:layout_width="363dp"
-            android:layout_height="91dp"
+            android:layout_width="803dp"
+            android:layout_height="199dp"
             android:layout_marginTop="27dp"
             android:background="@drawable/rounded_border_rectangle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +91,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/appearence"
             android:textColor="@color/accent"
-            android:textSize="20dp"
+            android:textSize="30dp"
             app:layout_constraintStart_toStartOf="@+id/appearenceBox"
             app:layout_constraintTop_toTopOf="@+id/appearenceBox" />
 
@@ -111,11 +101,11 @@
             android:layout_width="57dp"
             android:layout_height="39dp"
             android:layout_marginTop="-10dp"
+            android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="@+id/appearenceBox"
             app:layout_constraintStart_toEndOf="@+id/extended"
             app:layout_constraintTop_toTopOf="@+id/timeFormatCaption"
             app:layout_constraintVertical_bias="0.0"></Switch>
-
 
 
         <TextView
@@ -126,7 +116,7 @@
             android:layout_marginTop="12dp"
             android:text="@string/timeFormat"
             android:textColor="@color/accent"
-            android:textSize="15dp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@+id/appearenceBox"
             app:layout_constraintTop_toBottomOf="@+id/appearence" />
 
@@ -137,13 +127,12 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="12dp"
-            android:textStyle="italic"
             android:text="HH:MM:SS"
             android:textColor="@color/accent"
-            android:textSize="15dp"
+            android:textSize="20dp"
+            android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/timeFormatCaption"
             app:layout_constraintTop_toBottomOf="@+id/appearence" />
-
 
 
         <TextView
@@ -152,17 +141,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
             android:text="SS ''"
-            android:textStyle="italic"
             android:textColor="@color/accent"
-            android:textSize="15dp"
+            android:textSize="20dp"
+            android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/timeFormat"
             app:layout_constraintTop_toBottomOf="@+id/appearence" />
 
 
         <View
             android:id="@+id/notificationBox"
-            android:layout_width="363dp"
-            android:layout_height="91dp"
+            android:layout_width="803dp"
+            android:layout_height="199dp"
             android:layout_marginTop="27dp"
             android:background="@drawable/rounded_border_rectangle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -171,8 +160,8 @@
 
         <View
             android:id="@+id/routineBox"
-            android:layout_width="363dp"
-            android:layout_height="91dp"
+            android:layout_width="803dp"
+            android:layout_height="199dp"
             android:layout_marginTop="27dp"
             android:background="@drawable/rounded_border_rectangle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -187,7 +176,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/notifications"
             android:textColor="@color/accent"
-            android:textSize="20dp"
+            android:textSize="30dp"
             app:layout_constraintStart_toStartOf="@+id/notificationBox"
             app:layout_constraintTop_toTopOf="@+id/notificationBox" />
 
@@ -199,7 +188,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/routine_execution_settings"
             android:textColor="@color/accent"
-            android:textSize="20dp"
+            android:textSize="30dp"
             app:layout_constraintStart_toStartOf="@+id/routineBox"
             app:layout_constraintTop_toTopOf="@+id/routineBox" />
 
@@ -211,7 +200,7 @@
             android:layout_marginTop="12dp"
             android:text="@string/notifications_modify"
             android:textColor="@color/accent"
-            android:textSize="15dp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@+id/notificationBox"
             app:layout_constraintTop_toBottomOf="@+id/notifications" />
 
@@ -223,7 +212,7 @@
             android:layout_marginTop="12dp"
             android:text="@string/routine_settings"
             android:textColor="@color/accent"
-            android:textSize="15dp"
+            android:textSize="20dp"
             app:layout_constraintStart_toStartOf="@+id/routineBox"
             app:layout_constraintTop_toBottomOf="@+id/routineSettings" />
 
@@ -236,7 +225,7 @@
             android:layout_marginTop="12dp"
             android:text="@string/routine_simple"
             android:textColor="@color/accent"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/timeFormatCaption2"
             app:layout_constraintTop_toBottomOf="@+id/routineSettings" />
@@ -248,7 +237,7 @@
             android:layout_marginTop="12dp"
             android:text="@string/routine_detailed"
             android:textColor="@color/accent"
-            android:textSize="15dp"
+            android:textSize="20dp"
             android:textStyle="italic"
             app:layout_constraintStart_toEndOf="@+id/routineMode"
             app:layout_constraintTop_toBottomOf="@+id/routineSettings" />
@@ -261,20 +250,6 @@
             android:layout_marginTop="-10dp"
             app:layout_constraintStart_toEndOf="@+id/simpleModeText"
             app:layout_constraintTop_toTopOf="@+id/simpleModeText"></Switch>
-
-        <Button
-            android:id="@+id/logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:background="@color/accent"
-            android:backgroundTint="@color/accent"
-            android:text="Log out"
-            android:textColor="#FFEB3B"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/routineBox" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -38,6 +38,10 @@ public class MyRoutinesFragment extends FragmentRoutine {
     @Override
     protected void initializeFilteredRoutine(){
         datasetFiltered = new ArrayList<>();
+        if(dataset == null){
+            dataset = new ArrayList<>();
+        }
+
         for(Cardable c : dataset){
             datasetFiltered.add((Routine) c);
         }

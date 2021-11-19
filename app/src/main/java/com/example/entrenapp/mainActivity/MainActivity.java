@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     if(result != null && result.getData() != null) {
                         for (User user : result.getData().getContent()) {
                             if (user.getUsername().compareTo(auxUsername) == 0) {
+                                app.getPreferences().setUsername(user.getUsername());
                                 app.getPreferences().setUserId(user.getId());
                                 break;
                             }
@@ -117,12 +118,16 @@ public class MainActivity extends AppCompatActivity {
 
                 return;
             } else if(r.getStatus() == Status.ERROR){
-                Snackbar snackbar = Snackbar.make(binding.btnLogin, R.string.errorLogin, BaseTransientBottomBar.LENGTH_SHORT);
+                Snackbar snackbar = Snackbar.make(binding.btnLogin, R.string.errorLogin, BaseTransientBottomBar.LENGTH_LONG);
                 View snackBarView = snackbar.getView();
                 snackBarView.setBackgroundColor(Color.RED);
                 snackbar.show();
                 return;
-            }else if (r.getStatus() != Status.LOADING){
+            }else if (r.getStatus() == Status.LOADING){
+                Snackbar snackbar = Snackbar.make(binding.btnLogin, R.string.loading, BaseTransientBottomBar.LENGTH_SHORT);
+                snackbar.show();
+                return;
+            }else{
                 Snackbar snackbar = Snackbar.make(binding.btnLogin, R.string.unknown, BaseTransientBottomBar.LENGTH_SHORT);
                 View snackBarView = snackbar.getView();
                 snackbar.show();
