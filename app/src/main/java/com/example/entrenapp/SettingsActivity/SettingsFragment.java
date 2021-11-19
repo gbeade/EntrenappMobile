@@ -30,6 +30,7 @@ import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.recyclerView.Cardable;
 import com.example.entrenapp.repository.NotificationHandler;
 import com.example.entrenapp.repository.TimeParser;
+import com.example.entrenapp.repository.UserSession;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -65,6 +66,11 @@ public class SettingsFragment extends Fragment {
         binding.timeFormat.setChecked(TimeParser.getReduced());
         binding.timeFormat.setOnClickListener( v -> {
             TimeParser.setOnlySeconds(binding.timeFormat.isChecked());
+        });
+
+        binding.routineMode.setChecked(!UserSession.getSimpleExecution());
+        binding.routineMode.setOnClickListener( v -> {
+            UserSession.setSimpleExecution(!binding.routineMode.isChecked());
         });
 
 

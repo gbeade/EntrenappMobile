@@ -118,6 +118,8 @@
             app:layout_constraintTop_toTopOf="@+id/timeFormatCaption"
             app:layout_constraintVertical_bias="0.0"></Switch>
 
+
+
         <TextView
             android:id="@+id/timeFormatCaption"
             android:layout_width="wrap_content"
@@ -129,6 +131,7 @@
             android:textSize="15dp"
             app:layout_constraintStart_toStartOf="@+id/appearenceBox"
             app:layout_constraintTop_toBottomOf="@+id/appearence" />
+
 
         <TextView
             android:id="@+id/extended"
@@ -143,6 +146,8 @@
             app:layout_constraintStart_toEndOf="@+id/timeFormatCaption"
             app:layout_constraintTop_toBottomOf="@+id/appearence" />
 
+
+
         <TextView
             android:id="@+id/reduced"
             android:layout_width="wrap_content"
@@ -155,6 +160,8 @@
             app:layout_constraintStart_toEndOf="@+id/timeFormat"
             app:layout_constraintTop_toBottomOf="@+id/appearence" />
 
+
+
         <View
             android:id="@+id/notificationBox"
             android:layout_width="363dp"
@@ -165,6 +172,17 @@
             app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appearenceBox"></View>
+
+        <View
+            android:id="@+id/routineBox"
+            android:layout_width="363dp"
+            android:layout_height="91dp"
+            android:layout_marginTop="27dp"
+            android:background="@drawable/rounded_border_rectangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/notificationBox"></View>
 
         <TextView
             android:id="@+id/notifications"
@@ -179,6 +197,18 @@
             app:layout_constraintTop_toTopOf="@+id/notificationBox" />
 
         <TextView
+            android:id="@+id/routineSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/routine_execution_settings"
+            android:textColor="@color/accent"
+            android:textSize="20dp"
+            app:layout_constraintStart_toStartOf="@+id/routineBox"
+            app:layout_constraintTop_toTopOf="@+id/routineBox" />
+
+        <TextView
             android:id="@+id/gotonots"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -190,7 +220,52 @@
             app:layout_constraintStart_toStartOf="@+id/notificationBox"
             app:layout_constraintTop_toBottomOf="@+id/notifications" />
 
+        <TextView
+            android:id="@+id/timeFormatCaption2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/routine_settings"
+            android:textColor="@color/accent"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="@+id/routineBox"
+            app:layout_constraintTop_toBottomOf="@+id/routineSettings" />
 
+
+        <TextView
+            android:id="@+id/simpleModeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/routine_simple"
+            android:textColor="@color/accent"
+            android:textSize="15dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/timeFormatCaption2"
+            app:layout_constraintTop_toBottomOf="@+id/routineSettings" />
+
+        <TextView
+            android:id="@+id/detailModeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/routine_detailed"
+            android:textColor="@color/accent"
+            android:textSize="15dp"
+            android:textStyle="italic"
+            app:layout_constraintStart_toEndOf="@+id/routineMode"
+            app:layout_constraintTop_toBottomOf="@+id/routineSettings" />
+
+        <Switch
+            android:id="@+id/routineMode"
+            android:layout_width="57dp"
+            android:layout_height="39dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="-10dp"
+            app:layout_constraintStart_toEndOf="@+id/simpleModeText"
+            app:layout_constraintTop_toTopOf="@+id/simpleModeText"></Switch>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

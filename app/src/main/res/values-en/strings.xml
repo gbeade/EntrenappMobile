@@ -131,6 +131,13 @@
     <string name="notifications">Notifications</string>
     <string name="notifications_modify"><u>Modify notifications settings</u></string>
 
+    <string name="routine_settings">Execution mode</string>
+    <string name="routine_simple">Simple</string>
+    <string name="routine_detailed">Detailed</string>
+    <string name="routine_execution_settings">Routine execution</string>
+
+
+
 
 
 

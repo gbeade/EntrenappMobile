@@ -81,6 +81,8 @@ public class ExecuteRoutineActivity extends PrivateActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        simplifiedExecution = UserSession.getSimpleExecution();
+
         binding = ActivityExecuteRoutineBinding.inflate(getLayoutInflater());
         root = binding.getRoot();
         setContentView(root);

@@ -130,9 +130,10 @@
     <string name="timeFormat">Formato de tiempo</string>
     <string name="notifications">Notificaciones</string>
     <string name="notifications_modify"><u>Modificar configuración de notificaciones</u></string>
-
-
-
+    <string name="routine_settings">Modo de ejecución</string>
+    <string name="routine_simple">Sencillo</string>
+    <string name="routine_detailed">Detallado</string>
+    <string name="routine_execution_settings">Ejecución de la rutina</string>
 
 
 </resources>
