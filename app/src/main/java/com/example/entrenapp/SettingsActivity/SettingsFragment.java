@@ -62,7 +62,7 @@ public class SettingsFragment extends Fragment {
             startActivity(intent);
         });
 
-
+        binding.timeFormat.setChecked(TimeParser.getReduced());
         binding.timeFormat.setOnClickListener( v -> {
             TimeParser.setOnlySeconds(binding.timeFormat.isChecked());
         });

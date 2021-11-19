@@ -5,20 +5,34 @@ import java.time.Duration;
 public class TimeParser {
 
     public static void setOnlySeconds(boolean onlySeconds) {
-        TimeParser.onlySeconds = onlySeconds;
+        TimeParser.reduced = onlySeconds;
     }
 
-    private static boolean onlySeconds = false;
+    public static boolean getReduced() {
+        return reduced;
+    }
+
+    private static boolean reduced = false;
+
 
     public static String parseSeconds(int seconds) {
-        if (onlySeconds) {
+        if (reduced) {
             return seconds+"\'\'";
         } else {
-            Duration duration = Duration.ofMillis(seconds*1000);
             long HH = seconds / 3600;
             long MM = (seconds % 3600) / 60;
             long SS = seconds % 60;
-            return HH+":"+MM+":"+SS;
+            return (HH < 10 ? "0" : "")+HH+":"+(MM < 10 ? "0" : "")+MM+":"+(SS < 10 ? "0" : "")+SS;
+        }
+    }
+
+    public static String parseMinutes(int minutes) {
+        if (reduced) {
+            return minutes+"\'";
+        } else {
+            long HH = minutes / 60;
+            long MM = (minutes % 60) ;
+            return (HH < 10 ? "0" : "")+HH+":"+(MM < 10 ? "0" : "")+MM+(HH + MM == 0 ? ":05" : ":00");
         }
     }
 

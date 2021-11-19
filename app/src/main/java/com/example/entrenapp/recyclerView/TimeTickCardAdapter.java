@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import com.example.entrenapp.R;
 import com.example.entrenapp.apiClasses.Exercise;
 import com.example.entrenapp.executeRoutineActivity.ExecuteRoutineActivity;
+import com.example.entrenapp.repository.TimeParser;
 
 import java.sql.Time;
 import java.util.HashMap;
@@ -133,7 +134,7 @@ public class TimeTickCardAdapter extends CardAdapter<Exercise> {
                                 }
                             }
                         } else {
-                            bindTextViewWithData(r.getIdentifier("timer", "id", packageName), (duration - time ) + "\'\'");
+                            bindTextViewWithData(r.getIdentifier("timer", "id", packageName), TimeParser.parseSeconds(duration-time));
                         }
                         time++;
                  }

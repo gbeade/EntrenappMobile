@@ -32,6 +32,7 @@ import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.recyclerView.Cardable;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.FragmentRoutineLandingBinding;
+import com.example.entrenapp.repository.TimeParser;
 import com.example.entrenapp.repository.UserSession;
 
 
@@ -90,7 +91,7 @@ public class RoutineLandingFragment extends FragmentRoutine {
         View card = popupView.findViewById(R.id.includeRoutineCard);
         ((TextView)(card.findViewById(R.id.title))).setText(nextBest.getName());
         ((TextView)(card.findViewById(R.id.subtitle1_header))).setText(getString(R.string.duraci_n));
-        ((TextView)(card.findViewById(R.id.subtitle1))).setText(nextBest.getDuration()+"'");
+        ((TextView)(card.findViewById(R.id.subtitle1))).setText(TimeParser.parseSeconds(nextBest.getDuration()));
         ((TextView)(card.findViewById(R.id.subtitle2_header))).setText(getString(R.string.category));
         ((TextView)(card.findViewById(R.id.subtitle2))).setText(nextBest.getCategory());
 

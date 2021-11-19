@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import com.example.entrenapp.ContextSingleton;
 import com.example.entrenapp.R;
 import com.example.entrenapp.recyclerView.Cardable;
+import com.example.entrenapp.repository.TimeParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +83,7 @@ public class Exercise implements Cardable, Parcelable {
         ArrayList<CardCaption> al = new ArrayList<>();
         Context context = ContextSingleton.getContext();
         al.add(new CardCaption("title", context.getString(R.string.name), name));
-        al.add(new CardCaption("subtitle1",context.getString(R.string.duraci_n), Integer.toString(duration)));
+        al.add(new CardCaption("subtitle1",context.getString(R.string.duraci_n), TimeParser.parseMinutes(duration)));
         al.add(new CardCaption("subtitle2", context.getString(R.string.type), type));
         return al;
     }
