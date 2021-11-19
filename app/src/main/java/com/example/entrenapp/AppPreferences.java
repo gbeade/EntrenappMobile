@@ -10,6 +10,16 @@ import com.example.entrenapp.mainActivity.MainActivity;
 public class AppPreferences {
     private final String AUTH_TOKEN = "auth_token";
     private final String USER_ID="USER_ID";
+    private final String USERNAME = "username";
+
+    public String getUsername() {
+        return sharedPreferences.getString(USERNAME,"meeesi");
+    }
+    public void setUsername(String username){
+        SharedPreferences.Editor  editor = sharedPreferences.edit();
+        editor.putString(USERNAME,username);
+        editor.apply();
+    }
 
     private final SharedPreferences sharedPreferences;
 
@@ -42,7 +52,7 @@ public class AppPreferences {
         return sharedPreferences.getInt(USER_ID,0);
     }
 
-
-
-
+    public SharedPreferences getSharedPreferences() {
+        return sharedPreferences;
+    }
 }

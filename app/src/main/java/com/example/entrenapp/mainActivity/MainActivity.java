@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     if(result != null && result.getData() != null) {
                         for (User user : result.getData().getContent()) {
                             if (user.getUsername().compareTo(auxUsername) == 0) {
+                                app.getPreferences().setUsername(user.getUsername());
                                 app.getPreferences().setUserId(user.getId());
                                 break;
                             }
