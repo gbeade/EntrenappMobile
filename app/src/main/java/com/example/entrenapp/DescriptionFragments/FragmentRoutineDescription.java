@@ -39,6 +39,7 @@ import android.widget.Toast;
 
 import com.example.entrenapp.App;
 import com.example.entrenapp.R;
+import com.example.entrenapp.api.model.User;
 import com.example.entrenapp.apiClasses.Cycle;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.FragmentRoutineDescriptionBinding;
@@ -49,6 +50,7 @@ import com.example.entrenapp.recyclerView.CycleAdapter;
 import com.example.entrenapp.repository.NotificationHandler;
 import com.example.entrenapp.repository.ReminderBroadcast;
 import com.example.entrenapp.repository.Resource;
+import com.example.entrenapp.repository.UserSession;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -94,12 +96,14 @@ public class FragmentRoutineDescription extends Fragment {
                 binding.addFavourite.setVisibility(View.GONE);
                 binding.removeFavourite.setVisibility(View.VISIBLE);
                 Snackbar.make(binding.btnTrain, R.string.agregadoFavoritos, BaseTransientBottomBar.LENGTH_SHORT).show();
+                UserSession.setLastFavedRoutine(this.routine);
             }));
 
             binding.removeFavourite.setOnClickListener(v -> app.getRoutineRepository().deleteFavourite(routine.getId()).observe(getViewLifecycleOwner(), voidResource -> {
                 binding.removeFavourite.setVisibility(View.GONE);
                 binding.addFavourite.setVisibility(View.VISIBLE);
                 Snackbar.make(binding.btnTrain, R.string.eliminadaFavoritos, BaseTransientBottomBar.LENGTH_SHORT).show();
+                UserSession.setLastFavedRoutine(null);
             }));
         }else{
             binding.addFavourite.setVisibility(View.GONE);

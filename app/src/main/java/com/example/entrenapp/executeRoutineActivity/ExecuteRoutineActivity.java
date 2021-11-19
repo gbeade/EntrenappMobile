@@ -227,17 +227,22 @@ public class ExecuteRoutineActivity extends PrivateActivity {
                 getSystemService(LAYOUT_INFLATER_SERVICE);
 
         View popupView;
-        if (isRoutineRateable())
+        int height = (int)getResources().getDisplayMetrics().density;
+
+        if (isRoutineRateable()){
+            height*=300;
             popupView = inflater.inflate(R.layout.popup_finish_routine_rate, null);
-        else
+        }
+        else{
+            height*=180;
             popupView = inflater.inflate(R.layout.popup_finish_routine_norate, null);
+        }
 
         popupButton = popupView.findViewById(R.id.btn_return);
         popupButton.setOnClickListener(view->onClick());
 
         // create the popup window
         int width = (int)getResources().getDisplayMetrics().density * 450;
-        int height = (int)getResources().getDisplayMetrics().density * 300;
         popupWindow = new PopupWindow(popupView, width, height, true);
 
         rb = popupView.findViewById(R.id.simpleRatingBar);

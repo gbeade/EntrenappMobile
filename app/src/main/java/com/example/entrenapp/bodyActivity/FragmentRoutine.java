@@ -38,6 +38,7 @@ public abstract class FragmentRoutine extends Fragment implements CardAdapter.Vi
     protected List<Routine> datasetFiltered = null ;
     protected FilterViewModel filterViewModel;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

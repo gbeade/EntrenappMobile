@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,6 +29,7 @@ import android.widget.TextView;
 
 import com.example.entrenapp.DescriptionFragments.DescriptionActivity;
 import com.example.entrenapp.R;
+import com.example.entrenapp.api.model.User;
 import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.recyclerView.Cardable;
 import com.example.entrenapp.apiClasses.Routine;
@@ -59,8 +61,7 @@ public class RoutineLandingFragment extends FragmentRoutine {
                 return r;
             }
         }
-        // Todo: change to null
-        return new Routine(1000, "NO ROUTINE", "Pecho", Routine.Difficulty.rookie, false, new Date(), 1, 2, null);
+        return null;
     }
 
     PopupWindow popupWindow;
@@ -73,6 +74,7 @@ public class RoutineLandingFragment extends FragmentRoutine {
 
         if ( nextBest == null) return;
 
+        UserSession.setLastExecutedRoutine(null);
 
         // inflate the layout of the popup window
         LayoutInflater inflater = (LayoutInflater)
@@ -97,11 +99,10 @@ public class RoutineLandingFragment extends FragmentRoutine {
         ((TextView)(card.findViewById(R.id.subtitle2_header))).setText(getString(R.string.category));
         ((TextView)(card.findViewById(R.id.subtitle2))).setText(nextBest.getCategory());
 
-        card.setOnClickListener( v-> runRoutine(UserSession.getLastExecutedRoutine()));
+        card.setOnClickListener( v-> runRoutine(nextBest));
 
-        popupView.findViewById(R.id.btn_return).setOnClickListener((v)-> {
+        popupView.findViewById(R.id.btn_return8).setOnClickListener((v)-> {
             popupWindow.dismiss();
-            UserSession.setLastExecutedRoutine(null);
             });
 
         // show the popup window
@@ -155,6 +156,10 @@ public class RoutineLandingFragment extends FragmentRoutine {
                     dataset.remove(r);
         }
         super.responseViewModel(routine);
+
+        if (UserSession.getLastExecutedRoutine() != null) {
+            showPopup();
+        }
     }
 
     @Override
@@ -184,10 +189,6 @@ public class RoutineLandingFragment extends FragmentRoutine {
                responseViewModel(routine.stream().filter(routine1 -> !favouriteRoutines.contains(routine1)).collect(Collectors.toList()));
         });
 
-        if (UserSession.getLastExecutedRoutine() != null) {
-            showPopup();
-        }
-
     }
 
 
@@ -207,5 +208,12 @@ public class RoutineLandingFragment extends FragmentRoutine {
         }
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(UserSession.getLastFavedRoutine() != null){
+            UserSession.setLastFavedRoutine(null);
+            Navigation.findNavController(binding.getRoot()).navigate(R.id.myFavouriteRoutine);
+        }
+    }
 }
