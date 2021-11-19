@@ -176,6 +176,8 @@ public class ExecuteRoutineActivity extends PrivateActivity {
     }
 
     public void startIterations() {
+        ((TextView) findViewById(R.id.play)).setVisibility(View.VISIBLE);
+        ((TextView) findViewById(R.id.pause)).setVisibility(View.INVISIBLE);
         cycleIterator = routine.getCycles().iterator();
         currentCycleIdx = -1;
         nextCycle();
