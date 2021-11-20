@@ -89,8 +89,18 @@ public class RoutineLandingFragment extends FragmentRoutine {
         View popupView = inflater.inflate(R.layout.popup_routine_recommendation, null);
 
         // create the popup window
-        int width = (int)getResources().getDisplayMetrics().density * 450;
-        int height = (int)getResources().getDisplayMetrics().density * 550;
+        int width = (int)getResources().getDisplayMetrics().density;
+        int height = (int)getResources().getDisplayMetrics().density;
+
+        if ( getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            width *=450;
+            height*=460;
+        }else{
+            width*=450;
+            height*=550;
+        }
+
+
         popupWindow = new PopupWindow(popupView, width, height, true);
 
 

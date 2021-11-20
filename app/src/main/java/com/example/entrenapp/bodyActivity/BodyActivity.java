@@ -82,9 +82,6 @@ public class BodyActivity extends PrivateActivity {
         NavHostFragment navHostFragment = (NavHostFragment)getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNavigationView, navHostFragment.getNavController());
 
-
-        //getUser();
-
     }
 
 
@@ -178,9 +175,20 @@ public class BodyActivity extends PrivateActivity {
         View popupView;
         LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         popupView = inflater.inflate(R.layout.popup_sort, null);
-        int width = (int)getResources().getDisplayMetrics().density * 300;
-        int height = (int)getResources().getDisplayMetrics().density * 550;
+        int width = (int)getResources().getDisplayMetrics().density ;
+        int height = (int)getResources().getDisplayMetrics().density;
+        if(getApplication().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+            width = 300 * width;
+            height =500 * height;
+
+        }else{
+            width = 300 * width;
+            height = 550 * height;
+        }
+
+
         popupWindow = new PopupWindow(popupView, width, height, true);
+
         popupWindow.showAtLocation(findViewById(R.id.bodyContainer), Gravity.CENTER, 0, 0);
 
         Button btn_difficulty = popupView.findViewById(R.id.btn_difficulty);
