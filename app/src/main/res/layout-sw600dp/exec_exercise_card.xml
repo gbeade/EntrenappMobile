@@ -8,8 +8,12 @@
     android:background="@color/primary">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="965dp"
-        android:layout_height="1703dp"
+        android:layout_width="969dp"
+        android:layout_height="1723dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         app:cardBackgroundColor="@color/primary"
         app:cardCornerRadius="20dp"
         app:cardElevation="1dp"
@@ -23,8 +27,8 @@
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="965dp"
-            android:layout_height="1659dp"
+            android:layout_width="954dp"
+            android:layout_height="1685dp"
             android:background="@color/primary">
 
 
@@ -52,12 +56,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/title" />
 
-            <View
+            <ImageView
                 android:id="@+id/video1"
                 android:layout_width="440dp"
                 android:layout_height="296dp"
                 android:layout_marginTop="44dp"
                 android:background="@color/grey"
+                android:src="@drawable/exercise"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view" />
@@ -79,13 +84,12 @@
                 android:id="@+id/arrowright"
                 android:layout_width="69dp"
                 android:layout_height="57dp"
+                android:layout_marginStart="20dp"
                 android:text=" ⃕ "
                 android:textAlignment="center"
                 android:textColor="@color/accent"
                 android:textSize="80dp"
                 app:layout_constraintBottom_toBottomOf="@+id/video1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.094"
                 app:layout_constraintStart_toEndOf="@+id/video1"
                 app:layout_constraintTop_toTopOf="@+id/video1" />
 
@@ -93,14 +97,13 @@
                 android:id="@+id/arrowleft"
                 android:layout_width="69dp"
                 android:layout_height="57dp"
+                android:layout_marginEnd="20dp"
                 android:text=" ⃔ "
                 android:textAlignment="center"
                 android:textColor="@color/accent"
                 android:textSize="80dp"
                 app:layout_constraintBottom_toBottomOf="@+id/video1"
                 app:layout_constraintEnd_toStartOf="@+id/video1"
-                app:layout_constraintHorizontal_bias="0.765"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/video1"
                 app:layout_constraintVertical_bias="0.524" />
 
