@@ -1,5 +1,7 @@
 package com.example.entrenapp.repository;
 
+import android.util.Log;
+
 import java.time.Duration;
 
 public class TimeParser {
@@ -16,12 +18,13 @@ public class TimeParser {
 
 
     public static String parseSeconds(int seconds) {
+        Log.d("Parse","Seconds");
         if (reduced) {
             return seconds+"\'\'";
         } else {
             long HH = seconds / 3600;
-            long MM = (seconds % 3600) / 60;
-            long SS = seconds % 60;
+            long MM = (seconds -(3600*HH))/60;
+            long SS = (seconds -(3600*HH)-(MM*60));
             return (HH < 10 ? "0" : "")+HH+":"+(MM < 10 ? "0" : "")+MM+":"+(SS < 10 ? "0" : "")+SS;
         }
     }

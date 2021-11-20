@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,6 +23,7 @@ import com.example.entrenapp.recyclerView.CardAdapter;
 import com.example.entrenapp.apiClasses.Routine;
 import com.example.entrenapp.databinding.FragmentMyRoutinesBinding;
 import com.example.entrenapp.recyclerView.Cardable;
+import com.example.entrenapp.repository.UserSession;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -36,6 +38,10 @@ public class MyRoutinesFragment extends FragmentRoutine {
     @Override
     protected void initializeFilteredRoutine(){
         datasetFiltered = new ArrayList<>();
+        if(dataset == null){
+            dataset = new ArrayList<>();
+        }
+
         for(Cardable c : dataset){
             datasetFiltered.add((Routine) c);
         }
@@ -94,7 +100,5 @@ public class MyRoutinesFragment extends FragmentRoutine {
         search.setVisible(true);
 
     }
-
-
 
 }

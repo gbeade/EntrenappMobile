@@ -5,6 +5,26 @@ import com.example.entrenapp.apiClasses.Routine;
 public class UserSession {
 
     private static Routine lastExecutedRoutine = null;
+    private static String username = null;
+    private static Routine lastFavedRoutine = null;
+    private static String linkReceived = null;
+
+
+    public static String getRoutineReceivedId() {
+        return linkReceived;
+    }
+
+    public static void setRoutineReceivedId(String linkReceived) {
+        UserSession.linkReceived = linkReceived;
+    }
+
+    public static Routine getLastFavedRoutine() {
+        return lastFavedRoutine;
+    }
+
+    public static void setLastFavedRoutine(Routine lastFavedRoutine) {
+        UserSession.lastFavedRoutine = lastFavedRoutine;
+    }
 
     public static boolean getSimpleExecution() {
         return simpleExecution;
@@ -24,7 +44,6 @@ public class UserSession {
         UserSession.username = username;
     }
 
-    private static String username = null;
 
     public static void setLastExecutedRoutine(Routine r) {
         lastExecutedRoutine = r;
@@ -33,6 +52,8 @@ public class UserSession {
     public static Routine getLastExecutedRoutine() {
         return lastExecutedRoutine;
     }
+
+
 
 
 }

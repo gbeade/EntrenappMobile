@@ -32,6 +32,7 @@ import com.example.entrenapp.bodyActivity.BodyActivity;
 import com.example.entrenapp.databinding.ActivityDescriptionBinding;
 import com.example.entrenapp.databinding.ToolbarMainBinding;
 import com.example.entrenapp.repository.Resource;
+import com.example.entrenapp.repository.UserSession;
 
 import java.util.Date;
 import java.util.StringTokenizer;
@@ -48,10 +49,13 @@ public class DescriptionActivity extends PrivateActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        app = (App) getApplication();
+        if(app.getPreferences().getAuthToken() == null && getIntent().getData()!=null){
+            UserSession.setRoutineReceivedId(getIntent().getData().toString());
+        }
         super.onCreate(savedInstanceState);
         ActivityDescriptionBinding binding = ActivityDescriptionBinding.inflate(getLayoutInflater());
 
-        app = (App) getApplication();
         activity = this;
 
         int id;

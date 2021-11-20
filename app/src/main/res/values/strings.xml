@@ -136,5 +136,7 @@
     <string name="routine_detailed">Detallado</string>
     <string name="routine_execution_settings">Ejecución de la rutina</string>
 
+    <string name="train">Entrenar</string>
+
 
 </resources>
