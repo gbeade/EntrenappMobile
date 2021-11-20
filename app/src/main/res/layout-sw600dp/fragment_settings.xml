@@ -250,6 +250,18 @@
             android:layout_marginTop="-10dp"
             app:layout_constraintStart_toEndOf="@+id/simpleModeText"
             app:layout_constraintTop_toTopOf="@+id/simpleModeText"></Switch>
+
+        <Button
+            android:id="@+id/logout"
+            style="@style/roundedYellowButton"
+            android:layout_width="256dp"
+            android:layout_height="62dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/log_out"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/routineBox" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

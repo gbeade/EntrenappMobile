@@ -137,6 +137,7 @@
     <string name="routine_execution_settings">Ejecución de la rutina</string>
 
     <string name="train">Entrenar</string>
+    <string name="log_out">Log out</string>
 
 
 </resources>
