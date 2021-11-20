@@ -5,7 +5,10 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/primary">
+        android:background="@color/primary"
+        android:layout_marginBottom="20dp"
+
+    >
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -13,10 +16,8 @@
         android:layout_width="347dp"
         android:layout_height="592dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
         android:isScrollContainer="true"
         android:scrollbars="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
