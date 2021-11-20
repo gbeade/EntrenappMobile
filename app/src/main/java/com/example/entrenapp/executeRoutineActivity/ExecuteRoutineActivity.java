@@ -90,7 +90,7 @@ public class ExecuteRoutineActivity extends PrivateActivity {
 
         binding.play.setOnClickListener(view -> togglePlayPauseExercise());
         binding.pause.setOnClickListener(view -> togglePlayPauseExercise());
-        binding.rewind.setOnClickListener(view -> createSystemDialog( ()->startIterations(), getString(R.string.restart_routine)));
+        binding.rewind.setOnClickListener(view -> createSystemDialog( ()->{ init = false; startIterations();}, getString(R.string.restart_routine)));
 
         app = (App) getApplication();
 
@@ -188,7 +188,7 @@ public class ExecuteRoutineActivity extends PrivateActivity {
         TextView textView;
         currentCycleIdx ++;
 
-        if (currentCycleIdx > 0 )
+        if (currentCycleIdx > 0)
             Toast.makeText(this, getString(R.string.cycle_completed), Toast.LENGTH_SHORT).show();
 
 
@@ -219,6 +219,7 @@ public class ExecuteRoutineActivity extends PrivateActivity {
         textView.setText(getString(R.string.current_exec_cycle)+": "+currentCycleIdx+" / "+currentCycle.getRepetitions());
         adapter.cleanTicks();
         binding.cycleRecyclerView.smoothScrollToPosition(0);
+
         //adapter.startCounterOnPosition(0);
     }
 
