@@ -30,7 +30,7 @@
     <string name="contrasenia">Contraseña</string>
     <string name="login_user">Usuario</string>
     <string name="registrate"><u>Regístrate</u></string>
-    <string name="Login_no_account">¿No tenés cuenta?</string>
+    <string name="Login_no_account">¿No tienes cuenta?</string>
     <string name="categor_a_del_ejercicio">Categoría del ejercicio</string>
     <string name="repeticiones">Repeticiones</string>
     <string name="duraci_n">Duración</string>
@@ -44,10 +44,10 @@
     <string name="name">Nombre</string>
     <string name="type">Tipo</string>
     <string name="date">Fecha</string>
-    <string name="category">Categoria</string>
+    <string name="category">Categoría</string>
     <string name="difficulty">Dificultad</string>
-    <string name="equipacion">Equipacion</string>
-    <string name="yes">Si</string>
+    <string name="equipacion">Equipamiento</string>
+    <string name="yes">Sí</string>
     <string name="no" translatable="false">No</string>
     <string name="equipacionExtra">Equipacion extra</string>
     <string name="ninguno">Ninguno</string>
@@ -67,7 +67,7 @@
     <string name="rate_routine">Puntúa tu rutina</string>
 
     <string name="new_cycle_alert">💬 Has terminado un ciclo. Se ha pausado la ejecución.</string>
-    <string name="loading">Cargando…Por favor espere</string>
+    <string name="loading">Cargando…Por favor espera</string>
 
 
     <!--ERRORS-->
@@ -82,7 +82,7 @@
     <string name="intermediateDifficulty">Intermedio</string>
     <string name="advancedDifficulty">Avanzado</string>
 
-    <string name="train_now">Entrenar ahora</string>
+    <string name="train_now">Entrena ahora</string>
     <string name="train_later"><u>O mejor programa un entrenamiento a futuro</u></string>
 
 
