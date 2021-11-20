@@ -111,8 +111,17 @@ public class FragmentRoutineDescription extends Fragment {
         }
 
         fillRoutine();
-        binding.btnTrain.setOnClickListener(v -> train());
-        binding.trainLater.setOnClickListener(v -> schedulerPopup());
+        if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+            binding.trainLater.setVisibility(View.GONE);
+        else{
+            binding.btnTrain.setOnClickListener(v -> train());
+            binding.trainLater.setOnClickListener(v -> {
+                if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+                    return;
+                schedulerPopup();
+            });
+        }
+
 
     }
 
@@ -135,7 +144,11 @@ public class FragmentRoutineDescription extends Fragment {
         popupView = inflater.inflate(R.layout.popup_date_picker, null);
         int width = ViewGroup.LayoutParams.WRAP_CONTENT; // (int)getContext().getResources().getDisplayMetrics().density * 400;
         int height = ViewGroup.LayoutParams.WRAP_CONTENT; // (int)getContext().getResources().getDisplayMetrics().density * 300;
-        popupWindow = new PopupWindow(popupView, width, height, true);
+        if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
+             return;
+        else
+            popupWindow = new PopupWindow(popupView, width, height, true);
+
         Button btn = popupView.findViewById(R.id.btn_return);
         btn.setOnClickListener(view->createAlert());
         timePicker = (TimePicker)popupWindow.getContentView().findViewById(R.id.time_picker);
