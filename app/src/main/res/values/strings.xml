@@ -93,10 +93,10 @@
 
     <string name="monday">Lunes</string>
     <string name="tuesday">Martes</string>
-    <string name="wednesday">Miercoles</string>
+    <string name="wednesday">Miércoles</string>
     <string name="thursday">Jueves</string>
     <string name="friday">Viernes</string>
-    <string name="saturday">Sabado</string>
+    <string name="saturday">Sábado</string>
     <string name="sunday">Domingo</string>
     <string name="time_to_train">¡Es hora de entrenar!</string>
     <string name="routine_waiting_for_you">Programaste la rutina </string>
