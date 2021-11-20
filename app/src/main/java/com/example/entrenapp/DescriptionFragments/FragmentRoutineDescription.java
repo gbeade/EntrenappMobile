@@ -95,14 +95,14 @@ public class FragmentRoutineDescription extends Fragment {
             binding.addFavourite.setOnClickListener(v -> app.getRoutineRepository().setFavourite(routine.getId()).observe(getViewLifecycleOwner(), voidResource -> {
                 binding.addFavourite.setVisibility(View.GONE);
                 binding.removeFavourite.setVisibility(View.VISIBLE);
-                Snackbar.make(binding.btnTrain, R.string.agregadoFavoritos, BaseTransientBottomBar.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getString(R.string.agregadoFavoritos), Toast.LENGTH_SHORT).show();
                 UserSession.setLastFavedRoutine(this.routine);
             }));
 
             binding.removeFavourite.setOnClickListener(v -> app.getRoutineRepository().deleteFavourite(routine.getId()).observe(getViewLifecycleOwner(), voidResource -> {
                 binding.removeFavourite.setVisibility(View.GONE);
                 binding.addFavourite.setVisibility(View.VISIBLE);
-                Snackbar.make(binding.btnTrain, R.string.eliminadaFavoritos, BaseTransientBottomBar.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getString(R.string.eliminadaFavoritos), Toast.LENGTH_SHORT).show();
                 UserSession.setLastFavedRoutine(null);
             }));
         }else{
