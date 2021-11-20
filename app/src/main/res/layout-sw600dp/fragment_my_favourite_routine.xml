@@ -13,9 +13,12 @@
         android:layout_width="905dp"
         android:layout_height="1541dp"
         android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
         android:isScrollContainer="true"
         android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 

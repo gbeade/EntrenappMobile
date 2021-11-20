@@ -3,18 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/drawable/ic_settings.xml" value="0.1649122807017544" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/drawable/rounded_border_rectangle.xml" value="0.1649122807017544" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/drawable/rounded_white_rectangle.xml" value="0.1649122807017544" />
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout-land/fragment_routine_description.xml" value="0.22" />
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.22" />
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout-sw600dp/activity_your_routines.xml" value="0.134765625" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/activity_body.xml" value="0.1513157894736842" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/activity_execute_routine.xml" value="0.5" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/activity_exercise_description.xml" value="0.1513157894736842" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/activity_settings.xml" value="0.1513157894736842" />
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/activity_your_routines.xml" value="0.1513157894736842" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/cycle_view_holder.xml" value="0.3333333333333333" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/exec_exercise_card.xml" value="0.1513157894736842" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/exercise_summary_card.xml" value="0.3333333333333333" />
@@ -25,18 +19,11 @@
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/fragment_my_routines.xml" value="0.22" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/fragment_routine_description.xml" value="0.22" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/fragment_routine_landing.xml" value="0.1513157894736842" />
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/fragment_settings.xml" value="0.3333333333333333" />
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_date_picker.xml" value="0.4466666666666667" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_filtrado_exito.xml" value="0.1513157894736842" />
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_finish_routine_norate.xml" value="0.1513157894736842" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_finish_routine_rate.xml" value="0.3333333333333333" />
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_routine_recommendation.xml" value="0.3333333333333333" />
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_scheduler_routine.xml" value="0.1513157894736842" />
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_sort.xml" value="0.3333333333333333" />
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/popup_warning.xml" value="0.3333333333333333" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/summary_square_card.xml" value="0.3333333333333333" />
         <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/layout/toolbar_main.xml" value="0.3333333333333333" />
-        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/menu/menu_main.xml" value="0.4466666666666667" />
+        <entry key="..\:/Entrenapp3/EntrenappMobile/app/src/main/res/menu/menu_main.xml" value="0.1513157894736842" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/drawable/button_login.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/drawable/ic_baseline_sports_24.xml" value="0.3828125" />
@@ -66,10 +53,6 @@
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_my_routines.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_routine_description.xml" value="0.1648148148148148" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_routine_landing.xml" value="0.25" />
-        <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/popup_filtrado_exito.xml" value="0.2578125" />
-        <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/popup_finish_routine_norate.xml" value="0.15" />
-        <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/popup_finish_routine_rate.xml" value="0.15" />
-        <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/popup_routine_recommendation.xml" value="0.2578125" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/routine_description.xml" value="0.5" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/summary_square_card.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Usuario/AndroidStudioProjects/EntrenappMobile/app/src/main/res/layout/toolbar_main.xml" value="0.20520833333333333" />
@@ -89,7 +72,29 @@
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.12777777777777777" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/drawable/ic_sync_black_24dp.xml" value="0.12777777777777777" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/drawable/rounded_white_rectangle.xml" value="0.12777777777777777" />
-        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-land/activity_description.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-land/bottom_navigation_body.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-land/extense_square_card.xml" value="0.21516754850088182" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-land/fragment_my_favourite_routine.xml" value="0.21516754850088182" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-land/fragment_routine_description.xml" value="0.11022927689594356" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/activity_body.xml" value="0.190625" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/activity_description.xml" value="0.190625" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/activity_execute_routine.xml" value="0.264" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/activity_exercise_description.xml" value="0.2" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.16" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/activity_your_routines.xml" value="0.12704918032786885" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/cycle_view_holder.xml" value="0.12704918032786885" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/exec_exercise_card.xml" value="0.2" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/exercise_summary_card.xml" value="0.264" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/extense_square_card.xml" value="0.264" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/fragment_exercise_description.xml" value="0.1133879781420765" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/fragment_filter_routine.xml" value="0.264" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/fragment_my_favourite_routine.xml" value="0.1133879781420765" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/fragment_my_routines.xml" value="0.12704918032786885" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/fragment_routine_description.xml" value="0.25" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/fragment_routine_landing.xml" value="0.12704918032786885" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/fragment_settings.xml" value="0.330078125" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout-sw600dp/summary_square_card.xml" value="0.536" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/activity_body.xml" value="0.264" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/activity_description.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/activity_execute_routine.xml" value="0.264" />
@@ -99,49 +104,24 @@
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/bottom_navigation_body.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/cycle_view_holder.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/exec_exercise_card.xml" value="0.152" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/exercise_summary_card.xml" value="0.16847826086956522" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/extense_square_card.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_exercise_description.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_filter_routine.xml" value="0.16847826086956522" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_my_favourite_routine.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_my_routines.xml" value="0.2" />
-        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_routine_description.xml" value="0.1" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_routine_description.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_routine_landing.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/fragment_settings.xml" value="0.375" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/popup_filtrado_exito.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/popup_finish_routine_norate.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/popup_finish_routine_rate.xml" value="0.16847826086956522" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/summary_square_card.xml" value="0.4" />
-        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/toolbar_main.xml" value="0.24912280701754386" />
-        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3446601941747573" />
-        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/menu/menu_main.xml" value="0.1" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/layout/toolbar_main.xml" value="0.4" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.4" />
+        <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/menu/menu_main.xml" value="0.4" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14635416666666667" />
         <entry key="..\:/Users/marcos/StudioProjects/EntrenappMobile/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.13055555555555556" />
-        <entry key="app/src/main/res/layout-land/activity_body.xml" value="0.3011463844797178" />
-        <entry key="app/src/main/res/layout-land/activity_description.xml" value="0.3011463844797178" />
-        <entry key="app/src/main/res/layout-land/activity_exercise_description.xml" value="0.3011463844797178" />
-        <entry key="app/src/main/res/layout-land/bottom_navigation_body.xml" value="0.3011463844797178" />
-        <entry key="app/src/main/res/layout-land/cycle_view_holder.xml" value="0.3011463844797178" />
-        <entry key="app/src/main/res/layout-land/extense_square_card.xml" value="0.3011463844797178" />
-        <entry key="app/src/main/res/layout-land/fragment_exercise_description.xml" value="0.3011463844797178" />
-        <entry key="app/src/main/res/layout-land/fragment_filter_routine.xml" value="0.3011463844797178" />
-        <entry key="app/src/main/res/layout-land/fragment_my_favourite_routine.xml" value="0.3011463844797178" />
-        <entry key="app/src/main/res/layout-land/fragment_my_routines.xml" value="0.3011463844797178" />
-        <entry key="app/src/main/res/layout-land/fragment_routine_description.xml" value="0.3011463844797178" />
-        <entry key="app/src/main/res/layout-land/fragment_routine_landing.xml" value="0.10899653979238755" />
-        <entry key="app/src/main/res/layout-land/summary_square_card.xml" value="0.3011463844797178" />
-        <entry key="app/src/main/res/layout-sw600dp/activity_main.xml" value="0.266796875" />
-        <entry key="app/src/main/res/layout-sw600dp/activity_your_routines.xml" value="0.266796875" />
-        <entry key="app/src/main/res/layout/activity_body.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/activity_description.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/activity_exercise_description.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/bottom_navigation_body.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/cycle_view_holder.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/exec_exercise_card.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/exercise_summary_card.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/extense_square_card.xml" value="0.32019927536231885" />
-        <entry key="app/src/main/res/layout/fragment_exercise_description.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/fragment_filter_routine.xml" value="0.32019927536231885" />
-        <entry key="app/src/main/res/layout/fragment_my_favourite_routine.xml" value="0.32019927536231885" />
-        <entry key="app/src/main/res/layout/fragment_my_routines.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/fragment_routine_description.xml" value="0.35572916666666665" />
-        <entry key="app/src/main/res/layout/fragment_routine_landing.xml" value="0.32019927536231885" />
-        <entry key="app/src/main/res/layout/summary_square_card.xml" value="0.35572916666666665" />
       </map>
     </option>
   </component>
