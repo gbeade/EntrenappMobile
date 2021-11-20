@@ -27,6 +27,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RatingBar;
@@ -176,8 +177,8 @@ public class ExecuteRoutineActivity extends PrivateActivity {
     }
 
     public void startIterations() {
-        ((TextView) findViewById(R.id.play)).setVisibility(View.VISIBLE);
-        ((TextView) findViewById(R.id.pause)).setVisibility(View.INVISIBLE);
+        ((ImageView) findViewById(R.id.play)).setVisibility(View.VISIBLE);
+        ((ImageView) findViewById(R.id.pause)).setVisibility(View.INVISIBLE);
         cycleIterator = routine.getCycles().iterator();
         currentCycleIdx = -1;
         nextCycle();
@@ -330,8 +331,8 @@ public class ExecuteRoutineActivity extends PrivateActivity {
         if ( simplifiedExecution && !init) {
             adapter.startCounterOnPosition(0);
             init = true;
-            ((TextView) findViewById(R.id.pause)).setVisibility(View.VISIBLE);
-            ((TextView) findViewById(R.id.play)).setVisibility(View.INVISIBLE);
+            ((ImageView) findViewById(R.id.pause)).setVisibility(View.VISIBLE);
+            ((ImageView) findViewById(R.id.play)).setVisibility(View.INVISIBLE);
             return;
         }
         swapPlayPauseIcon();
@@ -340,11 +341,11 @@ public class ExecuteRoutineActivity extends PrivateActivity {
 
     private void swapPlayPauseIcon() {
         if ( adapter.isPaused() ) {
-            ((TextView) findViewById(R.id.play)).setVisibility(View.VISIBLE);
-            ((TextView) findViewById(R.id.pause)).setVisibility(View.INVISIBLE);
+            ((ImageView) findViewById(R.id.play)).setVisibility(View.VISIBLE);
+            ((ImageView) findViewById(R.id.pause)).setVisibility(View.INVISIBLE);
         } else {
-            ((TextView) findViewById(R.id.pause)).setVisibility(View.VISIBLE);
-            ((TextView) findViewById(R.id.play)).setVisibility(View.INVISIBLE);}
+            ((ImageView) findViewById(R.id.pause)).setVisibility(View.VISIBLE);
+            ((ImageView) findViewById(R.id.play)).setVisibility(View.INVISIBLE);}
     }
 
 }
