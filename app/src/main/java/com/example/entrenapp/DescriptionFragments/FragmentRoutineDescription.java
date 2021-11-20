@@ -111,10 +111,10 @@ public class FragmentRoutineDescription extends Fragment {
         }
 
         fillRoutine();
+        binding.btnTrain.setOnClickListener(v -> train());
         if(getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
             binding.trainLater.setVisibility(View.GONE);
         else{
-            binding.btnTrain.setOnClickListener(v -> train());
             binding.trainLater.setOnClickListener(v -> {
                 if (getActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
                     return;

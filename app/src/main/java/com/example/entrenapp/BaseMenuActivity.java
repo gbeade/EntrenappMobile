@@ -33,12 +33,10 @@ public class BaseMenuActivity extends AppCompatActivity {
         SearchView searchView = (SearchView) searchItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             public boolean onQueryTextChange(String newText) {
-                Log.d(TAG, "onQueryTextChange -> " + newText);
                 return false;
             }
 
             public boolean onQueryTextSubmit(String query) {
-                Log.d(TAG, "onQueryTextSubmit -> " + query);
                 searchItem.collapseActionView();
                 return true;
             }

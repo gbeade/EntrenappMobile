@@ -18,7 +18,6 @@ public class TimeParser {
 
 
     public static String parseSeconds(int seconds) {
-        Log.d("Parse","Seconds");
         if (reduced) {
             return seconds+"\'\'";
         } else {
