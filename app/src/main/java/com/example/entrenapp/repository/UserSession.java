@@ -7,6 +7,16 @@ public class UserSession {
     private static Routine lastExecutedRoutine = null;
     private static String username = null;
     private static Routine lastFavedRoutine = null;
+    private static String linkReceived = null;
+
+
+    public static String getRoutineReceivedId() {
+        return linkReceived;
+    }
+
+    public static void setRoutineReceivedId(String linkReceived) {
+        UserSession.linkReceived = linkReceived;
+    }
 
     public static Routine getLastFavedRoutine() {
         return lastFavedRoutine;

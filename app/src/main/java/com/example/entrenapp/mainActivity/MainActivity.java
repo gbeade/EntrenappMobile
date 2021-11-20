@@ -24,6 +24,7 @@ import com.google.android.material.snackbar.SnackbarContentLayout;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -109,11 +110,12 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 Intent intent;
-                //if(first)//{
+                if(first){
                     intent = new Intent(this, BodyActivity.class);
-//                }else{
-//                    intent = new Intent(this, DescriptionActivity.class);
-//                }
+                }else{
+                    intent = new Intent(this, DescriptionActivity.class);
+                    intent.setData(Uri.parse(UserSession.getRoutineReceivedId()));
+                }
                     startActivity(intent);
 
                 return;

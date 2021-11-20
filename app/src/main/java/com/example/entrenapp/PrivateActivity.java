@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.entrenapp.mainActivity.MainActivity;
+import com.example.entrenapp.repository.UserSession;
 
 public class PrivateActivity extends AppCompatActivity {
 
