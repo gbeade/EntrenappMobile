@@ -19,8 +19,8 @@
 
     <View
         android:id="@+id/cycleInfo"
-        android:layout_width="495dp"
-        android:layout_height="186dp"
+        android:layout_width="456dp"
+        android:layout_height="185dp"
         android:layout_marginTop="80dp"
         android:background="@drawable/rounded_border_rectangle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
         android:id="@+id/cycle_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="15dp"
         android:text="Nombre del ciclo"
         android:textAlignment="center"
         android:textColor="@color/accent"
@@ -44,81 +44,78 @@
         app:layout_constraintStart_toStartOf="@+id/cycleInfo"
         app:layout_constraintTop_toTopOf="@+id/cycleInfo" />
 
+
     <TextView
         android:id="@+id/cycle_remaining"
-        android:layout_width="474dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="20dp"
+        android:layout_width="328dp"
+        android:layout_height="27dp"
         android:layout_marginTop="44dp"
         android:text="Repeticiones de este ciclo restantes:"
         android:textAlignment="center"
         android:textColor="@color/accent"
-        android:textSize="30dp"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/cycleInfo"
         app:layout_constraintStart_toStartOf="@+id/cycleInfo"
         app:layout_constraintTop_toBottomOf="@+id/cycle_name" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cycleRecyclerView"
-        android:layout_width="827dp"
-        android:layout_height="909dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="867dp"
+        android:layout_height="586dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cycleInfo" />
 
-
-    <TextView
-        android:id="@+id/rewind"
-        android:layout_width="145dp"
-        android:layout_height="147dp"
-        android:layout_marginStart="272dp"
-        android:layout_marginTop="-80dp"
-        android:layout_marginBottom="20dp"
-        android:text="⟳"
-        android:textAlignment="center"
-        android:textColor="@color/accent"
-        android:textSize="100dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cycleRecyclerView"
-        app:layout_constraintVertical_bias="0.738" />
-
-    <TextView
+    <ImageView
         android:id="@+id/play"
-        android:layout_width="148dp"
-        android:layout_height="129dp"
-        android:layout_marginTop="-60dp"
-        android:layout_marginEnd="304dp"
-        android:layout_marginBottom="20dp"
-        android:text="▶"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="25dp"
         android:textAlignment="center"
         android:textColor="@color/accent"
-        android:textSize="80dp"
-        android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.162"
+        app:layout_constraintStart_toEndOf="@+id/rewind"
         app:layout_constraintTop_toBottomOf="@+id/cycleRecyclerView"
-        app:layout_constraintVertical_bias="0.71" />
+        app:layout_constraintVertical_bias="0.096"
+        app:srcCompat="@drawable/ic_baseline_play_arrow_24" />
 
-    <TextView
-        android:id="@+id/pause"
-        android:layout_width="160dp"
-        android:layout_height="102dp"
-        android:text="▍▍"
+    <ImageView
+        android:id="@+id/rewind"
+        android:layout_width="152dp"
+        android:layout_height="145dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
         android:textAlignment="center"
         android:textColor="@color/accent"
-        android:textSize="40dp"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.332"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cycleRecyclerView"
+        app:layout_constraintVertical_bias="0.102"
+        app:srcCompat="@drawable/ic_baseline_refresh_24" />
+
+    <ImageView
+        android:id="@+id/pause"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:textAlignment="center"
+        android:textColor="@color/accent"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/play"
         app:layout_constraintEnd_toEndOf="@+id/play"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/play"
         app:layout_constraintTop_toTopOf="@+id/play"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_baseline_pause_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
