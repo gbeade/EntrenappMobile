@@ -46,10 +46,10 @@
     <string name="date">Fecha</string>
     <string name="category">Categoría</string>
     <string name="difficulty">Dificultad</string>
-    <string name="equipacion">Equipamiento</string>
+    <string name="equipacion">Equipación</string>
     <string name="yes">Sí</string>
     <string name="no" translatable="false">No</string>
-    <string name="equipacionExtra">Equipacion extra</string>
+    <string name="equipacionExtra">Equipación extra</string>
     <string name="ninguno">Ninguno</string>
     <string name="filter">Filtrar</string>
     <string name="select_sport">Elige un deporte asociado:</string>
